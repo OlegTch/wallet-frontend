@@ -16,6 +16,7 @@ module.exports = {
                     '@dashboard': './modules/dashboard',
                     '@details': './modules/details',
                     '@style': './styles',
+                    '@data': './data',
                     '@node_modules': '../node_modules',
                 },
             },

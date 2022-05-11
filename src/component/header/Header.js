@@ -1,5 +1,5 @@
 import { Logo, Balans } from '@common';
-import { HeaderNav } from '@dashboard';
+import { HeaderNav, Navigation } from '@dashboard';
 
 export const Header = () => {
     console.log('Header');
@@ -13,6 +13,7 @@ export const Header = () => {
             </div>
 
             <Balans />
+            <Navigation />
         </>
     );
 };

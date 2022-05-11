@@ -9,6 +9,7 @@ module.exports = {
                 baseUrl: './src',
                 aliases: {
                     '@root': './',
+                    '@assets': './assets',
                     '@component': './component',
                     '@redux': './redux',
                     '@common': './modules/common',

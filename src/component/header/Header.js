@@ -1,5 +1,12 @@
-import { Logo } from '@common/logo';
+import { Logo } from '@common';
+import { HeaderNav } from '@dashboard';
 
 export const Header = () => {
-    return <Logo />;
+    console.log('Header');
+    return (
+        <div className="container header">
+            <Logo />
+            <HeaderNav />
+        </div>
+    );
 };

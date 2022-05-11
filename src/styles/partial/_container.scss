@@ -13,4 +13,10 @@
     @media screen and (min-width: 1280px) {
         max-width: 1280px;
     }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }

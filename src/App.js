@@ -1,7 +1,5 @@
-import { Header } from '@component';
-
 function App() {
-    return <Header />;
+    return <h2> WALLET</h2>;
 }
 
 export default App;

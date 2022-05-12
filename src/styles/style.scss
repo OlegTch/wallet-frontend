@@ -7,3 +7,12 @@
 @import './partial/container';
 @import './partial/balans';
 @import './partial/itemNav';
+
+@import './utils/colors';
+@import './utils/breakpoints';
+
+// import base
+@import './base/fonts';
+@import './base/common';
+
+// @import '../App.scss'

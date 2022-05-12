@@ -1,0 +1,30 @@
+.button_exit {
+    display: flex;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.button_exit__block {
+    @media screen and (min-width: 768px) {
+        margin-right: 8px;
+    }
+}
+
+.button_exit__icon {
+    width: 18px;
+    height: 18px;
+}
+
+.button_exit__text {
+    display: none;
+    margin: 0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    color: $placeholder;
+
+    @media screen and (min-width: 768px) {
+        display: block;
+    }
+}

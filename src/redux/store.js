@@ -12,12 +12,15 @@ import {
 import logger from 'redux-logger';
 import storage from 'redux-persist/lib/storage';
 
+import categorySlice from './categories/categories-slice';
+import transactionSlice from './transaction/transaction-slice';
+
 const persistConfig = {
-    key: 'root',
+    key: 'category',
     storage,
 };
 
-// const rootReducer = persistReducer(persistConfig, );
+const rootReducer = persistReducer(persistConfig, categorySlice.reducer);
 
 const middleware = getDefaultMiddleware => [
     ...getDefaultMiddleware({
@@ -29,7 +32,10 @@ const middleware = getDefaultMiddleware => [
 ];
 
 const store = configureStore({
-    // reducer: ,
+    reducer: {
+        [categorySlice.name]: rootReducer,
+        [transactionSlice.name]: transactionSlice.reducer,
+    },
     middleware,
     devTools: process.env.NODE_ENV === 'development',
 });

@@ -1,0 +1,16 @@
+export const Balans = () => {
+    const balans = 1224000;
+
+    const makeMoney = n => {
+        return parseFloat(n)
+            .toFixed(2)
+            .replace(/(\d)(?=(\d{3})+\.)/g, '$1 ');
+    };
+
+    return (
+        <div className="balans">
+            <p className="balans__title">Ваш баланс</p>
+            <p className="balans__order">&#8372; {makeMoney(balans)}</p>
+        </div>
+    );
+};

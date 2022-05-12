@@ -1,0 +1,21 @@
+@import '@node_modules/modern-normalize/modern-normalize.css';
+@import './utilits/variables';
+@import './partial/logo';
+@import './partial/buttonExit';
+@import './partial/header';
+@import './partial/container';
+@import './partial/balans';
+@import './partial/itemNav';
+
+#root {
+    height: 100vh;
+    background-image: url(../assets/bg-desktop.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main {
+    height: 100%;
+    background-color: $background;
+    backdrop-filter: blur(50px);
+}

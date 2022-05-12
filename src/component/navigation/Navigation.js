@@ -6,12 +6,13 @@ export const Navigation = () => {
         <ul className="nav_list">
             {navList.map((el, idx) => {
                 return window.screen.width >= 768 && el.text === '' ? null : (
-                    <ItemNav
-                        key={idx}
-                        icon={el.icon}
-                        text={el.text}
-                        linkTo={el.linkTo}
-                    />
+                    <li className="nav_list__item" key={idx}>
+                        <ItemNav
+                            icon={el.icon}
+                            text={el.text}
+                            linkTo={el.linkTo}
+                        />
+                    </li>
                 );
             })}
         </ul>

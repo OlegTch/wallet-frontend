@@ -9,7 +9,6 @@ export const ItemNav = ({ icon, text, linkTo }) => {
                 isActive ? 'nav_item active' : 'nav_item'
             }
             to={linkTo}
-            // style={({ isActive }) => (isActive ? 'active' : undefined)}
         >
             <svg className="nav_item__icon">
                 <use href={`${sprite}#${icon}`}></use>

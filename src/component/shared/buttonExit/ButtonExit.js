@@ -8,7 +8,9 @@ export const ButtonExit = () => {
                     <use href={`${sprite}#exit`}></use>
                 </svg>
             </div>
-            <p className="button_exit__text">Вийти</p>
+            {window.screen.width >= 768 && (
+                <p className="button_exit__text">Вийти</p>
+            )}
         </button>
     );
 };

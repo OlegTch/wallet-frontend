@@ -14,13 +14,16 @@ import storage from 'redux-persist/lib/storage';
 
 import categorySlice from './categories/categories-slice';
 import transactionSlice from './transaction/transaction-slice';
+import statisticSlice from './statistic/statistic-slice';
+import userSlice from './user/user-slice';
 
 const persistConfig = {
-    key: 'category',
+    key: 'user',
     storage,
+    whitelist: ['token'],
 };
 
-const rootReducer = persistReducer(persistConfig, categorySlice.reducer);
+const userReducer = persistReducer(persistConfig, userSlice.reducer);
 
 const middleware = getDefaultMiddleware => [
     ...getDefaultMiddleware({
@@ -33,8 +36,10 @@ const middleware = getDefaultMiddleware => [
 
 const store = configureStore({
     reducer: {
-        [categorySlice.name]: rootReducer,
+        [userSlice.name]: userReducer,
+        [categorySlice.name]: categorySlice.reducer,
         [transactionSlice.name]: transactionSlice.reducer,
+        [statisticSlice.name]: statisticSlice.reducer,
     },
     middleware,
     devTools: process.env.NODE_ENV === 'development',

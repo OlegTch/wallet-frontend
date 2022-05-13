@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Header, Balans, Navigation } from '@component';
-import { categoriesOperation } from '@redux/categories/categories-operation';
 import { transactionOperation } from '@redux/transaction/transaction-operation';
+import { categoriesOperation } from '@redux/categories/categories-operation';
 import { isCategoriesFull } from '@redux/categories/categories-selector';
+import { statisticOperation } from '@redux/statistic/statistic-operation';
 
 export const Dashboard = () => {
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export const Dashboard = () => {
             dispatch(categoriesOperation.getCategories());
         }
         dispatch(transactionOperation.getTransaction());
+        dispatch(statisticOperation.getStatistic());
     }, []);
 
     return (

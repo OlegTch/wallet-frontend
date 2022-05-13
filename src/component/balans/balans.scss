@@ -1,5 +1,5 @@
 .balans {
-    background-color: $accent-text;
+    background-color: var(--secondary-text-color);
     border-radius: 30px;
     padding: 8px 32px 12px;
 
@@ -19,13 +19,14 @@
     font-size: 12px;
     line-height: 1.5;
     text-transform: uppercase;
-    color: $second-text;
+    color: var(--second-text-color);
 }
 
 .balans__order {
+    // font-family: CirceBold;
     margin: 0;
     font-weight: 700;
     font-size: 30px;
     line-height: 1.5;
-    color: $primary-text;
+    color: var(--primary-text-color);
 }

@@ -1,13 +1,4 @@
 @import '@node_modules/modern-normalize/modern-normalize.css';
-@import './utilits/variables';
-@import './partial/main';
-@import './partial/logo';
-@import './partial/buttonExit';
-@import './partial/header';
-@import './partial/container';
-@import './partial/balans';
-@import './partial/itemNav';
-
 @import './utils/colors';
 @import './utils/breakpoints';
 
@@ -15,4 +6,5 @@
 @import './base/fonts';
 @import './base/common';
 
-// @import '../App.scss'
+@import './component/main';
+@import './component/container';

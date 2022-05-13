@@ -1,4 +1,5 @@
 import sprite from '@assets/sprite.svg';
+import './logo.scss';
 
 export const Logo = () => {
     return (

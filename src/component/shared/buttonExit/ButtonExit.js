@@ -1,4 +1,5 @@
 import sprite from '@assets/sprite.svg';
+import './buttonExit.scss';
 
 export const ButtonExit = () => {
     return (

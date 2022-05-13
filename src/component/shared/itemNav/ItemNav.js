@@ -1,8 +1,8 @@
 import sprite from '@assets/sprite.svg';
 import { NavLink } from 'react-router-dom';
+import './itemNav.scss';
 
 export const ItemNav = ({ icon, text, linkTo }) => {
-    console.log(icon, text, linkTo);
     return (
         <NavLink
             className={({ isActive }) =>

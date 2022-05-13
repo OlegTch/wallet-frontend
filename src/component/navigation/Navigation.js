@@ -1,5 +1,6 @@
 import { navList } from '@data/navigation';
 import { ItemNav } from '@shared';
+import './navigation.scss';
 
 export const Navigation = () => {
     return (

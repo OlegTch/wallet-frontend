@@ -1,5 +1,9 @@
+import { useSelector } from 'react-redux';
+import './balans.scss';
+import { getBalance } from '@redux/user/user-selector';
+
 export const Balans = () => {
-    const balans = 1224000;
+    const balans = useSelector(getBalance);
 
     const makeMoney = n => {
         return parseFloat(n)

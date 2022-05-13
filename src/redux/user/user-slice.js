@@ -6,6 +6,7 @@ const initialState = {
     user: {},
     token: null,
     isAuth: false,
+    isModalLogout: false,
     isLoading: false,
     error: null,
 };
@@ -13,6 +14,14 @@ const initialState = {
 const userSlice = createSlice({
     name: 'user',
     initialState,
+    reducers: {
+        openModalLogout: state => {
+            state.isModalLogout = true;
+        },
+        closeModalLogout: state => {
+            state.isModalLogout = false;
+        },
+    },
     extraReducers: {
         [userOperation.register.pending]: state => {
             state.isLoading = true;
@@ -79,4 +88,5 @@ const userSlice = createSlice({
     },
 });
 
+export const { openModalLogout, closeModalLogout } = userSlice.actions;
 export default userSlice;

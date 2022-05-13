@@ -4,6 +4,7 @@ import { transactionOperation } from './transaction-operation';
 
 const initialState = {
     data: [],
+    isModalAddTransaction: false,
     isLoading: false,
     error: null,
 };
@@ -11,6 +12,14 @@ const initialState = {
 const transactionSlice = createSlice({
     name: 'transaction',
     initialState,
+    reducers: {
+        openModalTransaction: state => {
+            state.isModalAddTransaction = true;
+        },
+        closeModalTransaction: state => {
+            state.isModalAddTransaction = false;
+        },
+    },
     extraReducers: {
         [transactionOperation.getTransaction.pending]: state => {
             state.isLoading = true;
@@ -30,4 +39,6 @@ const transactionSlice = createSlice({
     },
 });
 
+export const { openModalTransaction, closeModalTransaction } =
+    transactionSlice.actions;
 export default transactionSlice;

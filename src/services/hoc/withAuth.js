@@ -1,6 +1,5 @@
 import { Navigate } from 'react-router-dom';
 
-export const withAuth = Component => {
-    const isAuth = true;
+export const withAuth = (isAuth, Component) => {
     return isAuth ? Component : <Navigate to="/login" />;
 };

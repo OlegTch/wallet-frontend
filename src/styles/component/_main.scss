@@ -1,11 +1,13 @@
 #root {
     height: 100vh;
-    background-color: $overlay;
+    background-color: var(--secondary-background-color);
+    font-family: 'Circe';
 
     @media screen and (min-width: 768px) {
         background-image: url(../../assets/bg-tablet.png);
         background-repeat: no-repeat;
         background-size: cover;
+        background-position: center;
 
         @media screen and (min-device-pixel-ratio: 2),
             screen and (-webkit-min-device-pixel-ratio: 2),
@@ -30,7 +32,7 @@
 .main {
     height: 100%;
     padding-top: 12px;
-    background-color: $background;
+    background-color: var(--third-background-color);
     backdrop-filter: blur(50px);
 
     @media screen and (min-width: 768px) {

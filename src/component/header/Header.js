@@ -1,5 +1,6 @@
 import { HeaderNav } from '@component';
 import { Logo } from '@shared';
+import './header.scss';
 
 export const Header = () => {
     return (

@@ -1,15 +1,6 @@
-
-
-import "./loaderSpiner.css"
-
-
+import './loaderSpiner.css';
 
 function LoaderRoket() {
-    return (
-
-        <div class="loader">Loading...</div>
-
-
-    )
+    return <div class="loader">Loading...</div>;
 }
 export default LoaderRoket;

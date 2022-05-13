@@ -2,8 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getTransactionAPI } from '@api';
 
 const getTransaction = createAsyncThunk('getTransaction', async () => {
-    const data = await getTransactionAPI();
-    return data;
+    const result = await getTransactionAPI();
+    return result;
 });
 
 export const transactionOperation = { getTransaction };

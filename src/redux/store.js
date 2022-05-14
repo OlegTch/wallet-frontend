@@ -16,6 +16,7 @@ import categorySlice from './categories/categories-slice';
 import transactionSlice from './transaction/transaction-slice';
 import statisticSlice from './statistic/statistic-slice';
 import userSlice from './user/user-slice';
+import financeSlice from './finance/finance-slice';
 
 const persistConfig = {
     key: 'user',
@@ -40,6 +41,7 @@ const store = configureStore({
         [categorySlice.name]: categorySlice.reducer,
         [transactionSlice.name]: transactionSlice.reducer,
         [statisticSlice.name]: statisticSlice.reducer,
+        [financeSlice.name]: financeSlice.reducer,
     },
     middleware,
     devTools: process.env.NODE_ENV === 'development',

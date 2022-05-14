@@ -6,6 +6,7 @@ import { transactionOperation } from '@redux/transaction/transaction-operation';
 import { categoriesOperation } from '@redux/categories/categories-operation';
 import { isCategoriesFull } from '@redux/categories/categories-selector';
 import { statisticOperation } from '@redux/statistic/statistic-operation';
+import HomeTab from '@component/homeTab';
 
 export const Dashboard = () => {
     const dispatch = useDispatch();
@@ -27,6 +28,7 @@ export const Dashboard = () => {
                     <Navigation />
                     <Balans />
                 </div>
+                <HomeTab />
             </main>
         </>
     );

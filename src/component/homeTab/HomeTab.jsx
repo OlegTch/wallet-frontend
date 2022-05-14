@@ -1,92 +1,24 @@
 import './homeTab.scss';
-// import {} from '@redux';
+import getOperationsOpertaion from '@redux/finance/finance-operation';
+import getOperations from '@redux/finance/finance-selector';
+import HomeTabList from '../homeTabList';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const HomeTab = () => {
+    const dispatch = useDispatch();
+    const operations = useSelector(getOperations);
+
+    useEffect(() => {
+        if (operations.length === 0) {
+            dispatch(getOperationsOpertaion());
+        }
+    }, []);
+
     return (
         <section className="homeTab-section">
             <div className="container">
-                <ul>
-                    <li className="homeTab-item homeTab-item--red">
-                        <p>
-                            Дата:<span>04.01.19</span>
-                        </p>
-                        <p>
-                            Тип:<span>-</span>
-                        </p>
-                        <p>
-                            Категория:<span>Разное</span>
-                        </p>
-                        <p>
-                            Комментарий:<span>Подарок жене</span>
-                        </p>
-                        <p>
-                            Сумма:<span className="homeTab-result">300.00</span>
-                        </p>
-                        <p>
-                            Баланс:<span>6 900.00</span>
-                        </p>
-                    </li>
-                    <li className="homeTab-item homeTab-item--red">
-                        <p>
-                            Дата:<span>04.01.19</span>
-                        </p>
-                        <p>
-                            Тип:<span>-</span>
-                        </p>
-                        <p>
-                            Категория:<span>Разное</span>
-                        </p>
-                        <p>
-                            Комментарий:<span>Подарок жене</span>
-                        </p>
-                        <p>
-                            Сумма:<span className="homeTab-result">300.00</span>
-                        </p>
-                        <p>
-                            Баланс:<span>6 900.00</span>
-                        </p>
-                    </li>
-                    <li className="homeTab-item homeTab-item--green">
-                        <p>
-                            Дата:<span>04.01.19</span>
-                        </p>
-                        <p>
-                            Тип:<span>-</span>
-                        </p>
-                        <p>
-                            Категория:<span>Разное</span>
-                        </p>
-                        <p>
-                            Комментарий:<span>Подарок жене</span>
-                        </p>
-                        <p>
-                            Сумма:<span className="homeTab-result">300.00</span>
-                        </p>
-                        <p>
-                            Баланс:<span>6 900.00</span>
-                        </p>
-                    </li>
-                    <li className="homeTab-item homeTab-item--red">
-                        <p>
-                            Дата:<span>04.01.19</span>
-                        </p>
-                        <p>
-                            Тип:<span>-</span>
-                        </p>
-                        <p>
-                            Категория:<span>Разное</span>
-                        </p>
-                        <p>
-                            Комментарий:<span>Подарок жене</span>
-                        </p>
-                        <p>
-                            Сумма:<span className="homeTab-result">300.00</span>
-                        </p>
-                        <p>
-                            Баланс:<span>6 900.00</span>
-                        </p>
-                    </li>
-                </ul>
+                <HomeTabList operations={operations} />
             </div>
         </section>
     );

@@ -1,0 +1,77 @@
+@import '@style/utils/colors';
+
+.homeTabList {
+    margin-bottom: -10px;
+
+    & li {
+        width: 280px;
+        height: 282px;
+        background-color: var(--primary-background-color);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 10px;
+        position: relative;
+
+        &::before {
+            position: absolute;
+            content: '';
+            width: 5px;
+            height: 100%;
+        }
+
+        & p {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 47px;
+            margin: 0 20px;
+            position: relative;
+            font-family: Circe;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 27px;
+
+            &::after {
+                position: absolute;
+                top: 47px;
+                left: -15px;
+                content: '';
+                width: 275px;
+                height: 1px;
+                background-color: #dcdcdf;
+            }
+
+            & span {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
+    }
+}
+
+.homeTabList-item--green {
+    &::before {
+        background-color: var(--accent-color-grean);
+    }
+
+    & .homeTabList-result {
+        color: var(--accent-color-grean);
+    }
+}
+
+.homeTabList-item--red {
+    &::before {
+        background-color: var(--accent-color-red);
+    }
+
+    & .homeTabList-result {
+        color: var(--accent-color-red);
+    }
+}
+
+.homeTab-result {
+    font-weight: 700;
+}

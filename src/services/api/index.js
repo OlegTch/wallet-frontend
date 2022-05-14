@@ -50,6 +50,63 @@ const tempData = {
         { category: 3, sum: 500 },
         { category: 4, sum: 1000 },
     ],
+    operations: [
+        {
+            id: 1,
+            category: 'Регулярний дохід',
+            income: true,
+            sum: 10000,
+            comment: 'Робота',
+            balance: 10000,
+            date: Date.now(),
+            month: 5,
+            year: 2022,
+        },
+        {
+            id: 2,
+            category: 'Різне',
+            income: false,
+            sum: 1000,
+            comment: 'Подарок дружині',
+            balance: 9000,
+            date: Date.now(),
+            month: 5,
+            year: 2022,
+        },
+        {
+            id: 3,
+            category: 'Не регулярний дохід',
+            income: true,
+            sum: 2000,
+            comment: 'Подарок',
+            balance: 11000,
+            date: Date.now(),
+            month: 5,
+            year: 2022,
+        },
+        {
+            id: 4,
+            category: 'Машина',
+            income: false,
+            sum: 3000,
+            comment: 'Ремонт',
+            balance: 8000,
+            date: Date.now(),
+            month: 5,
+            year: 2022,
+        },
+        {
+            id: 5,
+            category: 'Продукти',
+            income: false,
+            sum: 500,
+            comment: 'На тиждень',
+            balance: 7500,
+            date: Date.now(),
+            month: 5,
+            year: 2022,
+        },
+    ],
 };
 
 //  ----------------   USER   -----------------------
@@ -96,4 +153,10 @@ export const getCategoryAPI = () => {
 
 export const getStatisticAPI = data => {
     return tempData.statistic;
+};
+
+// ------------  Finance (operations) ----------------------------
+
+export const getOperationsAPI = data => {
+    return tempData.operations;
 };

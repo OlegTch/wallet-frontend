@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+// import { NavLink } from 'react-router-dom';
+
 // import { useLoginUserMutation } from '../../redux/auth/auth-redicer';
 // import s from '../RegisterView/RegisterView.module.css';
 
-export default function LoginView() {
+export default function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     // const [loginUser] = useLoginUserMutation();
@@ -30,14 +32,14 @@ export default function LoginView() {
 
     return (
         <div>
-            <form onSubmit={handelSubmit} autoComplete="off">
+            <form autoComplete="off">
                 <label>
                     Почта
                     <input
                         type="email"
                         name="email"
                         value={email}
-                        onChange={handleChange}
+                        // onChange={handleChange}
                     />
                 </label>
                 <label>
@@ -46,11 +48,13 @@ export default function LoginView() {
                         type="password"
                         name="password"
                         value={password}
-                        onChange={handleChange}
+                        // onChange={handleChange}
                     />
                 </label>
 
                 <button type="submit">Войти</button>
+
+                <button type="submit">Регистрация</button>
             </form>
         </div>
     );

@@ -29,7 +29,7 @@ export const Dashboard = () => {
         <>
             <Header />
 
-            <main className="main">
+            <main className="main dashboardMain">
                 <div className="container">
                     <Navigation />
                     <Balans />

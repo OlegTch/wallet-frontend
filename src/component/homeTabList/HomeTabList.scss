@@ -3,75 +3,40 @@
 .homeTabList {
     margin-bottom: -10px;
 
-    & li {
-        width: 280px;
-        height: 282px;
-        background-color: var(--primary-background-color);
-        border-radius: 10px;
-        overflow: hidden;
-        margin-bottom: 10px;
-        position: relative;
+    @media screen and (min-width: 1280px) {
+        max-height: 60vh;
+        overflow-y: scroll;
+    }
+}
 
-        &::before {
-            position: absolute;
-            content: '';
-            width: 5px;
-            height: 100%;
+.homeTabTabletAndDesktop {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    width: 704px;
+    height: 58px;
+    border-radius: 30px;
+    background-color: var(--primary-background-color);
+
+    & h3 {
+        font-family: Circe;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 27px;
+        width: 70px;
+
+        &:nth-child(1) {
+            width: 50px;
         }
-
-        & p {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 47px;
-            margin: 0 20px;
-            position: relative;
-            font-family: Circe;
-            font-style: normal;
-            font-weight: 700;
-            font-size: 18px;
-            line-height: 27px;
-
-            &::after {
-                position: absolute;
-                top: 47px;
-                left: -15px;
-                content: '';
-                width: 275px;
-                height: 1px;
-                background-color: #dcdcdf;
-            }
-
-            & span {
-                font-style: normal;
-                font-weight: 400;
-                font-size: 16px;
-                line-height: 24px;
-            }
+        &:nth-child(2) {
+            width: 30px;
+        }
+        &:nth-child(3) {
+            width: 100px;
+        }
+        &:nth-child(5) {
+            width: 50px;
         }
     }
-}
-
-.homeTabList-item--green {
-    &::before {
-        background-color: var(--accent-color-grean);
-    }
-
-    & .homeTabList-result {
-        color: var(--accent-color-grean);
-    }
-}
-
-.homeTabList-item--red {
-    &::before {
-        background-color: var(--accent-color-red);
-    }
-
-    & .homeTabList-result {
-        color: var(--accent-color-red);
-    }
-}
-
-.homeTab-result {
-    font-weight: 700;
 }

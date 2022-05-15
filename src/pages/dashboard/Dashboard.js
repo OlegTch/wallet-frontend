@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Header, Balans, Navigation, ModalTransaction } from '@component';
@@ -11,6 +11,11 @@ import HomeTab from '@component/homeTab';
 export const Dashboard = () => {
     const dispatch = useDispatch();
     const isCategories = useSelector(isCategoriesFull);
+    const [showModal, setShowModal] = useState(false);
+
+    const modalViews = () => {
+        setShowModal(!showModal);
+    };
 
     useEffect(() => {
         if (!isCategories) {

@@ -19,7 +19,7 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log('Use effect');
+        // console.log('Use effect');
         if (isUserToken && !isUserAuth) {
             dispatch(userOperation.currentUser());
         } else {
@@ -32,10 +32,10 @@ function App() {
         }
     }, []);
 
-    console.log('-----------------------------------');
-    console.log(isUserToken, isUserAuth);
-    console.log(loading, isError);
-    console.log('-----------------------------------');
+    // console.log('-----------------------------------');
+    // console.log(isUserToken, isUserAuth);
+    // console.log(loading, isError);
+    // console.log('-----------------------------------');
 
     return (
         <>

@@ -6,8 +6,10 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Dashboard } from '@pages';
 import { withAuth } from '@hoc/withAuth';
+
 import { isAuth, isToken, isLoading, error } from '@redux/user/user-selector';
 import { userOperation } from '@redux/user/user-operation';
+import LoginPage from './pages/login';
 
 function App() {
     const isUserToken = useSelector(isToken);
@@ -41,7 +43,7 @@ function App() {
             {isError && <h1>Error: {isError}</h1>}
             {!loading && !isError && isUserAuth === isUserToken && (
                 <Routes>
-                    <Route path="login" element={<h1>Login</h1>} />
+                    <Route path="login" element={<LoginPage />} />
                     <Route path="register" element={<h1>Registration</h1>} />
                     <Route
                         path="/"

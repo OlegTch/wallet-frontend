@@ -1,11 +1,16 @@
-import style from "./buttonClose.css";
+
+import "./buttonClose.scss";
+
+
 //import PropTypes from 'prop-types'; {onClick}
 
 const ButtonClose = () => {
     return (
-        <button className={style.button}  >
-            +
+        <button className="button"  >
+            <span className="button_vectotA"></span>
+            <span className="button_vectotB"></span>  
         </button>
     )
 }
 export default ButtonClose;
+

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Header, Balans, Navigation } from '@component';
+import { Header, Balans, Navigation, ModalTransaction } from '@component';
 import { transactionOperation } from '@redux/transaction/transaction-operation';
 import { categoriesOperation } from '@redux/categories/categories-operation';
 import { isCategoriesFull } from '@redux/categories/categories-selector';
@@ -22,10 +22,12 @@ export const Dashboard = () => {
     return (
         <>
             <Header />
+
             <main className="main">
                 <div className="container">
                     <Navigation />
                     <Balans />
+                    <ModalTransaction />
                 </div>
             </main>
         </>

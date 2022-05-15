@@ -2,4 +2,12 @@
 
 .homeTab-section {
     margin: 32px 0 0 0;
+
+    @media screen and (min-width: 768px) {
+        margin: 20px 0 0 0;
+    }
+
+    @media screen and (min-width: 1280px) {
+        margin: 0;
+    }
 }

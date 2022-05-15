@@ -1,47 +1,61 @@
 import './HomeTabList.scss';
-import moment from 'moment';
+import Media from 'react-media';
+import HomeTabItemMobile from '@component/homeTabItemMobile';
+import HomeTabItemTabletAndDesktop from '@component/homeTabItemTabletAndDesktop';
 
 const HomeTabList = ({ operations }) => {
-    console.log('MY LOG---------------------------------------', operations);
     return (
         <ul className="homeTabList">
-            {operations.map(
-                ({ category, income, sum, balance, comment, date, id }) => {
-                    return (
-                        <li
-                            key={id}
-                            className={
-                                income
-                                    ? 'homeTabList-item--green'
-                                    : 'homeTabList-item--red'
-                            }
-                        >
-                            <p>
-                                Дата:
-                                <span>{moment(date).format('DD.MM.YY')}</span>
-                            </p>
-                            <p>
-                                Тип:<span>{income ? '+' : '-'}</span>
-                            </p>
-                            <p>
-                                Категория:<span>{category}</span>
-                            </p>
-                            <p>
-                                Комментарий:<span>{comment}</span>
-                            </p>
-                            <p>
-                                Сумма:
-                                <span className="homeTabList-result">
-                                    {sum}
-                                </span>
-                            </p>
-                            <p>
-                                Баланс:<span>{balance}</span>
-                            </p>
-                        </li>
-                    );
-                },
-            )}
+            <Media
+                queries={{
+                    small: '(min-width: 320px) and (max-width: 767px)',
+                    medium: '(min-width: 768px)',
+                }}
+            >
+                {matches => {
+                    switch (true) {
+                        case matches.small:
+                            return operations.map(operation => {
+                                return (
+                                    <HomeTabItemMobile
+                                        operation={operation}
+                                        key={operation.id}
+                                    />
+                                );
+                            });
+                        case matches.medium:
+                            return (
+                                <>
+                                    <li
+                                        className="homeTabTabletAndDesktop"
+                                        key={0}
+                                    >
+                                        <h3>Дата</h3>
+                                        <h3>Тип</h3>
+                                        <h3>Категорія</h3>
+                                        <h3>Коментар</h3>
+                                        <h3>Сума</h3>
+                                        <h3>Баланс</h3>
+                                    </li>
+                                    {operations.map((operation, index) => {
+                                        return (
+                                            <>
+                                                <HomeTabItemTabletAndDesktop
+                                                    operation={operation}
+                                                    index
+                                                    key={operation.id}
+                                                />
+                                            </>
+                                        );
+                                    })}
+                                </>
+                            );
+                        default:
+                            console.log('Error in switch handleTabList');
+                            return <h1>Ууупс... Сталась помилка</h1>;
+                    }
+                }}
+            </Media>
         </ul>
     );
 };

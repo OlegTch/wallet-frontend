@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Header, Balans, Navigation } from '@component';
+import { Header, Balans, Navigation, ModalTransaction } from '@component';
 import { transactionOperation } from '@redux/transaction/transaction-operation';
 import { categoriesOperation } from '@redux/categories/categories-operation';
 import { isCategoriesFull } from '@redux/categories/categories-selector';
@@ -11,6 +11,11 @@ import HomeTab from '@component/homeTab';
 export const Dashboard = () => {
     const dispatch = useDispatch();
     const isCategories = useSelector(isCategoriesFull);
+    const [showModal, setShowModal] = useState(false);
+
+    const modalViews = () => {
+        setShowModal(!showModal);
+    };
 
     useEffect(() => {
         if (!isCategories) {
@@ -23,10 +28,12 @@ export const Dashboard = () => {
     return (
         <>
             <Header />
+
             <main className="main dashboardMain">
                 <div className="container">
                     <Navigation />
                     <Balans />
+                    <ModalTransaction />
                 </div>
                 <HomeTab />
             </main>

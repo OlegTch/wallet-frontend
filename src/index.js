@@ -6,6 +6,7 @@ import '@style/style.scss';
 import App from '@root/App';
 import { BrowserRouter } from 'react-router-dom';
 import { rootStore } from '@redux/store';
+import 'react-datetime/css/react-datetime.css';
 
 ReactDOM.render(
     <React.StrictMode>

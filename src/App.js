@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import { Dashboard } from '@pages';
+import { Statistic } from './pages/statistic';
 import { withAuth } from '@hoc/withAuth';
 import { isAuth, isToken, isLoading, error } from '@redux/user/user-selector';
 import { userOperation } from '@redux/user/user-operation';
@@ -49,7 +50,7 @@ function App() {
                     />
                     <Route
                         path="statistic"
-                        element={withAuth(isUserAuth, <h1>Statistics</h1>)}
+                        element={withAuth(isUserAuth, <Statistic/>)}
                     />
                     <Route
                         path="currency"

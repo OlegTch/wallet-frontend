@@ -1,4 +1,4 @@
-import './loaderSpiner.css';
+import './spinnerLoader.scss';
 
 function LoaderRoket() {
     return <div class="loader">Loading...</div>;

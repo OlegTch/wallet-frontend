@@ -1,16 +1,13 @@
-
-import "./buttonClose.scss";
-
+import './buttonClose.scss';
 
 //import PropTypes from 'prop-types'; {onClick}
 
-const ButtonClose = () => {
+const ButtonClose = ({ onClick }) => {
     return (
-        <button className="button"  >
+        <button className="button" onClick={onClick}>
             <span className="button_vectotA"></span>
-            <span className="button_vectotB"></span>  
+            <span className="button_vectotB"></span>
         </button>
-    )
-}
+    );
+};
 export default ButtonClose;
-

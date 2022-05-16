@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Datetime from 'react-datetime';
 import 'moment/locale/ru';
+
 import sprite from '@assets/sprite.svg';
 import './modalTransaction.scss';
+
 export const ModalTransaction = () => {
     const [modalTypeTransaction, setModalTypeTransaction] = useState('income');
     const [date, setDate] = useState(new Date());

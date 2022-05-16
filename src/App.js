@@ -32,11 +32,6 @@ function App() {
         }
     }, []);
 
-    // console.log('-----------------------------------');
-    // console.log(isUserToken, isUserAuth);
-    // console.log(loading, isError);
-    // console.log('-----------------------------------');
-
     return (
         <>
             {loading && <h1>Loading ...</h1>}
@@ -45,19 +40,36 @@ function App() {
                 <Routes>
                     <Route path="login" element={<LoginPage />} />
                     <Route path="register" element={<h1>Registration</h1>} />
-                    <Route
+                    {/* <Route
                         path="/"
+                        // element={withAuth(isUserAuth, <Dashboard />)}
+                    > */}
+                    <Route
+                        path="/*"
                         element={withAuth(isUserAuth, <Dashboard />)}
                     />
-                    <Route
-                        path="statistic"
+                    {/* <Route
+                            path="/home"
+                            element={withAuth(isUserAuth, <Dashboard />)}
+                        />
+                        <Route
+                            path="/diagram"
+                            element={withAuth(isUserAuth, <Dashboard />)}
+                        />
+                        <Route
+                            path="/currency"
+                            element={withAuth(isUserAuth, <Dashboard />)}
+                        />
+                        <Route path="*" element={<h1>Not Found</h1>} /> */}
+                    {/* </Route> */}
+                    {/* <Route
+                        path="diagram"
                         element={withAuth(isUserAuth, <h1>Statistics</h1>)}
                     />
                     <Route
                         path="currency"
                         element={withAuth(isUserAuth, <h1>Currency</h1>)}
-                    />
-                    <Route path="*" element={<h1>Not Found</h1>} />
+                    /> */}
                 </Routes>
             )}
         </>

@@ -14,7 +14,7 @@
     background-repeat: no-repeat;
     background-position: right bottom;
 
-    @media screen and (min-width: $TabletWidth) {
+    @media screen and (min-width: 768px) {
         margin-top: 0;
     }
 }
@@ -69,7 +69,7 @@
     transform: translate(-50%, -50%);
 }
 
-@media (min-width: $TabletWidth) {
+@media (min-width: 768px) {
     .currency {
         width: 334px;
         background-image: url('../../images/Currency/currency_tab.png');
@@ -83,7 +83,7 @@
     }
 }
 
-@media (min-width: $DesktopWidth) {
+@media (min-width: 1280px) {
     .currency {
         width: 348px;
         height: 347px;

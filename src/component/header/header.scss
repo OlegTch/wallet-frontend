@@ -4,7 +4,7 @@
     padding-bottom: 16px;
     background-color: var(--primary-background-color);
 
-    @media screen and (min-width: $TabletWidth) {
+    @media screen and (min-width: 768px) {
         padding-top: 20px;
         padding-bottom: 20px;
     }

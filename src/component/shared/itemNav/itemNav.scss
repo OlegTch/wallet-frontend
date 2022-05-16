@@ -16,7 +16,7 @@
 .nav_item__icon {
     width: 44px;
     height: 44px;
-    @media screen and (min-width: $TabletWidth) {
+    @media screen and (min-width: 768px) {
         margin-right: 20px;
         width: 24px;
         height: 24px;

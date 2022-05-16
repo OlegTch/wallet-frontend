@@ -3,7 +3,7 @@
 .homeTabList {
     margin-bottom: -10px;
 
-    @media screen and (min-width: $DesktopWidth) {
+    @media screen and (min-width: 1280px) {
         max-height: 60vh;
         overflow-y: scroll;
     }

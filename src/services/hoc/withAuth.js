@@ -1,5 +1,9 @@
 import { Navigate } from 'react-router-dom';
 
 export const withAuth = (isAuth, Component) => {
-    return isAuth ? Component : <Navigate to="/login" />;
+    if (isAuth) {
+        return  Component ? Component : <Navigate to="/home" />;
+    } else {
+        return  <Navigate to="/login" />;
+    }
 };

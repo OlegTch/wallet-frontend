@@ -39,15 +39,15 @@ body {
 
 .dashboardMain {
     flex-grow: 1;
-    padding-top: 12px;
+    // padding-top: 12px;
 
     @media screen and (min-width: 768px) {
-        padding-top: 32px;
+        // padding-top: 32px;
     }
     @media screen and (min-width: 1280px) {
         display: flex;
         position: relative;
-        padding-top: 46px;
+        // padding-top: 46px;
 
         &::before {
             position: absolute;
@@ -58,5 +58,16 @@ body {
             height: 100%;
             background-color: #e7e5f2;
         }
+    }
+}
+
+.main_block {
+    @media screen and (min-width: 768px) {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    @media screen and (min-width: 1280px) {
+        display: block;
     }
 }

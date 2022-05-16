@@ -63,6 +63,7 @@ function App() {
                             path="/currency"
                             element={withAuth(isUserAuth, <Dashboard />)}
                         />
+
                         <Route path="*" element={<h1>Not Found</h1>} />
                     </Route>
                     <Route

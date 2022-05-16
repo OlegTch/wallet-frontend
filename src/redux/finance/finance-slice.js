@@ -7,6 +7,7 @@ const initialState = {
     isLoading: false,
     error: null,
     isModalAddTransaction: false,
+    isSaveModalDateStatic: false,
 };
 
 const financeSlice = createSlice({

@@ -1,7 +1,7 @@
 .nav_list {
     margin: 0;
     padding: 0;
-    margin-bottom: 12px;
+    margin-bottom: 28px;
 }
 @media screen and (max-width: 767px) {
     .nav_list {
@@ -13,7 +13,7 @@
         -webkit-justify-content: center;
         -ms-flex-pack: center;
         justify-content: center;
-        margin-bottom: 28px;
+        margin-bottom: 12px;
     }
 }
 .nav_list__item {

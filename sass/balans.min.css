@@ -3,15 +3,18 @@
     -webkit-border-radius: 30px;
     border-radius: 30px;
     padding: 8px 32px 12px;
+    margin-bottom: 32px;
 }
 @media screen and (min-width: 768px) {
     .balans {
         width: 336px;
+        margin-bottom: 0;
     }
 }
 @media screen and (min-width: 1280px) {
     .balans {
         width: 395px;
+        margin-bottom: 32px;
     }
 }
 .balans__title {

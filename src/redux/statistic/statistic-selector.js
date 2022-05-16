@@ -9,3 +9,5 @@ export const getStatistic = state => {
     });
     return result;
 };
+
+export const isLoadingStatistic = state => state.statistic.isLoading;

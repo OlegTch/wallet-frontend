@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "@craco/craco": "^6.4.3",
+        "@pnotify/core": "^5.2.0",
         "@reduxjs/toolkit": "^1.8.1",
         "@testing-library/jest-dom": "^5.11.4",
         "@testing-library/react": "^11.1.0",
@@ -13,6 +14,8 @@
         "i18next": "^21.8.0",
         "modern-normalize": "^1.1.0",
         "moment": "^2.29.3",
+        "netlify-cli": "^10.3.1",
+        "pnotify": "^5.2.0",
         "react": "^17.0.2",
         "react-chartjs-2": "^4.1.0",
         "react-create-portal": "^0.4.2",
@@ -36,7 +39,9 @@
         "build": "craco build",
         "test": "craco test",
         "eject": "craco eject",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "predeploy": "npm run build",
+        "deploy": "netlify deploy -p"
     },
     "eslintConfig": {
         "extends": [
@@ -65,6 +70,6 @@
     },
     "lint-staged": {
         "*.js": "eslint --cache --fix",
-        "*.{js,css,md}": "prettier --write"
+        "*.{js,css,md,scss}": "prettier --write"
     }
 }

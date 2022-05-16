@@ -17,9 +17,9 @@ const HomeTab = () => {
 
     return operations.length !== 0 ? (
         <section className="homeTab-section">
-            <div className="container">
-                <HomeTabList operations={operations} />
-            </div>
+            {/* <div className="container"> */}
+            <HomeTabList operations={operations} />
+            {/* </div> */}
         </section>
     ) : (
         <h1>Загрузка...</h1>

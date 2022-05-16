@@ -1,19 +1,73 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Datetime from 'react-datetime';
+import { getBalance } from '../../redux/user/user-selector';
+import {
+    getCategoryDebet,
+    getCategoryCredit,
+} from '@redux/categories/categories-selector';
+import { isSaveModalDateStatic } from '@redux/finance/finance-selector';
+import { getFinanceOpertaion } from '@redux/finance/finance-operation';
+import { closeModalTransaction } from '@redux/finance/finance-slice';
 import 'moment/locale/ru';
 
 import sprite from '@assets/sprite.svg';
 import './modalTransaction.scss';
+import { alert, defaults } from '@pnotify/core';
 
+// import { validate } from 'indicative/validator';
 export const ModalTransaction = () => {
     const [modalTypeTransaction, setModalTypeTransaction] = useState('income');
     const [date, setDate] = useState(new Date());
     const [category, setCategory] = useState('Регулярный доход');
     const [listActive, setListActive] = useState(false);
+    const [summ, setSumm] = useState('');
+
+    defaults.styling = 'material';
+    defaults.icons = 'material';
+    defaults.delay = 1000;
+    const currentBalance = useSelector(getBalance);
+    const getDebit = useSelector(getCategoryDebet);
+    const getCredit = useSelector(getCategoryCredit);
+    const pushDate = useSelector(isSaveModalDateStatic);
+    console.log(getDebit);
+    console.log(getCredit);
+    const dispatch = useDispatch();
+
+    function closeModalItem() {
+        dispatch(closeModalTransaction());
+    }
+
+    useEffect(() => {
+        const backdrop = document.querySelector('#backdrop');
+
+        function clickBackdrop(e) {
+            if (e.target === backdrop) {
+                closeModalItem();
+            }
+        }
+
+        function pressEsc(e) {
+            if (e.code === 'Escape') {
+                closeModalItem();
+            }
+        }
+
+        document.addEventListener('click', clickBackdrop);
+        document.addEventListener('keydown', pressEsc);
+
+        return function cleanup() {
+            document.removeEventListener('click', clickBackdrop);
+            document.removeEventListener('keydown', pressEsc);
+        };
+    }, [closeModalItem]);
+    useEffect(() => {
+        if (pushDate) {
+            closeModalItem();
+        }
+    }, [pushDate]);
 
     function dateChange(e) {
-        console.log(e._d);
         setDate(e._d);
     }
     function listOpen() {
@@ -52,6 +106,33 @@ export const ModalTransaction = () => {
 
     async function submitHandler(e) {
         e.preventDefault();
+        const nextBalance = currentBalance - summ;
+        if (
+            nextBalance <= 0 &&
+            modalTypeTransaction === 'spending' &&
+            category !== 'Выберите категорию'
+        ) {
+            alert({
+                text: 'Недостаточно средств',
+                hide: true,
+                delay: 2000,
+                sticker: false,
+                closer: true,
+                dir1: 'down',
+            });
+            return;
+        }
+        if (category === 'Выберите категорию') {
+            alert({
+                text: 'Пожалуйста выберите категорию',
+                hide: true,
+                delay: 2000,
+                sticker: false,
+                closer: true,
+                dir1: 'down',
+            });
+            return;
+        }
     }
 
     function switchClickHandler(e) {
@@ -83,16 +164,24 @@ export const ModalTransaction = () => {
             {listActive && (
                 <ul className="dropList">
                     {/* категории для доходв */}
-                    {modalTypeTransaction === 'income' && (
-                        <li onClick={categoryClick} className="dropListItem">
-                            Регулярный доход
-                        </li>
-                    )}
-                    {modalTypeTransaction === 'income' && (
+                    {modalTypeTransaction === 'income' &&
+                        getDebit.map((elem, idx) => {
+                            return (
+                                <li
+                                    onClick={categoryClick}
+                                    className="dropListItem"
+                                    key={idx}
+                                    data-id={elem.id}
+                                >
+                                    {elem.name}
+                                </li>
+                            );
+                        })}
+                    {/* {modalTypeTransaction === 'income' && (
                         <li onClick={categoryClick} className="dropListItem">
                             Нерегулярный доход
                         </li>
-                    )}
+                    )} */}
 
                     {/* категории для расхода */}
                     {modalTypeTransaction === 'spending' && (
@@ -148,7 +237,7 @@ export const ModalTransaction = () => {
 
     return (
         <div className="modalContainer">
-            <div className="containerClose">
+            <div className="containerClose" onClick={closeModalItem}>
                 <span className="itemCloseModal">
                     <svg className="iconCloseBtn">
                         <use href={`${sprite}#closeModal`}></use>
@@ -222,10 +311,18 @@ export const ModalTransaction = () => {
                 </div>
             </form>
             <div className="buttonContainer">
-                <button className="submitButton" type="submit">
+                <button
+                    className="submitButton"
+                    type="submit"
+                    onClick={() => {
+                        dispatch(getFinanceOpertaion.addOperation({}));
+                    }}
+                >
                     Добавить
                 </button>
-                <button className="cancelButton">Отмена</button>
+                <button className="cancelButton" onClick={closeModalItem}>
+                    Отмена
+                </button>
             </div>
         </div>
     );

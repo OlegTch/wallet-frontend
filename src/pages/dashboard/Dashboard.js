@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Media from 'react-media';
 
 import {
@@ -10,9 +10,10 @@ import {
     ModalTransaction,
     Backdrop,
 } from '@component';
+import Currency from '@component/currency';
 import HomeTab from '@component/homeTab';
 import ButtonClose from '@component/buttonClose/buttonClose';
-// import { getFinanceOpertaion } from '@redux/finance/finance-operation';
+
 import { categoriesOperation } from '@redux/categories/categories-operation';
 import { statisticOperation } from '@redux/statistic/statistic-operation';
 import { openModalTransaction } from '@redux/finance/finance-slice';
@@ -42,51 +43,81 @@ export const Dashboard = () => {
     return (
         <>
             <Header />
-            <main className="main dashboardMain">
-                <div className="container">
-                    <Navigation />
-                    <Media queries={globalMedia}>
-                        {matches => (
-                            <>
-                                {matches.small && (
-                                    <Routes>
-                                        <Route
-                                            path="home"
-                                            element={<Balans />}
-                                        />
-                                        <Route path="diagram" />
-                                        <Route
-                                            path="currency"
-                                            element={<h1>Currency</h1>}
-                                        />
-                                        <Route
-                                            path="*"
-                                            element={<h1>Not Found</h1>}
-                                        />
-                                    </Routes>
-                                )}
-                                {matches.medium && (
-                                    <>
-                                        <Balans />
-                                        <h1>Currency</h1>
-                                    </>
-                                )}
-                            </>
-                        )}
-                    </Media>
+            <main>
+                <div className="container container__main">
+                    <div className="main dashboardMain">
+                        <Media queries={globalMedia}>
+                            {matches => (
+                                <>
+                                    {matches.small && (
+                                        <>
+                                            <Navigation />
+                                            <Routes>
+                                                <Route
+                                                    path="home"
+                                                    element={<Balans />}
+                                                />
+                                                <Route path="diagram" />
+                                                <Route
+                                                    path="currency"
+                                                    element={<Currency />}
+                                                />
+                                                <Route
+                                                    path="*"
+                                                    element={<h1>Not Found</h1>}
+                                                />
+                                            </Routes>
+                                        </>
+                                    )}
+                                    {matches.medium && (
+                                        <div className="main_block">
+                                            <div>
+                                                <Navigation />
+                                                <Balans />
+                                            </div>
+                                            <Currency />
+                                        </div>
+                                    )}
+                                </>
+                            )}
+                        </Media>
+                    </div>
+                    <Routes>
+                        <Route
+                            path="/home"
+                            element={
+                                <>
+                                    <HomeTab />
+                                    <ButtonClose
+                                        onClick={onOpenModalTransaction}
+                                    />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/currency"
+                            element={
+                                <Media queries={globalMedia}>
+                                    {matches => (
+                                        <>
+                                            {matches.medium && (
+                                                <>
+                                                    <HomeTab />
+                                                    <ButtonClose
+                                                        onClick={
+                                                            onOpenModalTransaction
+                                                        }
+                                                    />
+                                                </>
+                                            )}
+                                        </>
+                                    )}
+                                </Media>
+                            }
+                        />
+                        <Route path="/diagram" element={<h1>Diagram</h1>} />
+                    </Routes>
                 </div>
-                <Routes>
-                    <Route
-                        path="/home"
-                        element={
-                            <>
-                                <HomeTab />
-                                <ButtonClose onClick={onOpenModalTransaction} />
-                            </>
-                        }
-                    />
-                    <Route path="/diagram" element={<h1>Diagram</h1>} />
-                </Routes>
             </main>
             {isOpenModalTransaction && (
                 <>

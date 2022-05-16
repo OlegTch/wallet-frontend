@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import { Dashboard } from '@pages';
-import { withAuth } from '@hoc/withAuth';
+import LoginPage from '@pages/login';
+import Loader from '@component/spinnerLoader/spinnerLoader';
+import { withAuth } from '@hoc';
 
 import { isAuth, isToken, isLoading, error } from '@redux/user/user-selector';
 import { userOperation } from '@redux/user/user-operation';
-import LoginPage from './pages/login';
+// import LoginPage from './pages/login';
 import { RegistrationPage } from './pages';
 
 function App() {
@@ -35,13 +37,12 @@ function App() {
 
     return (
         <>
-            {loading && <h1>Loading ...</h1>}
+            {loading && <Loader />}
             {isError && <h1>Error: {isError}</h1>}
             {!loading && !isError && isUserAuth === isUserToken && (
                 <Routes>
                     <Route path="register" element={<RegistrationPage />} />
                     <Route path="login" element={<LoginPage />} />
-
                     <Route
                         path="/"
                         element={withAuth(isUserAuth, <Dashboard />)}

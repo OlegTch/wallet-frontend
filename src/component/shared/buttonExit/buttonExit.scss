@@ -1,8 +1,15 @@
 .button_exit {
     display: flex;
+    align-items: center;
     background-color: transparent;
     border: none;
     cursor: pointer;
+    padding: 8px 12px;
+
+    @media screen and (min-width: 768px) {
+        border-left: 1px solid var(--placeholder-text);
+        padding: 8px 20px;
+    }
 }
 
 .button_exit__block {

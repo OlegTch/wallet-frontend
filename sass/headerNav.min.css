@@ -1,0 +1,31 @@
+.header_nav__list {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+}
+.header_nav__item {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+.header_nav__text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--placeholder-text);
+    padding: 12px 0;
+}
+@media screen and (min-width: 768px) {
+    .header_nav__text {
+        padding: 12px 20px;
+    }
+}

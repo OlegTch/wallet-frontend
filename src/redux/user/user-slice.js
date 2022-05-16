@@ -45,6 +45,7 @@ const userSlice = createSlice({
             state.error = null;
             state.isAuth = false;
         },
+
         [userOperation.login.fulfilled]: (state, { payload }) => {
             state.user.name = payload.name;
             state.user.email = payload.email;
@@ -52,10 +53,12 @@ const userSlice = createSlice({
             state.isAuth = true;
             state.isLoading = false;
         },
+
         [userOperation.login.rejected]: (state, { error }) => {
             state.isLoading = false;
             state.error = error.message;
         },
+
         [userOperation.logout.pending]: state => {
             state.isLoading = true;
             state.error = null;

@@ -1,6 +1,9 @@
-import sprite from '@assets/sprite.svg';
 import { NavLink } from 'react-router-dom';
+import Media from 'react-media';
+
+import sprite from '@assets/sprite.svg';
 import './itemNav.scss';
+import { globalMedia } from '@data';
 
 export const ItemNav = ({ icon, text, linkTo }) => {
     return (
@@ -13,9 +16,15 @@ export const ItemNav = ({ icon, text, linkTo }) => {
             <svg className="nav_item__icon">
                 <use href={`${sprite}#${icon}`}></use>
             </svg>
-            {window.screen.width >= 768 && (
-                <p className="nav_item__text">{text}</p>
-            )}
+            <Media queries={globalMedia}>
+                {matches => (
+                    <>
+                        {matches.medium && (
+                            <p className="nav_item__text">{text}</p>
+                        )}
+                    </>
+                )}
+            </Media>
         </NavLink>
     );
 };

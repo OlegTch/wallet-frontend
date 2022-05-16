@@ -161,16 +161,6 @@ export const getUserAPI = () => {
     return tempData.user;
 };
 
-// -----------  Transaction  -------------------------
-
-export const getTransactionAPI = () => {
-    return tempData.transaction;
-};
-
-export const addTransactionAPI = data => {
-    return data;
-};
-
 // -------------  Category  --------------------------
 
 export const getCategoryAPI = () => {
@@ -189,4 +179,8 @@ export const getStatisticAPI = data => {
 
 export const getOperationsAPI = data => {
     return tempData.operations;
+};
+
+export const addTransactionAPI = data => {
+    return data;
 };

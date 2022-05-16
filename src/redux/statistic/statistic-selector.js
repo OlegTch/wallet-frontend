@@ -13,3 +13,4 @@ export const getStatistic = state => {
 export const updateStatistic = state => {
     return state.statistic.data; //*
 };
+export const isLoadingStatistic = state => state.statistic.isLoading;

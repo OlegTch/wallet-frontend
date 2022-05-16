@@ -1,5 +1,4 @@
-#root {
-    height: 100vh;
+body {
     background-color: var(--secondary-background-color);
     font-family: 'Circe';
 
@@ -29,17 +28,46 @@
     }
 }
 
-.main {
-    height: 100%;
-    padding-top: 12px;
+#root {
+    display: flex;
+    flex-direction: column;
     background-color: var(--third-background-color);
     backdrop-filter: blur(50px);
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.dashboardMain {
+    flex-grow: 1;
+    // padding-top: 12px;
 
     @media screen and (min-width: 768px) {
-        padding-top: 32px;
+        // padding-top: 32px;
+    }
+    @media screen and (min-width: 1280px) {
+        display: flex;
+        position: relative;
+        // padding-top: 46px;
+
+        &::before {
+            position: absolute;
+            bottom: 0;
+            left: 483px;
+            content: '';
+            width: 2px;
+            height: 100%;
+            background-color: #e7e5f2;
+        }
+    }
+}
+
+.main_block {
+    @media screen and (min-width: 768px) {
+        display: flex;
+        justify-content: space-between;
     }
 
     @media screen and (min-width: 1280px) {
-        padding-top: 46px;
+        display: block;
     }
 }

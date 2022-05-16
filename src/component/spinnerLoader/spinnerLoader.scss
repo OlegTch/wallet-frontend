@@ -16,13 +16,13 @@
 
 .loader::before,
 .loader::after {
-    content: "";
+    content: '';
     display: block;
     width: 15px;
     height: 15px;
     background: #1962c2;
     position: absolute;
-    animation: load .7s infinite alternate ease-in-out;
+    animation: load 0.7s infinite alternate ease-in-out;
     border-radius: 20%;
 }
 
@@ -34,24 +34,21 @@
     bottom: 0;
 }
 
-
 @keyframes load {
     0% {
         left: 0;
         height: 30px;
-        width: 15px
+        width: 15px;
     }
 
     50% {
         height: 8px;
-        width: 40px
+        width: 40px;
     }
 
     100% {
         left: 235px;
         height: 30px;
-        width: 15px
+        width: 15px;
     }
 }
-
-

@@ -7,7 +7,10 @@
     position: absolute;
     width: 44px;
     height: 44px;
-
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: #24cca7;
     /* green btn */
     border-radius: 50%;
@@ -26,22 +29,16 @@
     width: 0px;
     height: 20px;
 
-    top: 23%;
-    left: 45%;
-
     background-color: #ffffff;
-    // transform: rotate3d();
+
     border: 2px solid #ffffff;
-    // transform: rotate(-90deg);
 }
 
 .button_vectotB {
     position: absolute;
+
     width: 0px;
     height: 20px;
-
-    top: 23%;
-    left: 45%;
 
     background-color: #ffffff;
     border: 2px solid #ffffff;

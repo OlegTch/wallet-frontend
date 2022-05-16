@@ -3,7 +3,6 @@ import { registerAPI, loginAPI, logoutAPI, getUserAPI } from '@api';
 
 const login = createAsyncThunk('login', async data => {
     const result = await loginAPI(data);
-
     return result;
 });
 

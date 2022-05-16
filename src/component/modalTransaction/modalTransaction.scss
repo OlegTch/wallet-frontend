@@ -1,5 +1,5 @@
 .modalContainer {
-    display: none;
+    // display: none;
     padding-top: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -16,9 +16,8 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
-
 }
-.containerClose{
+.containerClose {
     display: none;
     @media screen and (min-width: 768px) {
         position: absolute;
@@ -34,12 +33,11 @@
         cursor: pointer;
     }
 }
-.iconCloseBtn{
+.iconCloseBtn {
     @media screen and (min-width: 768px) {
         width: 18px;
         height: 18px;
     }
-
 }
 
 .titleText {
@@ -48,7 +46,6 @@
         font-size: 30px;
     }
 }
-
 
 .modalForm {
     padding: 0 20px;
@@ -105,12 +102,12 @@
     height: 44px;
     border-radius: 50%;
     pointer-events: none;
-    transition: transform .25s ease-in-out;
+    transition: transform 0.25s ease-in-out;
     transform: translateX(-4px);
     background-color: var(--accent-color-grean);
     box-shadow: 0 6px 15px var(--background-color-box-plus);
 }
-.toggleIncomeSwitch{
+.toggleIncomeSwitch {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -126,7 +123,6 @@
     transition: transform 0.25s ease-in-out;
 }
 
-
 .modalBtnPlus {
     display: block;
     width: 20px;
@@ -137,9 +133,8 @@
     transform: translateX(40px);
     background-color: var(--accent-color-red);
     box-shadow: 0 6px 15px --background-color-box;
-
 }
-.switchToggleInput{
+.switchToggleInput {
     position: absolute;
     left: 0;
     top: 0;
@@ -150,26 +145,25 @@
     width: 0;
     pointer-events: none;
 }
-.sumContainer{
+.sumContainer {
     position: relative;
     margin-top: 40px;
     width: 100%;
-     &::after {
-        content: "";
+    &::after {
+        content: '';
         position: absolute;
         display: block;
         bottom: 0;
         height: 1px;
         width: 100%;
         background-color: var(--placeholder-text);
-        
     }
     @media screen and (min-width: 768px) {
         display: inline-block;
         width: 190px;
-    }    
+    }
 }
-.sumField{
+.sumField {
     display: block;
     width: 100%;
     padding-left: 20px;
@@ -179,7 +173,7 @@
     font-weight: 600;
     border: none;
     cursor: pointer;
-    &:focus{
+    &:focus {
         outline: none;
     }
     @media screen and (min-width: 768px) {
@@ -187,12 +181,12 @@
         text-align: center;
     }
 }
-.calendarContainer{
+.calendarContainer {
     position: relative;
     margin-top: 40px;
     width: 100%;
-    &::after{
-        content: "";
+    &::after {
+        content: '';
         position: absolute;
         display: block;
         bottom: 0;
@@ -206,7 +200,7 @@
         width: 190px;
     }
 }
-.calendarIcon{
+.calendarIcon {
     position: absolute;
     pointer-events: none;
     right: 20px;
@@ -223,24 +217,24 @@
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    &:focus{
+    &:focus {
         outline: none;
     }
 }
-.commentContainer{
+.commentContainer {
     position: relative;
     margin-top: 40px;
-        &::after {
-            content: "";
-            position: absolute;
-            display: block;
-            bottom: 0;
-            height: 1px;
-            width: 100%;
-            background-color: var(--placeholder-text);
-        }
+    &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        bottom: 0;
+        height: 1px;
+        width: 100%;
+        background-color: var(--placeholder-text);
+    }
 }
-.commentField{
+.commentField {
     position: relative;
     padding-left: 20px;
     top: 25px;
@@ -253,13 +247,12 @@
     &:focus {
         outline: none;
     }
-
 }
-.buttonContainer{
+.buttonContainer {
     margin-top: 40px;
     padding: 0 10px;
 }
-.submitButton{
+.submitButton {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -275,7 +268,7 @@
         width: 300px;
     }
 }
-.cancelButton{
+.cancelButton {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -292,14 +285,14 @@
         width: 300px;
     }
 }
-// випадающий список стилі 
-.dropContainer{
+// випадающий список стилі
+.dropContainer {
     position: relative;
     width: 100%;
     margin-top: 40px;
     color: var(--primary-text-color);
     cursor: pointer;
-    &::after{
+    &::after {
         content: '';
         position: absolute;
         display: block;
@@ -323,7 +316,7 @@
     font-size: 18px;
     font-weight: 400;
 }
-.categoryDrop{
+.categoryDrop {
     vertical-align: middle;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -332,7 +325,7 @@
     -ms-user-select: none;
     user-select: none;
 }
-.dropList{
+.dropList {
     position: absolute;
     padding: 0;
     z-index: 1;
@@ -344,12 +337,12 @@
     backdrop-filter: blur(50px);
     background-color: var(--background-color-drop-list);
     box-shadow: 0px 6px 15px var(--modal-background);
-    &::-webkit-scrollbar{
+    &::-webkit-scrollbar {
         width: 0;
         height: 0;
     }
 }
-.dropListItem{
+.dropListItem {
     display: flex;
     align-items: center;
     list-style: none;
@@ -359,12 +352,12 @@
     font-size: 18px;
     font-weight: 400;
     cursor: pointer;
-    &:hover{
+    &:hover {
         color: var(--accent-color-red);
         background-color: var(--primary-background-color);
     }
 }
-.dropIcon{
+.dropIcon {
     position: absolute;
     pointer-events: none;
     right: 10px;

@@ -1,30 +1,54 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import getOperations from './finance-operation';
+import { getFinanceOpertaion } from './finance-operation';
 
 const initialState = {
     data: [],
     isLoading: false,
     error: null,
+    isModalAddTransaction: false,
 };
 
 const financeSlice = createSlice({
     name: 'finance',
     initialState,
+    reducers: {
+        openModalTransaction: state => {
+            state.isModalAddTransaction = true;
+        },
+        closeModalTransaction: state => {
+            state.isModalAddTransaction = false;
+        },
+    },
     extraReducers: {
-        [getOperations.pending]: state => {
+        [getFinanceOpertaion.getOperations.pending]: state => {
             state.isLoading = true;
             state.error = null;
         },
-        [getOperations.fulfilled]: (state, { payload }) => {
+        [getFinanceOpertaion.getOperations.fulfilled]: (state, { payload }) => {
             state.data = [...payload];
             state.isLoading = false;
         },
-        [getOperations.rejected]: (state, { error }) => {
+        [getFinanceOpertaion.getOperations.rejected]: (state, { error }) => {
+            state.isLoading = false;
+            state.error = error.message;
+        },
+
+        [getFinanceOpertaion.addOperation.pending]: state => {
+            state.isLoading = true;
+            state.error = null;
+        },
+        [getFinanceOpertaion.addOperation.fulfilled]: (state, { payload }) => {
+            state.data = [...payload];
+            state.isLoading = false;
+        },
+        [getFinanceOpertaion.addOperation.rejected]: (state, { error }) => {
             state.isLoading = false;
             state.error = error.message;
         },
     },
 });
 
+export const { openModalTransaction, closeModalTransaction } =
+    financeSlice.actions;
 export default financeSlice;

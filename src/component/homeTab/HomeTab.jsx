@@ -1,6 +1,6 @@
 import './homeTab.scss';
-import getOperationsOpertaion from '@redux/finance/finance-operation';
-import getOperations from '@redux/finance/finance-selector';
+import { getFinanceOpertaion } from '@redux/finance/finance-operation';
+import { getOperations } from '@redux/finance/finance-selector';
 import HomeTabList from '../homeTabList';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -11,7 +11,7 @@ const HomeTab = () => {
 
     useEffect(() => {
         if (operations.length === 0) {
-            dispatch(getOperationsOpertaion());
+            dispatch(getFinanceOpertaion.getOperations());
         }
     }, []);
 

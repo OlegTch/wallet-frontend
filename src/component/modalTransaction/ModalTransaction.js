@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Datetime from 'react-datetime';
+import { getBalance } from '../../redux/user/user-selector';
 import 'moment/locale/ru';
 
 import sprite from '@assets/sprite.svg';
 import './modalTransaction.scss';
+<<<<<<< Updated upstream
 
+=======
+import { validate } from 'indicative/validator';
+>>>>>>> Stashed changes
 export const ModalTransaction = () => {
     const [modalTypeTransaction, setModalTypeTransaction] = useState('income');
     const [date, setDate] = useState(new Date());
     const [category, setCategory] = useState('Регулярный доход');
     const [listActive, setListActive] = useState(false);
+    const [summ, setSumm] = useState('');
+
+    const currentBalance = useSelector(getBalance);
+    const dispatch = useDispatch();
 
     function dateChange(e) {
         console.log(e._d);
@@ -52,6 +61,33 @@ export const ModalTransaction = () => {
 
     async function submitHandler(e) {
         e.preventDefault();
+        const nextBalance = currentBalance - summ;
+        if (
+            nextBalance <= 0 &&
+            modalTypeTransaction === 'spending' &&
+            category !== 'Выберите категорию'
+        ) {
+            alert({
+                text: 'Недостаточно средств',
+                hide: true,
+                delay: 2000,
+                sticker: false,
+                closer: true,
+                dir1: 'down',
+            });
+            return;
+        }
+        if (category === 'Выберите категорию') {
+            alert({
+                text: 'Пожалуйста выберите категорию',
+                hide: true,
+                delay: 2000,
+                sticker: false,
+                closer: true,
+                dir1: 'down',
+            });
+            return;
+        }
     }
 
     function switchClickHandler(e) {

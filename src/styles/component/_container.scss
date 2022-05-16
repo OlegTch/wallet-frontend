@@ -1,18 +1,18 @@
 .container {
     width: 100%;
-    max-width: 320px;
+    max-width: $MobileWidth;
     padding: 0 20px;
     margin-left: auto;
     margin-right: auto;
 
-    @media screen and (min-width: 768px) {
-        max-width: 768px;
+    @media screen and (min-width: $TabletWidth) {
+        max-width: $TabletWidth;
         padding: 0 32px;
     }
 
-    @media screen and (min-width: 1280px) {
+    @media screen and (min-width: $DesktopWidth) {
         display: flex;
-        max-width: 1280px;
+        max-width: $DesktopWidth;
         padding: 0 16px;
     }
 
@@ -26,11 +26,11 @@
     &__main {
         padding-top: 12px;
 
-        @media screen and (min-width: 768px) {
+        @media screen and (min-width: $TabletWidth) {
             padding-top: 32px;
         }
 
-        @media screen and (min-width: 1280px) {
+        @media screen and (min-width: $DesktopWidth) {
             display: flex;
             padding-top: 46px;
         }

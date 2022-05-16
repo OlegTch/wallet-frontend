@@ -6,7 +6,7 @@
 }
 
 .button_exit__block {
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $TabletWidth) {
         margin-right: 8px;
     }
 }
@@ -24,7 +24,7 @@
     line-height: 1.5;
     color: var(--placeholder-text);
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $TabletWidth) {
         display: block;
     }
 }

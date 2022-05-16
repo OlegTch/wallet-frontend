@@ -2,7 +2,7 @@ body {
     background-color: var(--secondary-background-color);
     font-family: 'Circe';
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $TabletWidth) {
         background-image: url(../../assets/bg-tablet.png);
         background-repeat: no-repeat;
         background-size: cover;
@@ -16,7 +16,7 @@ body {
         }
     }
 
-    @media screen and (min-width: 1280px) {
+    @media screen and (min-width: $DesktopWidth) {
         background-image: url(../../assets/bg-desktop.png);
 
         @media screen and (min-device-pixel-ratio: 2),
@@ -41,10 +41,10 @@ body {
     flex-grow: 1;
     // padding-top: 12px;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $TabletWidth) {
         // padding-top: 32px;
     }
-    @media screen and (min-width: 1280px) {
+    @media screen and (min-width: $DesktopWidth) {
         display: flex;
         position: relative;
         // padding-top: 46px;
@@ -62,12 +62,12 @@ body {
 }
 
 .main_block {
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $TabletWidth) {
         display: flex;
         justify-content: space-between;
     }
 
-    @media screen and (min-width: 1280px) {
+    @media screen and (min-width: $DesktopWidth) {
         display: block;
     }
 }

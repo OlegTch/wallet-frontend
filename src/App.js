@@ -10,6 +10,7 @@ import { withAuth } from '@hoc/withAuth';
 import { isAuth, isToken, isLoading, error } from '@redux/user/user-selector';
 import { userOperation } from '@redux/user/user-operation';
 import LoginPage from './pages/login';
+import Currency from './component/currency/Currency.jsx'
 
 function App() {
     const isUserToken = useSelector(isToken);
@@ -65,11 +66,11 @@ function App() {
                     {/* <Route
                         path="diagram"
                         element={withAuth(isUserAuth, <h1>Statistics</h1>)}
-                    />
+                    /> */}
                     <Route
                         path="currency"
-                        element={withAuth(isUserAuth, <h1>Currency</h1>)}
-                    /> */}
+                        element={withAuth(isUserAuth, <Currency/>)}
+                    />
                 </Routes>
             )}
         </>

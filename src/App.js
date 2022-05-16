@@ -9,7 +9,7 @@ import { Statistic } from './pages/statistic';
 import { withAuth } from '@hoc/withAuth';
 import LoginPage from '@pages/login';
 import Loader from '@component/spinnerLoader/spinnerLoader';
-import { withAuth } from '@hoc';
+// import { withAuth } from '@hoc';
 
 import { isAuth, isToken, isLoading, error } from '@redux/user/user-selector';
 import { userOperation } from '@redux/user/user-operation';
@@ -78,14 +78,23 @@ function App() {
                         path="currency"
                         element={withAuth(isUserAuth, <h1>Currency</h1>)}
                     /> */}
+                    {/* <Route
+                        path="/home"
+                        element={<Dashboard />}
+                        // element={withAuth(isUserAuth, <Dashboard />)}
+                    /> */}
+                    {/* <Route
+                        path="/diagram"
+                        element={withAuth(isUserAuth, <Dashboard />)}
+                    /> */}
+                    {/* <Route
+                        path="/currency"
+                        element={withAuth(isUserAuth, <Dashboard />)}
+                    /> */}
+
                     <Route path="login" element={<LoginPage />} />
                     <Route path="register" element={<RegistrationPage />} />
-                    <Route
-                        path="statistic"
-                        element={withAuth(isUserAuth, <Statistic />)}
-                        // path="diagram"
-                        // element={withAuth(isUserAuth, <h1>Statistics</h1>)}
-                    />
+
                     <Route path="/" element={withAuth(isUserAuth)} />
                     <Route
                         path="/*"

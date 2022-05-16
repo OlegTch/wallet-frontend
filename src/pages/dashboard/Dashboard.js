@@ -22,6 +22,8 @@ import { isModalLogout } from '@redux/user/user-selector';
 import { isCategoriesFull } from '@redux/categories/categories-selector';
 import { globalMedia } from '@data';
 
+import { Statistic } from '@pages/statistic';
+
 export const Dashboard = () => {
     const dispatch = useDispatch();
     const isCategories = useSelector(isCategoriesFull);
@@ -57,7 +59,10 @@ export const Dashboard = () => {
                                                     path="home"
                                                     element={<Balans />}
                                                 />
-                                                <Route path="diagram" />
+                                                <Route
+                                                    path="diagram"
+                                                    element={<Statistic />}
+                                                />
                                                 <Route
                                                     path="currency"
                                                     element={<Currency />}
@@ -115,7 +120,7 @@ export const Dashboard = () => {
                                 </Media>
                             }
                         />
-                        <Route path="/diagram" element={<h1>Diagram</h1>} />
+                        <Route path="/diagram" element={<Statistic />} />
                     </Routes>
                 </div>
             </main>

@@ -1,6 +1,5 @@
 import './buttonClose.scss';
 
-//import PropTypes from 'prop-types'; {onClick}
 
 const ButtonClose = ({ onClick }) => {
     return (

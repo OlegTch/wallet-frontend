@@ -7,6 +7,7 @@ const initialState = {
     isLoading: false,
     error: null,
     isModalAddTransaction: false,
+    isSaveModalDateStatic: false,
 };
 
 const financeSlice = createSlice({
@@ -49,6 +50,8 @@ const financeSlice = createSlice({
     },
 });
 
-export const { openModalTransaction, closeModalTransaction } =
-    financeSlice.actions;
+export const {
+    openModalTransaction,
+    closeModalTransaction,
+} = financeSlice.actions;
 export default financeSlice;

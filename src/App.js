@@ -41,7 +41,7 @@ function App() {
             {isError && <h1>Error: {isError}</h1>}
             {!loading && !isError && isUserAuth === isUserToken && (
                 <Routes>
-                    <Route path="register" element={<RegistrationPage />} />
+                    {/* <Route path="register" element={<RegistrationPage />} />
                     <Route path="login" element={<LoginPage />} />
                     <Route
                         path="/"
@@ -73,6 +73,13 @@ function App() {
                     <Route
                         path="currency"
                         element={withAuth(isUserAuth, <h1>Currency</h1>)}
+                    /> */}
+                    <Route path="login" element={<LoginPage />} />
+                    <Route path="register" element={<RegistrationPage />} />
+                    <Route path="/" element={withAuth(isUserAuth)} />
+                    <Route
+                        path="/*"
+                        element={withAuth(isUserAuth, <Dashboard />)}
                     />
                 </Routes>
             )}

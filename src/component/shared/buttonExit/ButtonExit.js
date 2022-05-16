@@ -1,9 +1,11 @@
 import { useDispatch } from 'react-redux';
+import Media from 'react-media';
 
 import sprite from '@assets/sprite.svg';
 import './buttonExit.scss';
 
 import { openModalLogout } from '@redux/user/user-slice';
+import { globalMedia } from '@data';
 
 export const ButtonExit = () => {
     const dispatch = useDispatch();
@@ -19,9 +21,15 @@ export const ButtonExit = () => {
                     <use href={`${sprite}#exit`}></use>
                 </svg>
             </div>
-            {window.screen.width >= 768 && (
-                <p className="button_exit__text">Вийти</p>
-            )}
+            <Media queries={globalMedia}>
+                {matches => (
+                    <>
+                        {matches.medium && (
+                            <p className="button_exit__text">Вийти</p>
+                        )}
+                    </>
+                )}
+            </Media>
         </button>
     );
 };

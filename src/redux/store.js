@@ -13,7 +13,6 @@ import logger from 'redux-logger';
 import storage from 'redux-persist/lib/storage';
 
 import categorySlice from './categories/categories-slice';
-import transactionSlice from './transaction/transaction-slice';
 import statisticSlice from './statistic/statistic-slice';
 import userSlice from './user/user-slice';
 import financeSlice from './finance/finance-slice';
@@ -39,7 +38,6 @@ const store = configureStore({
     reducer: {
         [userSlice.name]: userReducer,
         [categorySlice.name]: categorySlice.reducer,
-        [transactionSlice.name]: transactionSlice.reducer,
         [statisticSlice.name]: statisticSlice.reducer,
         [financeSlice.name]: financeSlice.reducer,
     },

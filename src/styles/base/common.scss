@@ -48,16 +48,25 @@ li {
     margin-left: auto;
     margin-right: auto;
     padding: 0px 20px;
-    @media screen and (min-width: 320px) {
-        width: 320px;
+    @media screen and (min-width: $MobileWidth) {
+        width: $MobileWidth;
     }
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $TabletWidth) {
         padding: 0px 70px;
-        width: 768px;
+        width: $TabletWidth;
     }
-    @media screen and (min-width: 1280px) {
-        width: 1280px;
+    @media screen and (min-width: $DesktopWidth) {
+        width: $DesktopWidth;
     }
+    // @media screen and (min-width: 320px) {
+    //     width: 320px;
+    // }
+    // @media screen and (min-width: 768px) {
+    //     padding: 0px 70px;
+    //     width: 768px;
+    // }
+    // @media screen and (min-width: 1280px) {
+    //     width: 1280px; }
 }
 
 .visually-hiden {

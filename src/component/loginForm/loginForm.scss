@@ -1,76 +1,168 @@
-.login_form__logo {
-    margin-bottom: 60px;
+.form_bg_filter {
+    @media screen and (min-width: 1280px) {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        width: 731px;
+        height: 720px;
+
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(50px);
+    }
+}
+
+.login_img_container {
+    display: flex;
+
+    @media screen and (max-width: 767px) {
+        display: none;
+    }
+
+    @media screen and (min-width: 768px) {
+        align-items: center;
+
+        padding-top: 61px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 50px;
+
+        width: 545px;
+    }
+
+    @media not screen and (max-width: 1279px) {
+        flex-direction: column;
+
+        padding-top: 115px;
+
+        margin-left: 40px;
+    }
+}
+
+.login_img {
+    @media (min-width: 768px) {
+        width: 261px;
+        height: 250px;
+        margin-right: 40px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        width: 435px;
+        height: 420px;
+
+        margin-bottom: 28px;
+    }
+}
+
+.login_img_container h1 {
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.5;
 }
 
 .login_form {
+    &__logo {
+        margin-bottom: 60px;
+    }
+
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    width: 533px;
-    height: 468px;
-
     border-radius: 20px;
 
-    background: #ffffff;
-}
+    background: var(--primary-background-color);
 
-.login_form__label {
-    position: relative;
-    margin-bottom: 41px;
-}
+    @media screen and (max-width: 767px) {
+        padding: 107px 20px;
+    }
 
-.login_form__input::placeholder {
-    font-size: 18px;
-    line-height: 1.5;
+    @media screen and (min-width: 768px) {
+        padding: 40px 61px 62px 61px;
 
-    color: #bdbdbd;
-}
+        margin-left: auto;
+        margin-right: auto;
 
-.login_form__input {
-    outline: none;
-    border: none;
-    width: 409.5px;
+        width: 533px;
+    }
 
-    padding: 9px 5px 9px 60px;
+    @media screen and (min-width: 1280px) {
+        position: absolute;
 
-    color: #bdbdbd;
-    border-bottom: 1px solid #e0e0e0;
-}
+        right: 12%;
+        bottom: 15%;
+    }
 
-.login_form__icon {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    left: 12px;
-    bottom: 9px;
-}
+    &__label {
+        position: relative;
+        margin-bottom: 41px;
+    }
 
-.login_form__btn {
-    margin-bottom: 20px;
+    &__input::placeholder {
+        font-size: 18px;
+        line-height: 1.5;
 
-    width: 300px;
-    height: 50px;
+        color: var(--placeholder-text);
+    }
 
-    background: #ffffff;
-    border: 1px solid #4a56e2;
-    border-radius: 20px;
-}
+    &__input {
+        outline: none;
+        border: none;
+        width: 409.5px;
 
-.login_form__btn span {
-    font-size: 18px;
-    line-height: 1.5;
-    text-align: center;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-}
+        padding: 9px 5px 9px 60px;
 
-.login_form__btn_color {
-    color: #4a56e2;
-}
+        border-bottom: 1px solid var(--disabled-grey-text-color);
 
-.login_form__btn--current {
-    background: #24cca7;
-    color: #ffffff;
-    border: none;
+        @media screen and (max-width: 767px) {
+            width: 280px;
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        left: 12px;
+        bottom: 9px;
+    }
+
+    &__btn {
+        font-size: 18px;
+        line-height: 1.5;
+        text-align: center;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+
+        background: var(--secondary-text-color);
+        border: 1px solid var(--accent-color-blue);
+        border-radius: 20px;
+    }
+
+    &__btn:not(:last-child) {
+        margin-bottom: 20px;
+        padding: 13px 122px;
+
+        @media screen and (max-width: 767px) {
+            padding: 13px 116px;
+        }
+    }
+
+    &__btn:last-child {
+        padding: 11px 83px;
+
+        @media screen and (max-width: 767px) {
+            padding: 11px 78px;
+        }
+    }
+
+    &__btn_color {
+        color: var(--accent-color-blue);
+    }
+
+    &__btn--current {
+        background: var(--accent-color-grean);
+        color: var(--secondary-text-color);
+        border: none;
+    }
 }

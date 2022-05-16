@@ -13,7 +13,7 @@ import {
 import Currency from '@component/currency';
 import HomeTab from '@component/homeTab';
 import ButtonClose from '@component/buttonClose/buttonClose';
-// import { getFinanceOpertaion } from '@redux/finance/finance-operation';
+
 import { categoriesOperation } from '@redux/categories/categories-operation';
 import { statisticOperation } from '@redux/statistic/statistic-operation';
 import { openModalTransaction } from '@redux/finance/finance-slice';

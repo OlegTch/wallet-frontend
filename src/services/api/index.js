@@ -109,6 +109,34 @@ const tempData = {
     ],
 };
 
+const dataExampl = {
+    categories: [
+    {id: 1,name: "Основні витрати", income: true,},
+    {id: 2,name: "Продукти", income: true,},
+    {id: 3,name: "Машина", income: true,},
+    {id: 4,name: "Турбота про себе", income: true, },
+    {id: 5,name: "Турбота за дітей", income: true,},
+    {id: 6,name: "Товари для дому", income: true, },
+    {id: 7,name: "Освіта", income: true, },
+    {id: 8,name: "Дозвілля", income: true, },
+    {id: 9,name: "Інші витрати", income: true, },
+    {id: 10,name: "Дохід", income: false, },
+    {id: 11,name: "Інший дохід", income: false, }
+    ],
+    statistic: [
+    {category: 1,sum:8700},
+    {category: 2,sum:3800.74},
+    {category: 3,sum:1500},
+    {category: 4,sum:800},
+    {category: 5,sum:2208.05},
+    {category: 6,sum:300},
+    {category: 7,sum:3400},
+    {category: 8,sum:1230},
+    { category: 9, sum: 610 },
+    ],
+    
+}
+
 //  ----------------   USER   -----------------------
 
 export const registerAPI = user => {
@@ -137,12 +165,14 @@ export const getUserAPI = () => {
 
 export const getCategoryAPI = () => {
     return tempData.categories;
+    // return dataExampl.categories
 };
 
 // ------------ Statistic ----------------------------
 
 export const getStatisticAPI = data => {
     return tempData.statistic;
+    // return dataExampl.statistic;
 };
 
 // ------------  Finance (operations) ----------------------------

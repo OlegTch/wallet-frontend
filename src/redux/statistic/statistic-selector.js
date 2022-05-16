@@ -10,4 +10,7 @@ export const getStatistic = state => {
     return result;
 };
 
+export const updateStatistic = state => {
+    return state.statistic.data; //*
+};
 export const isLoadingStatistic = state => state.statistic.isLoading;

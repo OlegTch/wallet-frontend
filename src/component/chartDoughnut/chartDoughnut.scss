@@ -1,0 +1,31 @@
+@import '@style/utils/breakpoints';
+
+.wrapper-chart {
+    position: relative;
+    display: flex;
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+
+    @media screen and (min-width: $TabletWidth) {
+            width: 336px;
+            height: 336px;
+        }
+    
+        @media screen and (min-width: $DesktopWidth) {
+            width: 288px;
+            height: 288px;
+        }
+}
+
+.balance {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 700;
+    align-items: center;
+    justify-content: center;
+}
+
+

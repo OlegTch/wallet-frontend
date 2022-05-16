@@ -9,3 +9,7 @@ export const getStatistic = state => {
     });
     return result;
 };
+
+export const updateStatistic = state => {
+    return state.statistic.data; //*
+};

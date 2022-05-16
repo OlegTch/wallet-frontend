@@ -1,0 +1,31 @@
+@import '@style/utils/breakpoints';
+
+.containerDatePicker {
+    display: flex;
+    gap: 20px;
+
+    @media screen and (max-width: $MaxMobileWidth) {
+            flex-wrap: wrap;
+    }
+        @media screen and (min-width: $TabletWidth) {
+            gap: 20px 16px;
+        }
+                @media screen and (min-width: $DesktopWidth) {
+                    gap: 20px 32px;
+                }
+}
+
+.icon {
+    display: inline-block;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: none;
+    &:hover{
+        color: var(--accent-color-blue);
+        stroke-width: 4;
+    }
+}
+
+.icon-vector {
+    color: var(--primary-text-color);
+}

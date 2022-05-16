@@ -1,0 +1,59 @@
+@import '@style/utils/breakpoints';
+
+.statistic-section{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.diagramTab-header, .statistic-header {
+    margin-bottom: 20px;
+    font-family: 'Poppins';
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 45px;
+    color: #000000;
+    @media screen and (max-width: $MaxMobileWidth) {
+            margin-bottom: 8px;
+        }
+                @media screen and (min-width: 1280px) {
+                    display: none;
+                }
+}
+.statistic-header__main{
+    margin-bottom: 20px;
+    font-family: 'Poppins';
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 45px;
+    color: #000000;
+    @media screen and (max-width: 1279px) {
+            display: none;
+        }
+
+}
+
+.diagramTab-section {
+    // padding-left: 20px;
+    // padding-right: 20px;
+
+    @media screen and (min-width: $TabletWidth) {
+            display: flex;
+        }
+}
+
+.diagramTab-container{
+    width: 280px;
+    margin: 0 auto;
+    
+    @media screen and (max-width: $MaxMobileWidth) {
+            margin-top: 32px;
+        }
+        @media screen and (min-width: $TabletWidth) {
+            width: 336px;
+            margin-left: 32px;
+        }
+        
+        @media screen and (min-width: $DesktopWidth) {
+                    width: 395px;
+                }
+}

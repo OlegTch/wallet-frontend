@@ -11,7 +11,7 @@ import moment from 'moment';
 import 'moment/locale/uk';
 moment.locale('uk')
 
-const thisMonth = moment(new Date()).format('MMMM');
+const thisMonth = (new Date()).getMonth() + 1;
 
 const monthsList = moment(new Date(), "MMMM", 'uk')._locale._months.standalone;
 const monthsOptions = monthsList.map((el) => ({ value: el, label: el }));
@@ -48,14 +48,23 @@ export function DatePicker() {
 
   
   const handleChange = (name, value) => {
-    
+
     if (!selectedOption?.month ?? null) {
       setSelectedOption((prev) => ({ ...prev, month: thisMonth }))
     }
     if (!selectedOption?.year ?? null) {
       setSelectedOption((prev) => ({ ...prev, year: thisYear }))
     }
-    setSelectedOption((prev) => ({ ...prev, [name]: value }))
+
+    if (name === 'month') {
+      const num = monthsList.findIndex(e => e === value) + 1;
+      console.log(num)
+      setSelectedOption((prev) => ({ ...prev, [name]: num }));
+    }
+
+    if (name === 'year') {
+      setSelectedOption((prev) => ({ ...prev, [name]: value }))
+    }
   }
   
 

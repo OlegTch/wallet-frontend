@@ -7,8 +7,8 @@ const getOperations = createAsyncThunk('getOperations', async data => {
     return result;
 });
 
-const addOperation = createAsyncThunk('addOperation', async () => {
-    const result = await addTransactionAPI();
+const addOperation = createAsyncThunk('addOperation', async data => {
+    const result = await addTransactionAPI(data);
     return result;
 });
 

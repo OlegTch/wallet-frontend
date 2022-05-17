@@ -12,6 +12,7 @@
         "axios": "^0.27.2",
         "formik": "^2.2.9",
         "i18next": "^21.8.0",
+        "indicative": "^7.4.4",
         "modern-normalize": "^1.1.0",
         "moment": "^2.29.3",
         "netlify-cli": "^10.3.1",

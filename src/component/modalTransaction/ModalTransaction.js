@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Datetime from 'react-datetime';
-import { getBalance } from '../../redux/user/user-selector';
 import {
     getCategoryDebet,
     getCategoryCredit,
@@ -13,27 +12,23 @@ import 'moment/locale/ru';
 
 import sprite from '@assets/sprite.svg';
 import './modalTransaction.scss';
-import { alert, defaults } from '@pnotify/core';
 
-// import { validate } from 'indicative/validator';
+import { validate } from 'indicative/validator';
 export const ModalTransaction = () => {
-    const [modalTypeTransaction, setModalTypeTransaction] = useState('income');
-    const [date, setDate] = useState(new Date());
-    const [category, setCategory] = useState('Регулярный доход');
-    const [listActive, setListActive] = useState(false);
-    const [summ, setSumm] = useState('');
-
-    defaults.styling = 'material';
-    defaults.icons = 'material';
-    defaults.delay = 1000;
-    const currentBalance = useSelector(getBalance);
-    const getDebit = useSelector(getCategoryDebet);
+    const getDebet = useSelector(getCategoryDebet);
     const getCredit = useSelector(getCategoryCredit);
     const pushDate = useSelector(isSaveModalDateStatic);
-    console.log(getDebit);
-    console.log(getCredit);
+    const [modalTypeTransaction, setModalTypeTransaction] = useState('income');
+    const [date, setDate] = useState(new Date());
+    const [category, setCategory] = useState(getDebet[0].name);
+    const [idCategory, setIdCategory] = useState(getDebet[0].id);
+    const [listActive, setListActive] = useState(false);
+    const [summ, setSumm] = useState('');
+    const [comment, setComment] = useState('');
+
     const dispatch = useDispatch();
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     function closeModalItem() {
         dispatch(closeModalTransaction());
     }
@@ -74,6 +69,7 @@ export const ModalTransaction = () => {
         setListActive(!listActive);
     }
     function categoryClick(e) {
+        setIdCategory(e.target.dataset.id);
         setCategory(e.target.textContent);
         setListActive(!listActive);
     }
@@ -104,45 +100,77 @@ export const ModalTransaction = () => {
         return 'switchTypeBalance__text';
     }
 
-    async function submitHandler(e) {
-        e.preventDefault();
-        const nextBalance = currentBalance - summ;
-        if (
-            nextBalance <= 0 &&
-            modalTypeTransaction === 'spending' &&
-            category !== 'Выберите категорию'
-        ) {
-            alert({
-                text: 'Недостаточно средств',
-                hide: true,
-                delay: 2000,
-                sticker: false,
-                closer: true,
-                dir1: 'down',
-            });
+    function summInput(e) {
+        const number = Number(e.target.value);
+        const integer = Number.isInteger(number);
+
+        if (!integer) {
+            const [int, float] = String(number).split('.');
+            setSumm(`${int}.${float.slice(0, 2)}`);
             return;
         }
-        if (category === 'Выберите категорию') {
-            alert({
-                text: 'Пожалуйста выберите категорию',
-                hide: true,
-                delay: 2000,
-                sticker: false,
-                closer: true,
-                dir1: 'down',
-            });
-            return;
-        }
+
+        setSumm(e.target.value);
+    }
+
+    function commentInput(e) {
+        const field = document.querySelector('.commentField');
+        console.dir(e.target);
+        field.style = { height: `${field.scrollHeight}px` };
+        console.log(field.scrollHeight);
+        setComment(e.target.value);
     }
 
     function switchClickHandler(e) {
         if (!e.target.checked) {
             setModalTypeTransaction('spending');
-            setCategory('Выберите категорию');
+            setCategory('Виберіть категорію');
+            setIdCategory(null);
             return;
         }
         setModalTypeTransaction('income');
-        setCategory('Регулярный доход');
+        setCategory(getDebet[0].name);
+        setIdCategory(getDebet[0].id);
+    }
+    const validateSchema = {
+        type: 'required|boolean',
+        category: 'required|string',
+        sum: 'required|number',
+        comment: 'string',
+        day: 'required|number',
+        month: 'required|number',
+        year: 'required|number',
+    };
+    async function submitHandler(e) {
+        e.preventDefault();
+        console.log(
+            'вывыааааааааааааааааааааааааааааааааааааааааааа',
+            idCategory,
+        );
+
+        // if (!idCategory) {
+        //     console.log('Крутооооооооо');
+
+        //     return;
+        // }
+        const modalTransaction = {
+            day: date.getDate(),
+            month: date.getMonth() + 1,
+            year: date.getFullYear(),
+            type: modalTypeTransaction === 'income' ? true : false,
+            category: category,
+            sum: parseFloat(summ),
+            comment: comment,
+        };
+
+        try {
+            await validate(modalTransaction, validateSchema);
+            closeModalItem();
+        } catch (error) {
+            console.log(error[0].message);
+            alert(error[0].message);
+        }
+        dispatch(getFinanceOpertaion.addOperation({}));
     }
     // випадающий список
     function DropMenuActive() {
@@ -165,7 +193,7 @@ export const ModalTransaction = () => {
                 <ul className="dropList">
                     {/* категории для доходв */}
                     {modalTypeTransaction === 'income' &&
-                        getDebit.map((elem, idx) => {
+                        getDebet.map((elem, idx) => {
                             return (
                                 <li
                                     onClick={categoryClick}
@@ -177,53 +205,21 @@ export const ModalTransaction = () => {
                                 </li>
                             );
                         })}
-                    {/* {modalTypeTransaction === 'income' && (
-                        <li onClick={categoryClick} className="dropListItem">
-                            Нерегулярный доход
-                        </li>
-                    )} */}
 
                     {/* категории для расхода */}
-                    {modalTypeTransaction === 'spending' && (
-                        <li onClick={categoryClick} className="dropListItem">
-                            Основной
-                        </li>
-                    )}
-                    {modalTypeTransaction === 'spending' && (
-                        <li onClick={categoryClick} className="dropListItem">
-                            Еда
-                        </li>
-                    )}
-                    {modalTypeTransaction === 'spending' && (
-                        <li onClick={categoryClick} className="dropListItem">
-                            Авто
-                        </li>
-                    )}
-                    {modalTypeTransaction === 'spending' && (
-                        <li onClick={categoryClick} className="dropListItem">
-                            Развитие
-                        </li>
-                    )}
-                    {modalTypeTransaction === 'spending' && (
-                        <li onClick={categoryClick} className="dropListItem">
-                            Дети
-                        </li>
-                    )}
-                    {modalTypeTransaction === 'spending' && (
-                        <li onClick={categoryClick} className="dropListItem">
-                            Дом
-                        </li>
-                    )}
-                    {modalTypeTransaction === 'spending' && (
-                        <li onClick={categoryClick} className="dropListItem">
-                            Образование
-                        </li>
-                    )}
-                    {modalTypeTransaction === 'spending' && (
-                        <li onClick={categoryClick} className="dropListItem">
-                            Остальное
-                        </li>
-                    )}
+                    {modalTypeTransaction === 'spending' &&
+                        getCredit.map((elem, idx) => {
+                            return (
+                                <li
+                                    onClick={categoryClick}
+                                    className="dropListItem"
+                                    key={idx}
+                                    data-id={elem.id}
+                                >
+                                    {elem.name}
+                                </li>
+                            );
+                        })}
                 </ul>
             )}
 
@@ -283,6 +279,8 @@ export const ModalTransaction = () => {
                 <div className="sumContainer">
                     <input
                         className="sumField"
+                        onChange={summInput}
+                        value={summ}
                         required
                         min="0.00"
                         step="0.01"
@@ -307,23 +305,25 @@ export const ModalTransaction = () => {
                     <textarea
                         className="commentField"
                         placeholder="коментарий"
+                        onChange={commentInput}
+                        value={comment}
                     />
                 </div>
+                <div className="buttonContainer">
+                    <button
+                        className="submitButton"
+                        type="submit"
+                        // onClick={() => {
+                        //     dispatch(getFinanceOpertaion.addOperation({}));
+                        // }}
+                    >
+                        Добавить
+                    </button>
+                    <button className="cancelButton" onClick={closeModalItem}>
+                        Отмена
+                    </button>
+                </div>
             </form>
-            <div className="buttonContainer">
-                <button
-                    className="submitButton"
-                    type="submit"
-                    onClick={() => {
-                        dispatch(getFinanceOpertaion.addOperation({}));
-                    }}
-                >
-                    Добавить
-                </button>
-                <button className="cancelButton" onClick={closeModalItem}>
-                    Отмена
-                </button>
-            </div>
         </div>
     );
 };

@@ -31,8 +31,8 @@ body {
 #root {
     display: flex;
     flex-direction: column;
-    background-color: var(--third-background-color);
-    backdrop-filter: blur(50px);
+    // background-color: var(--third-background-color);
+    // backdrop-filter: blur(50px);
     height: 100vh;
     overflow-y: scroll;
 }

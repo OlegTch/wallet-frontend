@@ -1,11 +1,16 @@
-import { useDispatch } from 'react-redux';
-import { userOperation } from '../../redux/user/user-operation';
+import * as Yup from 'yup';
 import { Formik } from 'formik';
+
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { userOperation } from '../../redux/user/user-operation';
 import { Logo } from '../shared/logo';
+
 import sprite from '../../assets/sprite.svg';
 import imgMan from '../../assets/img/tablet/tabletMan.svg';
+
 import './loginForm.scss';
-import * as Yup from 'yup';
 
 export default function LoginForm() {
     const dispatch = useDispatch();
@@ -18,13 +23,17 @@ export default function LoginForm() {
             </div>
 
             <Formik
-                initialValues={{ email: '' }}
+                initialValues={{ email: '', password: '' }}
                 onSubmit={({ email, password }) => {
                     dispatch(userOperation.login({ email, password }));
                 }}
                 validationSchema={Yup.object().shape({
-                    email: Yup.string().email().required('Required'),
-                    password: Yup.string().required('Required'),
+                    email: Yup.string()
+                        .email()
+                        .required('Обов' + "'" + 'язкове поле'),
+                    password: Yup.string().required(
+                        'Обов' + "'" + 'язкове поле',
+                    ),
                 })}
             >
                 {props => {
@@ -48,7 +57,11 @@ export default function LoginForm() {
                                 <div className="login_form__logo">
                                     <Logo />
                                 </div>
-
+                                {errors.email && touched.email && (
+                                    <div className="input-feedback">
+                                        {errors.email}
+                                    </div>
+                                )}
                                 <label className="login_form__label">
                                     <svg className="login_form__icon">
                                         <use href={`${sprite}#email`}></use>
@@ -63,11 +76,12 @@ export default function LoginForm() {
                                         onBlur={handleBlur}
                                     />
                                 </label>
-                                {/* {errors.email && touched.email && (
-                                <div className="input-feedback">
-                                    {errors.email}
-                                </div>
-                            )} */}
+
+                                {errors.password && touched.password && (
+                                    <div className="input-feedback">
+                                        {errors.password}
+                                    </div>
+                                )}
                                 <label className="login_form__label">
                                     <svg className="login_form__icon">
                                         <use href={`${sprite}#password`}></use>
@@ -82,11 +96,6 @@ export default function LoginForm() {
                                         onBlur={handleBlur}
                                     />
                                 </label>
-                                {/* {errors.password && touched.password && (
-                                <div className="input-feedback">
-                                    {errors.password}
-                                </div>
-                            )} */}
 
                                 <button
                                     className="login_form__btn login_form__btn--current  "
@@ -101,7 +110,9 @@ export default function LoginForm() {
                                     onClick={handleReset}
                                     disabled={isSubmitting}
                                 >
-                                    <span>Реєстрація</span>
+                                    <Link to="/register">
+                                        <span>Реєстрація</span>
+                                    </Link>
                                 </button>
                             </form>
                         </div>

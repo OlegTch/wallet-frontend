@@ -41,6 +41,7 @@ function App() {
         <>
             {loading && <Loader />}
             {isError && <h1>Error: {isError}</h1>}
+
             {!loading && !isError && isUserAuth === isUserToken && (
                 <Routes>
                     {/* <Route path="register" element={<RegistrationPage />} />

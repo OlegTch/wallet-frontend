@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { userOperation } from '../../redux/user/user-operation';
-import { Logo } from '../shared/logo';
 
 import sprite from '../../assets/sprite.svg';
 import imgMan from '../../assets/img/tablet/tabletMan.svg';
 
 import './loginForm.scss';
+import '../shared/logo/logo.scss';
 
 export const LoginForm = () => {
     const dispatch = useDispatch();
@@ -45,7 +45,6 @@ export const LoginForm = () => {
                         handleChange,
                         handleBlur,
                         handleSubmit,
-                        handleReset,
                     } = props;
 
                     return (
@@ -55,7 +54,10 @@ export const LoginForm = () => {
                                 className="login_form"
                             >
                                 <div className="login_form__logo">
-                                    <Logo />
+                                    <svg className="logo_icon">
+                                        <use href={`${sprite}#wallet`}></use>
+                                    </svg>
+                                    <p className="logo_text">Wallet</p>
                                 </div>
                                 <label className="login_form__label">
                                     {errors.email && touched.email && (

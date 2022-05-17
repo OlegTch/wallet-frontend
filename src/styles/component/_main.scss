@@ -31,10 +31,19 @@ body {
 #root {
     display: flex;
     flex-direction: column;
+
     // background-color: var(--third-background-color);
     // backdrop-filter: blur(50px);
+
     height: 100vh;
     overflow-y: scroll;
+}
+
+main {
+    padding-bottom: 30px;
+    flex-grow: 1;
+    background-color: var(--third-background-color);
+    backdrop-filter: blur(50px);
 }
 
 .dashboardMain {

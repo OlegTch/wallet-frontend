@@ -15,9 +15,16 @@ import HomeTab from '@component/homeTab';
 import ButtonClose from '@component/buttonClose/buttonClose';
 
 import { categoriesOperation } from '@redux/categories/categories-operation';
-import { statisticOperation } from '@redux/statistic/statistic-operation';
-import { openModalTransaction } from '@redux/finance/finance-slice';
-import { isModalTransaction } from '@redux/finance/finance-selector';
+import { getFinanceOpertaion } from '@redux/finance/finance-operation';
+// import { statisticOperation } from '@redux/statistic/statistic-operation';
+import {
+    openModalTransaction,
+    clearSaveModalDateStatic,
+} from '@redux/finance/finance-slice';
+import {
+    isModalTransaction,
+    isSaveModalDateStatic,
+} from '@redux/finance/finance-selector';
 import { isModalLogout } from '@redux/user/user-selector';
 import { isCategoriesFull } from '@redux/categories/categories-selector';
 import { globalMedia } from '@data';
@@ -29,6 +36,7 @@ export const Dashboard = () => {
     const isCategories = useSelector(isCategoriesFull);
     const isOpenModalTransaction = useSelector(isModalTransaction);
     const isOpenModalLogout = useSelector(isModalLogout);
+    const isSaveTransaction = useSelector(isSaveModalDateStatic);
 
     const onOpenModalTransaction = () => {
         dispatch(openModalTransaction());
@@ -39,8 +47,15 @@ export const Dashboard = () => {
             dispatch(categoriesOperation.getCategories());
         }
         // dispatch(getFinanceOpertaion.getOperations());
-        dispatch(statisticOperation.getStatistic());
+        // dispatch(statisticOperation.getStatistic());
     }, []);
+
+    useEffect(() => {
+        if (isSaveTransaction && !isModalTransaction) {
+            dispatch(getFinanceOpertaion.getOperations());
+            dispatch(clearSaveModalDateStatic());
+        }
+    }, [isSaveTransaction, isOpenModalTransaction]);
 
     return (
         <>
@@ -59,10 +74,7 @@ export const Dashboard = () => {
                                                     path="home"
                                                     element={<Balans />}
                                                 />
-                                                <Route
-                                                    path="diagram"
-                                                    element={<Statistic />}
-                                                />
+                                                <Route path="diagram" />
                                                 <Route
                                                     path="currency"
                                                     element={<Currency />}

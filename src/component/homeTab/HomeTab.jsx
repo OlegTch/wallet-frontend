@@ -1,12 +1,13 @@
 import './homeTab.scss';
 import { getFinanceOpertaion } from '@redux/finance/finance-operation';
-import { getOperations } from '@redux/finance/finance-selector';
+import { getOperations, isLoading } from '@redux/finance/finance-selector';
 import HomeTabList from '../homeTabList';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 const HomeTab = () => {
     const dispatch = useDispatch();
+    const isLoad = useSelector(isLoading);
     const operations = useSelector(getOperations);
 
     useEffect(() => {
@@ -15,11 +16,11 @@ const HomeTab = () => {
         }
     }, []);
 
-    return operations.length !== 0 ? (
+    return !isLoad ? (
         <section className="homeTab-section">
-            {/* <div className="container"> */}
-            <HomeTabList operations={operations} />
-            {/* </div> */}
+            <div className="container">
+                <HomeTabList operations={operations} />
+            </div>
         </section>
     ) : (
         <h1>Загрузка...</h1>

@@ -2,7 +2,14 @@ import './homeTabItemMobile.scss';
 import moment from 'moment';
 
 const homeTabItemMobile = ({
-    operation: { category, income, sum, balance, comment, date },
+    operation: {
+        category: { name },
+        income,
+        sum,
+        balance,
+        comment,
+        date,
+    },
 }) => {
     return (
         <li
@@ -20,7 +27,7 @@ const homeTabItemMobile = ({
                 Тип:<span>{income ? '+' : '-'}</span>
             </p>
             <p>
-                Категория:<span>{category}</span>
+                Категория:<span>{name}</span>
             </p>
             <p>
                 Комментарий:<span>{comment}</span>

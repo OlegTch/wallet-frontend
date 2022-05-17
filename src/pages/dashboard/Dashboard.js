@@ -59,10 +59,7 @@ export const Dashboard = () => {
                                                     path="home"
                                                     element={<Balans />}
                                                 />
-                                                <Route
-                                                    path="diagram"
-                                                    element={<Statistic />}
-                                                />
+                                                <Route path="diagram" />
                                                 <Route
                                                     path="currency"
                                                     element={<Currency />}

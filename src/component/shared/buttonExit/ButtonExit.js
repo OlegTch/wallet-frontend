@@ -5,13 +5,15 @@ import sprite from '@assets/sprite.svg';
 import './buttonExit.scss';
 
 import { openModalLogout } from '@redux/user/user-slice';
+import { userOperation } from '@redux/user/user-operation';
 import { globalMedia } from '@data';
 
 export const ButtonExit = () => {
     const dispatch = useDispatch();
 
     const onClick = () => {
-        dispatch(openModalLogout());
+        // dispatch(openModalLogout());
+        dispatch(userOperation.logout());
     };
 
     return (

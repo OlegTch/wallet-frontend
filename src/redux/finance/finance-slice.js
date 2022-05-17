@@ -4,6 +4,7 @@ import { getFinanceOpertaion } from './finance-operation';
 
 const initialState = {
     data: [],
+    userBalance: 0,
     isLoading: false,
     error: null,
     isModalAddTransaction: false,
@@ -27,7 +28,8 @@ const financeSlice = createSlice({
             state.error = null;
         },
         [getFinanceOpertaion.getOperations.fulfilled]: (state, { payload }) => {
-            state.data = [...payload];
+            state.data = [...payload.transactions];
+            state.userBalance = payload.user_balance;
             state.isLoading = false;
         },
         [getFinanceOpertaion.getOperations.rejected]: (state, { error }) => {

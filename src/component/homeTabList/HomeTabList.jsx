@@ -25,9 +25,30 @@ const HomeTabList = ({ operations }) => {
                             });
                         case matches.medium:
                             return (
-                                <HomeTabItemTabletAndDesktop
-                                    operations={operations}
-                                />
+                                <>
+                                    <li
+                                        className="homeTabTabletAndDesktop"
+                                        key={0}
+                                    >
+                                        <h3>Дата</h3>
+                                        <h3>Тип</h3>
+                                        <h3>Категорія</h3>
+                                        <h3>Коментар</h3>
+                                        <h3>Сума</h3>
+                                        <h3>Баланс</h3>
+                                    </li>
+                                    {operations.map((operation, index) => {
+                                        return (
+                                            <>
+                                                <HomeTabItemTabletAndDesktop
+                                                    operation={operation}
+                                                    index
+                                                    key={operation.id}
+                                                />
+                                            </>
+                                        );
+                                    })}
+                                </>
                             );
                         default:
                             console.log('Error in switch handleTabList');

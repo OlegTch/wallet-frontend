@@ -1,5 +1,11 @@
 import axios from 'axios';
-axios.defaults.baseURL = 'https://';
+axios.defaults.baseURL = 'http://localhost:3001/api/';
+
+console.log(localStorage.getItem('token'));
+
+const setAxiosToken = token => {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
 
 const tempData = {
     categories: [
@@ -67,7 +73,7 @@ const tempData = {
             category: 'Різне',
             income: false,
             sum: 1000,
-            comment: 'Подарок',
+            comment: 'Подарок дружині',
             balance: 9000,
             date: Date.now(),
             month: 5,
@@ -75,7 +81,7 @@ const tempData = {
         },
         {
             id: 3,
-            category: 'Не рег. дохід',
+            category: 'Не регулярний дохід',
             income: true,
             sum: 2000,
             comment: 'Подарок',
@@ -138,11 +144,28 @@ const dataExampl = {
 
 //  ----------------   USER   -----------------------
 
-export const registerAPI = user => {
+export const registerAPI = async user => {
+    // const result = await axios.post('auth/register', {
+    //     userName: user.name,
+    //     email: user.email,
+    //     password: user.password,
+    // });
+    // if (result.data.code === 201) {
+    //     setAxiosToken(result.data.data.token);
+    //     return result.data.data;
+    // }
+
     return tempData.user;
 };
 
-export const loginAPI = user => {
+export const loginAPI = async user => {
+    // const result = await axios.post('auth/login', user);
+    // if (result.data.code === 200) {
+    //     console.log(result.data.data.token);
+    //     setAxiosToken(result.data.data.token);
+    //     console.dir(axios);
+    //     return result.data.data;
+    // }
     if (
         user.email === tempData.user.email &&
         user.password === tempData.user.password
@@ -152,17 +175,27 @@ export const loginAPI = user => {
     throw new Error('Wrong email or password');
 };
 
-export const logoutAPI = () => {
-    return { status: 'ok', code: 200 };
+export const logoutAPI = async () => {
+    // await axios.get('auth/logout');
+    return { status: 'ok', code: 204 };
 };
 
-export const getUserAPI = () => {
+export const getUserAPI = async token => {
+    // setAxiosToken(token);
+    // const result = await axios.get('users/current');
+    // if (result.data.code === 200) {
+    //     return result.data.data.user;
+    // }
     return tempData.user;
 };
 
 // -------------  Category  --------------------------
 
-export const getCategoryAPI = () => {
+export const getCategoryAPI = async () => {
+    // const resultD = await axios.get('categories/income');
+    // const resultC = await axios.get('categories/expense');
+    // return [...resultC.data.categories, ...resultD.data.categories];
+
     return tempData.categories;
     // return dataExampl.categories
 };
@@ -176,8 +209,12 @@ export const getStatisticAPI = data => {
 
 // ------------  Finance (operations) ----------------------------
 
-export const getOperationsAPI = data => {
-    return tempData.operations;
+export const getOperationsAPI = async data => {
+    // const result = await axios.get('transactions');
+    // console.log('--------------- transaction --------------');
+    // console.log(result);
+    // return result.data.data;
+    return { transactions: tempData.operations, user_balance: 3500 };
 };
 
 export const addTransactionAPI = data => {

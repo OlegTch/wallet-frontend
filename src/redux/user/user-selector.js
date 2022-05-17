@@ -2,6 +2,8 @@ export const isAuth = state => state.user.isAuth;
 
 export const isToken = state => (state.user.token ? true : false);
 
+export const getToken = state => state.user.token;
+
 export const isLoading = state => state.user.isLoading;
 
 export const error = state => state.user.error;

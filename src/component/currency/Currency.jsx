@@ -49,8 +49,8 @@ export default function CurrencyTable() {
                 <thead>
                     <tr>
                         <td>Валюта</td>
-                        <td>Покупка</td>
-                        <td>Продажа</td>
+                        <td>Купівля</td>
+                        <td>Продаж</td>
                     </tr>
                 </thead>
                 <tbody>

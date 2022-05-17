@@ -5,11 +5,8 @@ import { DiagramTab } from "@component/diagramTab";
 import { statisticOperation } from '../../redux/statistic/statistic-operation';
 
 // Поточна дата
-import moment from 'moment';
-import 'moment/locale/uk';
-moment.locale('uk')
 
-const thisMonth = moment(new Date()).format('MMMM');
+const thisMonth = (new Date()).getMonth() + 1;
 const thisYear = (new Date()).getFullYear();
 
 export const Statistic = () => {

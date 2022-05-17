@@ -50,6 +50,8 @@ const financeSlice = createSlice({
     },
 });
 
-export const { openModalTransaction, closeModalTransaction } =
-    financeSlice.actions;
+export const {
+    openModalTransaction,
+    closeModalTransaction,
+} = financeSlice.actions;
 export default financeSlice;

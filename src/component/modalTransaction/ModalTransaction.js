@@ -114,10 +114,6 @@ export const ModalTransaction = () => {
     }
 
     function commentInput(e) {
-        const field = document.querySelector('.commentField');
-        console.dir(e.target);
-        field.style = { height: `${field.scrollHeight}px` };
-        console.log(field.scrollHeight);
         setComment(e.target.value);
     }
 
@@ -134,7 +130,7 @@ export const ModalTransaction = () => {
     }
     const validateSchema = {
         type: 'required|boolean',
-        category: 'required|string',
+        category: 'required|number',
         sum: 'required|number',
         comment: 'string',
         day: 'required|number',
@@ -143,22 +139,12 @@ export const ModalTransaction = () => {
     };
     async function submitHandler(e) {
         e.preventDefault();
-        console.log(
-            'вывыааааааааааааааааааааааааааааааааааааааааааа',
-            idCategory,
-        );
-
-        // if (!idCategory) {
-        //     console.log('Крутооооооооо');
-
-        //     return;
-        // }
         const modalTransaction = {
             day: date.getDate(),
             month: date.getMonth() + 1,
             year: date.getFullYear(),
             type: modalTypeTransaction === 'income' ? true : false,
-            category: category,
+            category: idCategory,
             sum: parseFloat(summ),
             comment: comment,
         };
@@ -170,7 +156,15 @@ export const ModalTransaction = () => {
             console.log(error[0].message);
             alert(error[0].message);
         }
-        dispatch(getFinanceOpertaion.addOperation({}));
+        dispatch(
+            getFinanceOpertaion.addOperation({
+                datetime: date,
+                income: modalTypeTransaction === 'income' ? true : false,
+                category: idCategory,
+                comment,
+                sum: summ,
+            }),
+        );
     }
     // випадающий список
     function DropMenuActive() {
@@ -286,7 +280,6 @@ export const ModalTransaction = () => {
                         step="0.01"
                         type="number"
                         placeholder="0.00"
-                        // value={}
                     />
                 </div>
                 <div className="calendarContainer">
@@ -303,6 +296,7 @@ export const ModalTransaction = () => {
                 </div>
                 <div className="commentContainer">
                     <textarea
+                        maxlength="200"
                         className="commentField"
                         placeholder="коментарий"
                         onChange={commentInput}
@@ -310,13 +304,7 @@ export const ModalTransaction = () => {
                     />
                 </div>
                 <div className="buttonContainer">
-                    <button
-                        className="submitButton"
-                        type="submit"
-                        // onClick={() => {
-                        //     dispatch(getFinanceOpertaion.addOperation({}));
-                        // }}
-                    >
+                    <button className="submitButton" type="submit">
                         Добавить
                     </button>
                     <button className="cancelButton" onClick={closeModalItem}>

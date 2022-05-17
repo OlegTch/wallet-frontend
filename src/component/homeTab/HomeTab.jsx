@@ -18,9 +18,7 @@ const HomeTab = () => {
 
     return !isLoad ? (
         <section className="homeTab-section">
-            <div className="container">
-                <HomeTabList operations={operations} />
-            </div>
+            <HomeTabList operations={operations} />
         </section>
     ) : (
         <h1>Загрузка...</h1>

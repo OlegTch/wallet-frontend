@@ -1,5 +1,5 @@
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:3001/api/';
+axios.defaults.baseURL = 'https://wallet-serv.herokuapp.com/api/';
 
 const setAxiosToken = token => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;

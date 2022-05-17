@@ -57,12 +57,12 @@ export default function LoginForm() {
                                 <div className="login_form__logo">
                                     <Logo />
                                 </div>
-                                {errors.email && touched.email && (
-                                    <div className="input-feedback">
-                                        {errors.email}
-                                    </div>
-                                )}
                                 <label className="login_form__label">
+                                    {errors.email && touched.email && (
+                                        <div className="input-feedback">
+                                            {errors.email}
+                                        </div>
+                                    )}
                                     <svg className="login_form__icon">
                                         <use href={`${sprite}#email`}></use>
                                     </svg>
@@ -77,12 +77,12 @@ export default function LoginForm() {
                                     />
                                 </label>
 
-                                {errors.password && touched.password && (
-                                    <div className="input-feedback">
-                                        {errors.password}
-                                    </div>
-                                )}
                                 <label className="login_form__label">
+                                    {errors.password && touched.password && (
+                                        <div className="input-feedback">
+                                            {errors.password}
+                                        </div>
+                                    )}
                                     <svg className="login_form__icon">
                                         <use href={`${sprite}#password`}></use>
                                     </svg>
@@ -104,16 +104,13 @@ export default function LoginForm() {
                                 >
                                     <span>Вхід</span>
                                 </button>
-                                <button
+
+                                <Link
+                                    to="/register"
                                     className="login_form__btn login_form__btn_color"
-                                    type="button"
-                                    onClick={handleReset}
-                                    disabled={isSubmitting}
                                 >
-                                    <Link to="/register">
-                                        <span>Реєстрація</span>
-                                    </Link>
-                                </button>
+                                    <span>Реєстрація</span>
+                                </Link>
                             </form>
                         </div>
                     );

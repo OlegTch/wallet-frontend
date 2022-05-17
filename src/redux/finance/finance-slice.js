@@ -42,7 +42,7 @@ const financeSlice = createSlice({
             state.error = null;
         },
         [getFinanceOpertaion.addOperation.fulfilled]: (state, { payload }) => {
-            state.data = [...payload];
+            state.data = [...payload, ...state.data];
             state.isLoading = false;
         },
         [getFinanceOpertaion.addOperation.rejected]: (state, { error }) => {

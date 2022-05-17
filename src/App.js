@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import { Dashboard } from '@pages';
-// import { Statistic } from './pages/statistic';
 import { withAuth } from '@hoc/withAuth';
 import LoginPage from '@pages/login';
 import Loader from '@component/spinnerLoader/spinnerLoader';

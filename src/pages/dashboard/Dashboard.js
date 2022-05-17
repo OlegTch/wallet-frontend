@@ -15,7 +15,7 @@ import HomeTab from '@component/homeTab';
 import ButtonClose from '@component/buttonClose/buttonClose';
 
 import { categoriesOperation } from '@redux/categories/categories-operation';
-import { statisticOperation } from '@redux/statistic/statistic-operation';
+// import { statisticOperation } from '@redux/statistic/statistic-operation';
 import { openModalTransaction } from '@redux/finance/finance-slice';
 import { isModalTransaction } from '@redux/finance/finance-selector';
 import { isModalLogout } from '@redux/user/user-selector';
@@ -39,7 +39,7 @@ export const Dashboard = () => {
             dispatch(categoriesOperation.getCategories());
         }
         // dispatch(getFinanceOpertaion.getOperations());
-        dispatch(statisticOperation.getStatistic());
+        // dispatch(statisticOperation.getStatistic());
     }, []);
 
     return (

@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Dashboard } from '@pages';
 import { withAuth } from '@hoc/withAuth';
-import LoginPage from '@pages/login';
+import { LoginPage } from '@pages/login';
 import Loader from '@component/spinnerLoader/spinnerLoader';
 
 import {
@@ -42,6 +42,7 @@ function App() {
         <>
             {loading && <Loader />}
             {isError && <h1>Error: {isError}</h1>}
+
             {!loading && !isError && isUserAuth === isUserToken && (
                 <Routes>
                     <Route path="login" element={<LoginPage />} />

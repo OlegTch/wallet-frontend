@@ -1,8 +1,6 @@
 import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:3001/api/';
 
-console.log(localStorage.getItem('token'));
-
 const setAxiosToken = token => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
@@ -196,20 +194,28 @@ export const getCategoryAPI = async () => {
     // const resultC = await axios.get('categories/expense');
     // return [...resultC.data.categories, ...resultD.data.categories];
 
-    return tempData.categories;
-    // return dataExampl.categories
+    // return tempData.categories;
+    return dataExampl.categories;
 };
 
 // ------------ Statistic ----------------------------
 
-export const getStatisticAPI = data => {
-    return tempData.statistic;
-    // return dataExampl.statistic;
+export const getStatisticAPI = async ({ month, year }) => {
+    // const query = `${month || year ? '?' : null}${
+    //     month ? `month=${month}` : null
+    // }${month && year ? '&' : null}${year ? `year=${year}` : null}`;
+
+    // const result = await axios.get(`transactions/statistics${query}`);
+    // console.log('-------------- statistic -----------------');
+    // console.log(result);
+    // return result.data.data.transaction;
+    // return tempData.statistic;
+    return dataExampl.statistic;
 };
 
 // ------------  Finance (operations) ----------------------------
 
-export const getOperationsAPI = async data => {
+export const getOperationsAPI = async () => {
     // const result = await axios.get('transactions');
     // console.log('--------------- transaction --------------');
     // console.log(result);
@@ -217,6 +223,8 @@ export const getOperationsAPI = async data => {
     return { transactions: tempData.operations, user_balance: 3500 };
 };
 
-export const addTransactionAPI = data => {
-    return data;
+export const addTransactionAPI = async data => {
+    // const result = await axios.post('transactions', data);
+    // return result.data.transaction;
+    return;
 };

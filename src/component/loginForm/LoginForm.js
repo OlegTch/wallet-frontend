@@ -12,7 +12,7 @@ import imgMan from '../../assets/img/tablet/tabletMan.svg';
 
 import './loginForm.scss';
 
-export default function LoginForm() {
+export const LoginForm = () => {
     const dispatch = useDispatch();
 
     return (
@@ -118,4 +118,4 @@ export default function LoginForm() {
             </Formik>
         </section>
     );
-}
+};

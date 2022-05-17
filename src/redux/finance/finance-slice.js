@@ -21,6 +21,12 @@ const financeSlice = createSlice({
         closeModalTransaction: state => {
             state.isModalAddTransaction = false;
         },
+        setSaveModalDateStatic: state => {
+            state.isSaveModalDateStatic = true;
+        },
+        clearSaveModalDateStatic: state => {
+            state.isSaveModalDateStatic = false;
+        },
     },
     extraReducers: {
         [getFinanceOpertaion.getOperations.pending]: state => {
@@ -52,6 +58,10 @@ const financeSlice = createSlice({
     },
 });
 
-export const { openModalTransaction, closeModalTransaction } =
-    financeSlice.actions;
+export const {
+    openModalTransaction,
+    closeModalTransaction,
+    setSaveModalDateStatic,
+    clearSaveModalDateStatic,
+} = financeSlice.actions;
 export default financeSlice;

@@ -5,7 +5,7 @@ import { LoginForm } from '@component/loginForm';
 // import { RegistrationPage } from '../registration/RegistrationPage';
 // import { Dashboard } from '@pages';
 
-const LoginPage = () => {
+export const LoginPage = () => {
     // const isLoggedIn = useSelector(isLoading);
     // console.log(isLoggedIn);
     return (
@@ -17,5 +17,4 @@ const LoginPage = () => {
         </div>
     );
 };
-
 export default LoginPage;

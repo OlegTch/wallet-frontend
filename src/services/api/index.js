@@ -60,8 +60,14 @@ export const getStatisticAPI = async ({ month, year }) => {
 
 // ------------  Finance (operations) ----------------------------
 
-export const getOperationsAPI = async () => {
-    const result = await axios.get('transactions?page=1&limit=5');
+export const getOperationsAPI = async data => {
+    let query = '';
+    if (data) {
+        query = `transactions?page=${data.page}&limit=${data.limit}`;
+    } else {
+        query = `transactions`;
+    }
+    const result = await axios.get(query);
     return result.data.data;
 };
 

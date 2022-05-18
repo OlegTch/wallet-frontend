@@ -49,9 +49,6 @@ const Dashboard = () => {
         }
     }, []);
 
-    console.log('isSaveTransaction = ', isSaveTransaction);
-    console.log('isOpenModalTransaction = ', isOpenModalTransaction);
-
     useEffect(() => {
         if (isSaveTransaction && !isOpenModalTransaction) {
             console.log('dispatch new get transactions');

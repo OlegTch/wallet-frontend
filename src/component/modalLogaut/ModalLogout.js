@@ -36,14 +36,14 @@ export const ModalLogout = () => {
 
     return (
         <div className="containerLogout">
-            <p className="textLogout">Вы уверены?</p>
+            <p className="textLogout">Ви впевненні?</p>
             <div>
                 <button
                     className="btnLogout"
                     type="button"
                     onClick={() => dispatch(userOperation.logout())}
                 >
-                    <span>Выйти</span>
+                    <span>Вийти</span>
                 </button>
                 <button className="btnLogout" onClick={closeLogoutModal}>
                     Отмена

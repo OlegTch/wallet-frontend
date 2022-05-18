@@ -16,8 +16,8 @@ const logout = createAsyncThunk('logout', async () => {
     return result;
 });
 
-const currentUser = createAsyncThunk('current', async () => {
-    const result = await getUserAPI();
+const currentUser = createAsyncThunk('current', async token => {
+    const result = await getUserAPI(token);
     return result;
 });
 

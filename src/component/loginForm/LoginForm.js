@@ -1,13 +1,18 @@
-import { useDispatch } from 'react-redux';
-import { userOperation } from '../../redux/user/user-operation';
+import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Logo } from '../shared/logo';
+
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { userOperation } from '../../redux/user/user-operation';
+
 import sprite from '../../assets/sprite.svg';
 import imgMan from '../../assets/img/tablet/tabletMan.svg';
-import './loginForm.scss';
-import * as Yup from 'yup';
 
-export default function LoginForm() {
+import './loginForm.scss';
+import '../shared/logo/logo.scss';
+
+export const LoginForm = () => {
     const dispatch = useDispatch();
 
     return (
@@ -18,13 +23,17 @@ export default function LoginForm() {
             </div>
 
             <Formik
-                initialValues={{ email: '' }}
+                initialValues={{ email: '', password: '' }}
                 onSubmit={({ email, password }) => {
                     dispatch(userOperation.login({ email, password }));
                 }}
                 validationSchema={Yup.object().shape({
-                    email: Yup.string().email().required('Required'),
-                    password: Yup.string().required('Required'),
+                    email: Yup.string()
+                        .email()
+                        .required('Обов' + "'" + 'язкове поле'),
+                    password: Yup.string().required(
+                        'Обов' + "'" + 'язкове поле',
+                    ),
                 })}
             >
                 {props => {
@@ -36,7 +45,6 @@ export default function LoginForm() {
                         handleChange,
                         handleBlur,
                         handleSubmit,
-                        handleReset,
                     } = props;
 
                     return (
@@ -46,10 +54,17 @@ export default function LoginForm() {
                                 className="login_form"
                             >
                                 <div className="login_form__logo">
-                                    <Logo />
+                                    <svg className="logo_icon">
+                                        <use href={`${sprite}#wallet`}></use>
+                                    </svg>
+                                    <p className="logo_text">Wallet</p>
                                 </div>
-
                                 <label className="login_form__label">
+                                    {errors.email && touched.email && (
+                                        <div className="input-feedback">
+                                            {errors.email}
+                                        </div>
+                                    )}
                                     <svg className="login_form__icon">
                                         <use href={`${sprite}#email`}></use>
                                     </svg>
@@ -63,12 +78,13 @@ export default function LoginForm() {
                                         onBlur={handleBlur}
                                     />
                                 </label>
-                                {/* {errors.email && touched.email && (
-                                <div className="input-feedback">
-                                    {errors.email}
-                                </div>
-                            )} */}
+
                                 <label className="login_form__label">
+                                    {errors.password && touched.password && (
+                                        <div className="input-feedback">
+                                            {errors.password}
+                                        </div>
+                                    )}
                                     <svg className="login_form__icon">
                                         <use href={`${sprite}#password`}></use>
                                     </svg>
@@ -82,11 +98,6 @@ export default function LoginForm() {
                                         onBlur={handleBlur}
                                     />
                                 </label>
-                                {/* {errors.password && touched.password && (
-                                <div className="input-feedback">
-                                    {errors.password}
-                                </div>
-                            )} */}
 
                                 <button
                                     className="login_form__btn login_form__btn--current  "
@@ -95,14 +106,13 @@ export default function LoginForm() {
                                 >
                                     <span>Вхід</span>
                                 </button>
-                                <button
+
+                                <Link
+                                    to="/register"
                                     className="login_form__btn login_form__btn_color"
-                                    type="button"
-                                    onClick={handleReset}
-                                    disabled={isSubmitting}
                                 >
                                     <span>Реєстрація</span>
-                                </button>
+                                </Link>
                             </form>
                         </div>
                     );
@@ -110,4 +120,4 @@ export default function LoginForm() {
             </Formik>
         </section>
     );
-}
+};

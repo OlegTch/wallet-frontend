@@ -6,12 +6,13 @@ import { customStyles } from './customStyles';
 import sprite from '../../assets/sprite.svg';
 import { statisticOperation } from '../../redux/statistic/statistic-operation';
 import { categoriesOperation } from '../../redux/categories/categories-operation';
+import { isLoadingStatistic } from '../../redux/statistic/statistic-selector';
 
 import moment from 'moment';
 import 'moment/locale/uk';
 moment.locale('uk')
 
-const thisMonth = moment(new Date()).format('MMMM');
+const thisMonth = (new Date()).getMonth() + 1;
 
 const monthsList = moment(new Date(), "MMMM", 'uk')._locale._months.standalone;
 const monthsOptions = monthsList.map((el) => ({ value: el, label: el }));
@@ -33,9 +34,9 @@ const DropdownIndicator = props => {
 };
 
 export function DatePicker() {
-  // const [selectedOption, setSelectedOption] = useState({ month: thisMonth, year: thisYear });
   const [selectedOption, setSelectedOption] = useState(null);
   const dispatch = useDispatch();
+  const { isLoading } = isLoadingStatistic;
 
   useEffect(() => {
     dispatch(categoriesOperation.getCategories())
@@ -48,14 +49,23 @@ export function DatePicker() {
 
   
   const handleChange = (name, value) => {
-    
+
     if (!selectedOption?.month ?? null) {
       setSelectedOption((prev) => ({ ...prev, month: thisMonth }))
     }
     if (!selectedOption?.year ?? null) {
       setSelectedOption((prev) => ({ ...prev, year: thisYear }))
     }
-    setSelectedOption((prev) => ({ ...prev, [name]: value }))
+
+    if (name === 'month') {
+      const num = monthsList.findIndex(e => e === value) + 1;
+      console.log(num)
+      setSelectedOption((prev) => ({ ...prev, [name]: num }));
+    }
+
+    if (name === 'year') {
+      setSelectedOption((prev) => ({ ...prev, [name]: value }))
+    }
   }
   
 
@@ -64,24 +74,22 @@ export function DatePicker() {
       <Select
         components={{DropdownIndicator}}
         defaultValue={selectedOption}
-          // defaultValue={monthsOptions.find((month)=>month.value===selectedOption?.month)}
-          // onChange={setSelectedOption}
         onChange={(option) => { handleChange("month", option.value) }}
         options={monthsOptions}
         placeholder='Місяць'
-          isSearchable={false}
+        isSearchable={false}
+        isDisabled={!isLoading}
         styles={customStyles}
       />
       
       <Select
         components={{DropdownIndicator}}
         defaultValue={selectedOption}
-          // defaultValue={yearsOptions.find((year)=>year.value===selectedOption.year)}
-          // onChange={setSelectedOption}
         onChange={(option) => { handleChange("year", option.value) }}
         options={yearsOptions}
         placeholder='Рік'
-          isSearchable={false}
+        isSearchable={false}
+        isDisabled={!isLoading}
         styles={customStyles}
       />
     </div>

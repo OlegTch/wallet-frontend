@@ -2,14 +2,20 @@ import './homeTabItemTabletAndDesktop.scss';
 import moment from 'moment';
 
 const homeTabItemTabletAndDesktop = ({
-    operation: { category, income, sum, balance, comment, date },
-    index,
+    operation: {
+        category: { name },
+        income,
+        sum,
+        balance,
+        comment,
+        date,
+    },
 }) => {
     return (
         <li className="homeTabItemTabletAndDesktop">
             <p>{moment(date).format('DD.MM.YY')}</p>
             <p>{income ? '+' : '-'}</p>
-            <p>{category}</p>
+            <p>{name}</p>
             <p>{comment}</p>
             <p
                 className={

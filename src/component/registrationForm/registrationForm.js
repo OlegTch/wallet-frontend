@@ -92,11 +92,11 @@ export const RegistrationForm = () => {
 
             //валідація форми
             validationSchema={Yup.object().shape({
-               email: Yup.string().email().required('Required'),
+               email: Yup.string().email().min(10).max(63).required('Required'),
                password: Yup.string()
                   .required('Required')
-                  .min(10, 'Password must be at least 10 characters')
-                  .max(63, 'Password must be at most 63 characters'),
+                  .min(6, 'Password must be at least 10 characters')
+                  .max(16, 'Password must be at most 63 characters'),
                confirmPassword: Yup.string()
                   .required('Required')
                   .oneOf(
@@ -136,6 +136,7 @@ export const RegistrationForm = () => {
 
                         {/* //Поле для вводу емейла */}
                         <label className="form__label">
+                           {errors.email && touched.email && errors.email}
                            <svg className="form__icon">
                               <use href={`${sprite}#email`}></use>
                            </svg>
@@ -149,11 +150,14 @@ export const RegistrationForm = () => {
                               value={values.email}
                            />
                         </label>
-                        {/* {errors.email && touched.email && errors.email} */}
+
 
 
                         {/* //Поле для вводу пароля */}
                         <label className="form__label">
+                           {errors.password &&
+                              touched.password &&
+                              errors.password}
                            <svg className="form__icon">
                               <use href={`${sprite}#password`}></use>
                            </svg>
@@ -173,13 +177,14 @@ export const RegistrationForm = () => {
 
                         </label>
 
-                        {/* {errors.password &&
-                        touched.password &&
-                        errors.password} */}
+
 
 
                         {/* //Поле для вводу пароля підтвердження */}
                         <label className="form__label">
+                           {errors.confirmPassword &&
+                              touched.confirmPassword &&
+                              errors.confirmPassword}
                            <svg className="form__icon">
                               <use href={`${sprite}#password`}></use>
                            </svg>
@@ -194,13 +199,12 @@ export const RegistrationForm = () => {
                            />
                            {/* <span className='form__strength' data-score={score} /> */}
                         </label>
-                        {/* {errors.confirmPassword &&
-                        touched.confirmPassword &&
-                        errors.confirmPassword} */}
+
 
 
                         {/* //Поле для вводу імені */}
                         <label className="form__label">
+                           {errors.name && touched.name && errors.name}
                            <svg className="form__icon">
                               <use href={`${sprite}#name`}></use>
                            </svg>
@@ -214,7 +218,7 @@ export const RegistrationForm = () => {
                               value={values.name}
                            />
                         </label>
-                        {/* {errors.name && touched.name && errors.name} */}
+
 
 
                         {/* //Кнопка для відправки даних */}

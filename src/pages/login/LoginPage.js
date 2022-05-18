@@ -1,19 +1,22 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { LoginForm } from '@component/loginForm';
-// import { isLoading } from '../../redux/user/user-selector';
-// import { RegistrationPage } from '../registration/RegistrationPage';
-// import { Dashboard } from '@pages';
+import { isLoading } from '../../redux/user/user-selector';
+import { isAuth } from '@redux/user/user-selector';
+
+import { RegistrationPage } from '../registration/RegistrationPage';
+import { Dashboard } from '@pages';
 
 export const LoginPage = () => {
-    // const isLoggedIn = useSelector(isLoading);
+    const isLoggedIn = useSelector(isAuth);
     // console.log(isLoggedIn);
+
     return (
         <div>
-            {/* <RegistrationPage />
-            <Dashboard /> */}
+            {/* <RegistrationPage /> */}
+            {/* <Dashboard /> */}
             <LoginForm />
             {/* {isLoggedIn ? <Dashboard /> : <RegistrationPage />} */}
+            {isLoggedIn ? <Dashboard /> : <RegistrationPage />}
         </div>
     );
 };

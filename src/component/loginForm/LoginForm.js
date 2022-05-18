@@ -1,19 +1,31 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import { userOperation } from '../../redux/user/user-operation';
+import { Logo } from '../shared/logo';
 
 import sprite from '../../assets/sprite.svg';
 import imgMan from '../../assets/img/tablet/tabletMan.svg';
 
 import './loginForm.scss';
-import '../shared/logo/logo.scss';
+import { isAuth } from '../../redux/user/user-selector';
 
 export const LoginForm = () => {
     const dispatch = useDispatch();
+    // const { push } = useHistory();
+    const isLoggedIn = useSelector(isAuth);
+
+    useEffect(() => {
+        // console.log(isLoggedIn);
+        if (isLoggedIn) {
+            // return push('/home');
+            console.log('ПЕРЕХОД НА ХОМЕ');
+        }
+    }, [isLoggedIn]);
 
     return (
         <section>
@@ -54,10 +66,7 @@ export const LoginForm = () => {
                                 className="login_form"
                             >
                                 <div className="login_form__logo">
-                                    <svg className="logo_icon">
-                                        <use href={`${sprite}#wallet`}></use>
-                                    </svg>
-                                    <p className="logo_text">Wallet</p>
+                                    <Logo />
                                 </div>
                                 <label className="login_form__label">
                                     {errors.email && touched.email && (

@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
@@ -16,14 +16,14 @@ import { isAuth } from '../../redux/user/user-selector';
 
 export const LoginForm = () => {
     const dispatch = useDispatch();
-    // const { push } = useHistory();
+    const push = useNavigate();
     const isLoggedIn = useSelector(isAuth);
 
     useEffect(() => {
         // console.log(isLoggedIn);
         if (isLoggedIn) {
-            // return push('/home');
-            console.log('ПЕРЕХОД НА ХОМЕ');
+            push('/');
+            // console.log('ПЕРЕХОД НА ХОМЕ');
         }
     }, [isLoggedIn]);
 

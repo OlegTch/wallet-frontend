@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
-import { Dashboard } from '@pages';
-import { withAuth } from '@hoc/withAuth';
-import { LoginPage } from '@pages/login';
+import { Dashboard, RegistrationPage, LoginPage } from '@pages';
 import Loader from '@component/spinnerLoader/spinnerLoader';
+import { withAuth } from '@hoc/withAuth';
 
 import {
     isAuth,
@@ -15,7 +14,6 @@ import {
     getToken,
 } from '@redux/user/user-selector';
 import { userOperation } from '@redux/user/user-operation';
-import { RegistrationPage } from './pages';
 
 function App() {
     const isUserToken = useSelector(isToken);
@@ -28,13 +26,6 @@ function App() {
     useEffect(() => {
         if (isUserToken && !isUserAuth) {
             dispatch(userOperation.currentUser(token));
-        } else {
-            dispatch(
-                userOperation.login({
-                    email: 'test@gmail.com',
-                    password: 'qwerty',
-                }),
-            );
         }
     }, []);
 

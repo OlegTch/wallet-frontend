@@ -1,17 +1,12 @@
 import { useSelector } from 'react-redux';
-import { getCategoryDebet } from '../../redux/categories/categories-selector';
-import { updateStatistic } from '../../redux/statistic/statistic-selector';
+import { getCategoryDebet, getCategoryCredit } from '../../redux/categories/categories-selector';
+import { getStatistic } from '../../redux/statistic/statistic-selector';
 import { getBalance } from '../../redux/user/user-selector';
 
 import './diagramTab.scss';
 import { ChartDoughnut } from "@component/chartDoughnut";
 import { DatePicker } from "@component/datePicker";
 import { Table } from '@component/table';
-
-const total = {                 // Для перевірки, повинна приходити по запиту
-    "totalIncome": 22549.24,
-    "totalExpense": 27350.00,
-}
            
 
 const rgb = [
@@ -28,39 +23,40 @@ const rgb = [
   
 export function DiagramTab() {
     // const isCategories = useSelector(isCategoriesFull);
-    const statistic = useSelector(updateStatistic);
-    const categories = useSelector(getCategoryDebet);
+    // const statistic = useSelector(updateStatistic);
     const balance = useSelector(getBalance);
-        
+    useSelector(getCategoryCredit);
+    const statisticCredit = useSelector(getStatistic);
+    useSelector(getCategoryDebet); //income
+    const statisticDebet = useSelector(getStatistic);
+
     const transformData = (num) => {
         return num.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
     }
-    
 
-    //Фільтрація списку статистика по id категорій
-    function filterById(objCategories, objStat) {
-        const idDebet = objCategories.map(el => el.id)
-        const objById = objStat.filter(el => idDebet.includes(el.category))
-        // console.log(objById)  
-        return objById
+    const getSum = (arr) => {
+       return  arr.reduce((acc, el) => acc + el.sum, 0)
     }
 
-    const nameCategory = categories.map(el => el.name)
+    const getTotal = () => {
+        const expense = getSum(statisticCredit);
+        const income = getSum(statisticDebet);
+        return {expense, income}
+    }
 
   // Вибір кольору
     const color = rgb.map(el=>el.rgb)
     
         return <div className='diagramTab-section'>
-            {/* <h2 className='diagramTab-header'>Статистика</h2> */}
             <ChartDoughnut
-                category={nameCategory}
-                statistic={filterById(categories, statistic)}
+                category={statisticCredit}
+                // statistic={statisticCredit}
                 balance={transformData(balance)}
                 color={color}
             />
             <div className='diagramTab-container'>
                 <DatePicker />
-                <Table category={filterById(categories, statistic)} color={color} name={nameCategory} total={total} />
+                <Table category={statisticCredit} color={color} total={getTotal()}/>
             </div>
             
         </div>

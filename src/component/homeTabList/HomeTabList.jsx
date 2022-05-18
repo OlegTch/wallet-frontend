@@ -4,6 +4,8 @@ import HomeTabItemMobile from '@component/homeTabItemMobile';
 import HomeTabItemTabletAndDesktop from '@component/homeTabItemTabletAndDesktop';
 
 const HomeTabList = ({ operations }) => {
+    console.log('===========>>>>>>>>>>>', operations);
+
     return (
         <ul className="homeTabList">
             <Media
@@ -19,7 +21,7 @@ const HomeTabList = ({ operations }) => {
                                 return (
                                     <HomeTabItemMobile
                                         operation={operation}
-                                        key={operation.id}
+                                        key={operation._id}
                                     />
                                 );
                             });
@@ -37,13 +39,13 @@ const HomeTabList = ({ operations }) => {
                                         <h3>Сума</h3>
                                         <h3>Баланс</h3>
                                     </li>
-                                    {operations.map((operation, index) => {
+                                    {operations.map(operation => {
                                         return (
                                             <>
                                                 <HomeTabItemTabletAndDesktop
                                                     operation={operation}
                                                     index
-                                                    key={operation.id}
+                                                    key={operation._id}
                                                 />
                                             </>
                                         );

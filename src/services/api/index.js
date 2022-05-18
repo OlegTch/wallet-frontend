@@ -1,5 +1,9 @@
 import axios from 'axios';
-axios.defaults.baseURL = 'https://';
+axios.defaults.baseURL = 'https://wallet-serv.herokuapp.com/api/';
+
+const setAxiosToken = token => {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
 
 const tempData = {
     categories: [
@@ -67,7 +71,7 @@ const tempData = {
             category: 'Різне',
             income: false,
             sum: 1000,
-            comment: 'Подарок дружині',
+            comment: 'Подарок',
             balance: 9000,
             date: Date.now(),
             month: 5,
@@ -111,39 +115,55 @@ const tempData = {
 
 const dataExampl = {
     categories: [
-    {id: 1,name: "Основні витрати", income: true,},
-    {id: 2,name: "Продукти", income: true,},
-    {id: 3,name: "Машина", income: true,},
-    {id: 4,name: "Турбота про себе", income: true, },
-    {id: 5,name: "Турбота за дітей", income: true,},
-    {id: 6,name: "Товари для дому", income: true, },
-    {id: 7,name: "Освіта", income: true, },
-    {id: 8,name: "Дозвілля", income: true, },
-    {id: 9,name: "Інші витрати", income: true, },
-    {id: 10,name: "Дохід", income: false, },
-    {id: 11,name: "Інший дохід", income: false, }
+        { id: 1, name: 'Основні витрати', income: true },
+        { id: 2, name: 'Продукти', income: true },
+        { id: 3, name: 'Машина', income: true },
+        { id: 4, name: 'Турбота про себе', income: true },
+        { id: 5, name: 'Турбота за дітей', income: true },
+        { id: 6, name: 'Товари для дому', income: true },
+        { id: 7, name: 'Освіта', income: true },
+        { id: 8, name: 'Дозвілля', income: true },
+        { id: 9, name: 'Інші витрати', income: true },
+        { id: 10, name: 'Дохід', income: false },
+        { id: 11, name: 'Інший дохід', income: false },
     ],
     statistic: [
-    {category: 1,sum:8700},
-    {category: 2,sum:3800.74},
-    {category: 3,sum:1500},
-    {category: 4,sum:800},
-    {category: 5,sum:2208.05},
-    {category: 6,sum:300},
-    {category: 7,sum:3400},
-    {category: 8,sum:1230},
-    { category: 9, sum: 610 },
+        { category: 1, sum: 8700 },
+        { category: 2, sum: 3800.74 },
+        { category: 3, sum: 1500 },
+        { category: 4, sum: 800 },
+        { category: 5, sum: 2208.05 },
+        { category: 6, sum: 300 },
+        { category: 7, sum: 3400 },
+        { category: 8, sum: 1230 },
+        { category: 9, sum: 610 },
     ],
-    
-}
+};
 
 //  ----------------   USER   -----------------------
 
-export const registerAPI = user => {
-    return tempData.user;
+export const registerAPI = async user => {
+    const result = await axios.post('auth/register', {
+        userName: user.name,
+        email: user.email,
+        password: user.password,
+    });
+    if (result.data.code === 201) {
+        setAxiosToken(result.data.data.token);
+        return result.data.data;
+    }
+
+    // return tempData.user;
 };
 
-export const loginAPI = user => {
+export const loginAPI = async user => {
+    const result = await axios.post('auth/login', user);
+    if (result.data.code === 200) {
+        console.log(result.data.data.token);
+        setAxiosToken(result.data.data.token);
+        console.dir(axios);
+        return result.data.data;
+    }
     if (
         user.email === tempData.user.email &&
         user.password === tempData.user.password
@@ -153,34 +173,59 @@ export const loginAPI = user => {
     throw new Error('Wrong email or password');
 };
 
-export const logoutAPI = () => {
-    return { status: 'ok', code: 200 };
+export const logoutAPI = async () => {
+    await axios.get('auth/logout');
+    return { status: 'ok', code: 204 };
 };
 
-export const getUserAPI = () => {
+export const getUserAPI = async token => {
+    setAxiosToken(token);
+    const result = await axios.get('users/current');
+    if (result.data.code === 200) {
+        return result.data.data.user;
+    }
     return tempData.user;
 };
 
 // -------------  Category  --------------------------
 
-export const getCategoryAPI = () => {
-    return tempData.categories;
-    // return dataExampl.categories
+export const getCategoryAPI = async () => {
+    const resultD = await axios.get('categories/income');
+    const resultC = await axios.get('categories/expense');
+    return [...resultC.data.categories, ...resultD.data.categories];
+
+    // return tempData.categories;
+    // return dataExampl.categories;
 };
 
 // ------------ Statistic ----------------------------
 
-export const getStatisticAPI = data => {
-    return tempData.statistic;
+export const getStatisticAPI = async ({ month, year }) => {
+    const query = `${month || year ? '?' : null}${
+        month ? `month=${month}` : null
+    }${month && year ? '&' : null}${year ? `year=${year}` : null}`;
+
+    const result = await axios.get(`transactions/statistics${query}`);
+    console.log('-------------- statistic -----------------');
+    console.log(result);
+    return result.data.data.transaction;
+    // return tempData.statistic;
     // return dataExampl.statistic;
 };
 
 // ------------  Finance (operations) ----------------------------
 
-export const getOperationsAPI = data => {
-    return tempData.operations;
+export const getOperationsAPI = async () => {
+    console.dir(axios);
+    const result = await axios.get('transactions');
+    console.log('--------------- transaction --------------');
+    console.log(result);
+    return result.data.data;
+    // return { transactions: tempData.operations, user_balance: 3500 };
 };
 
-export const addTransactionAPI = data => {
-    return data;
+export const addTransactionAPI = async data => {
+    const result = await axios.post('transactions', data);
+    return result.data.transaction;
+    // return;
 };

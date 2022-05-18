@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import './balans.scss';
-import { getBalance } from '@redux/user/user-selector';
+import { getBalance } from '@redux/finance/finance-selector';
 
 export const Balans = () => {
     const balans = useSelector(getBalance);

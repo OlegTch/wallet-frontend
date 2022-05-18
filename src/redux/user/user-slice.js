@@ -29,7 +29,7 @@ const userSlice = createSlice({
             state.isAuth = false;
         },
         [userOperation.register.fulfilled]: (state, { payload }) => {
-            state.user.name = payload.name;
+            state.user.name = payload.userName;
             state.user.email = payload.email;
             state.token = payload.token;
             state.isAuth = true;
@@ -47,7 +47,7 @@ const userSlice = createSlice({
         },
 
         [userOperation.login.fulfilled]: (state, { payload }) => {
-            state.user.name = payload.name;
+            state.user.name = payload.userName;
             state.user.email = payload.email;
             state.token = payload.token;
             state.isAuth = true;
@@ -64,7 +64,7 @@ const userSlice = createSlice({
             state.error = null;
         },
         [userOperation.logout.fulfilled]: (state, { payload }) => {
-            state.user = [];
+            state.user = {};
             state.token = null;
             state.isAuth = false;
             state.isLoading = false;
@@ -78,7 +78,7 @@ const userSlice = createSlice({
             state.error = null;
         },
         [userOperation.currentUser.fulfilled]: (state, { payload }) => {
-            state.user.name = payload.name;
+            state.user.name = payload.userName;
             state.user.email = payload.email;
             state.user.balance = payload.balance;
             state.isAuth = true;

@@ -1,5 +1,6 @@
 import './homeTabItemMobile.scss';
 import moment from 'moment';
+import EllipsisText from 'react-ellipsis-text';
 
 const homeTabItemMobile = ({
     operation: {
@@ -8,7 +9,7 @@ const homeTabItemMobile = ({
         sum,
         balance,
         comment,
-        date,
+        datetime,
     },
 }) => {
     return (
@@ -21,23 +22,38 @@ const homeTabItemMobile = ({
         >
             <p>
                 Дата:
-                <span>{moment(date).format('DD.MM.YY')}</span>
+                <span>{moment(datetime).format('DD.MM.YY')}</span>
             </p>
             <p>
                 Тип:<span>{income ? '+' : '-'}</span>
             </p>
             <p>
-                Категория:<span>{name}</span>
+                Категорія:
+                <span>
+                    <EllipsisText text={name} length={13} />
+                </span>
             </p>
             <p>
-                Комментарий:<span>{comment}</span>
+                Коментар:
+                <span>
+                    <EllipsisText
+                        text={comment === null || '' ? '-' : comment}
+                        length={13}
+                    />
+                    {comment}
+                </span>
             </p>
             <p>
-                Сумма:
-                <span className="homeTabItemResult">{sum}</span>
+                Сума:
+                <span className="homeTabItemResult">
+                    <EllipsisText text={String(sum)} length={13} />
+                </span>
             </p>
             <p>
-                Баланс:<span>{balance}</span>
+                Баланс:
+                <span>
+                    <EllipsisText text={String(balance)} length={13} />
+                </span>
             </p>
         </li>
     );

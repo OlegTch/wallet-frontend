@@ -1,21 +1,25 @@
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { LoginForm } from '@component/loginForm';
-// import { isLoading } from '../../redux/user/user-selector';
-// import { isAuth } from '@redux/user/user-selector';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-// import { RegistrationPage } from '../registration/RegistrationPage';
-// import { Dashboard } from '@pages';
+import { isAuth } from '@redux/user/user-selector';
 
-export const LoginPage = () => {
-    // const isLoggedIn = useSelector(isAuth);
+const LoginPage = () => {
+    const push = useNavigate();
+    const isLoggedIn = useSelector(isAuth);
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            push('/');
+        }
+    }, [isLoggedIn]);
 
     return (
         <div>
-            {/* <RegistrationPage /> */}
-            {/* <Dashboard /> */}
             <LoginForm />
-            {/* {isLoggedIn ? <Dashboard /> : <RegistrationPage />} */}
-            {/* {isLoggedIn ? <Dashboard /> : <RegistrationPage />} */}
         </div>
     );
 };
+
+export default LoginPage;

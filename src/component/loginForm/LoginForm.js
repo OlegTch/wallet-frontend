@@ -1,9 +1,8 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { userOperation } from '../../redux/user/user-operation';
 import { Logo } from '../shared/logo';
@@ -12,20 +11,9 @@ import sprite from '../../assets/sprite.svg';
 import imgMan from '../../assets/img/tablet/tabletMan.svg';
 
 import './loginForm.scss';
-import { isAuth } from '../../redux/user/user-selector';
 
 export const LoginForm = () => {
     const dispatch = useDispatch();
-    const push = useNavigate();
-    const isLoggedIn = useSelector(isAuth);
-
-    useEffect(() => {
-        // console.log(isLoggedIn);
-        if (isLoggedIn) {
-            push('/');
-            // console.log('ПЕРЕХОД НА ХОМЕ');
-        }
-    }, [isLoggedIn]);
 
     return (
         <section>

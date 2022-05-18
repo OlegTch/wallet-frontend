@@ -302,7 +302,7 @@ export const ModalTransaction = () => {
                     <textarea
                         maxLength="200"
                         className="commentField"
-                        placeholder="коментарий"
+                        placeholder="коментар"
                         onChange={commentInput}
                         value={comment}
                     />

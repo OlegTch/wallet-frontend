@@ -10,3 +10,5 @@ export const isModalTransaction = state => state.finance.isModalAddTransaction;
 
 export const isSaveModalDateStatic = state =>
     state.finance.isSaveModalDateStatic;
+
+export const isErrorFinance = state => state.finance.error;

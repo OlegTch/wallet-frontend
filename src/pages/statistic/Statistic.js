@@ -6,10 +6,10 @@ import { statisticOperation } from '../../redux/statistic/statistic-operation';
 
 // Поточна дата
 
-const thisMonth = (new Date()).getMonth() + 1;
-const thisYear = (new Date()).getFullYear();
+const thisMonth = new Date().getMonth() + 1;
+const thisYear = new Date().getFullYear();
 
-export const Statistic = () => {
+const Statistic = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -31,3 +31,5 @@ export const Statistic = () => {
         </div>
     );
 };
+
+export default Statistic;

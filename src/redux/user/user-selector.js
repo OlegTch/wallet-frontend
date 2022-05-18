@@ -6,7 +6,7 @@ export const getToken = state => state.user.token;
 
 export const isLoading = state => state.user.isLoading;
 
-export const error = state => state.user.error;
+export const isErrorUser = state => state.user.error;
 
 export const isModalLogout = state => state.user.isModalLogout;
 

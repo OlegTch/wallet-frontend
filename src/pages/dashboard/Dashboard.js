@@ -49,9 +49,6 @@ const Dashboard = () => {
         }
     }, []);
 
-    console.log('isSaveTransaction = ', isSaveTransaction);
-    console.log('isOpenModalTransaction = ', isOpenModalTransaction);
-
     useEffect(() => {
         if (isSaveTransaction && !isOpenModalTransaction) {
             console.log('dispatch new get transactions');
@@ -108,9 +105,9 @@ const Dashboard = () => {
                             element={
                                 <>
                                     <HomeTab />
-                                    <ButtonClose
+                                    {/* <ButtonClose
                                         onClick={onOpenModalTransaction}
-                                    />
+                                    /> */}
                                 </>
                             }
                         />
@@ -123,11 +120,11 @@ const Dashboard = () => {
                                             {matches.medium && (
                                                 <>
                                                     <HomeTab />
-                                                    <ButtonClose
+                                                    {/* <ButtonClose
                                                         onClick={
                                                             onOpenModalTransaction
                                                         }
-                                                    />
+                                                    /> */}
                                                 </>
                                             )}
                                         </>
@@ -153,6 +150,7 @@ const Dashboard = () => {
                     </Backdrop>
                 </>
             )}
+            <ButtonClose onClick={onOpenModalTransaction} />
         </>
     );
 };

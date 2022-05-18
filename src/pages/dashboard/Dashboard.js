@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Media from 'react-media';
 
 import {
@@ -17,7 +17,6 @@ import ButtonClose from '@component/buttonClose/buttonClose';
 
 import { categoriesOperation } from '@redux/categories/categories-operation';
 import { getFinanceOpertaion } from '@redux/finance/finance-operation';
-// import { statisticOperation } from '@redux/statistic/statistic-operation';
 import {
     openModalTransaction,
     clearSaveModalDateStatic,
@@ -30,9 +29,10 @@ import { isModalLogout } from '@redux/user/user-selector';
 import { isCategoriesFull } from '@redux/categories/categories-selector';
 import { globalMedia } from '@data';
 
-import { Statistic } from '@pages/statistic';
+// import { Statistic } from '@pages/statistic';
+const Statistic = lazy(() => import('../statistic'));
 
-export const Dashboard = () => {
+const Dashboard = () => {
     const dispatch = useDispatch();
     const isCategories = useSelector(isCategoriesFull);
     const isOpenModalTransaction = useSelector(isModalTransaction);
@@ -47,12 +47,14 @@ export const Dashboard = () => {
         if (!isCategories) {
             dispatch(categoriesOperation.getCategories());
         }
-        // dispatch(getFinanceOpertaion.getOperations());
-        // dispatch(statisticOperation.getStatistic());
     }, []);
 
+    console.log('isSaveTransaction = ', isSaveTransaction);
+    console.log('isOpenModalTransaction = ', isOpenModalTransaction);
+
     useEffect(() => {
-        if (isSaveTransaction && !isModalTransaction) {
+        if (isSaveTransaction && !isOpenModalTransaction) {
+            console.log('dispatch new get transactions');
             dispatch(getFinanceOpertaion.getOperations());
             dispatch(clearSaveModalDateStatic());
         }
@@ -154,3 +156,5 @@ export const Dashboard = () => {
         </>
     );
 };
+
+export default Dashboard;

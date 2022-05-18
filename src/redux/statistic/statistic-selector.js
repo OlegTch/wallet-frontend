@@ -14,3 +14,5 @@ export const getStatistic = state => {
 };
 
 export const isLoadingStatistic = state => state.statistic.isLoading;
+
+export const isErrorStatistic = state => state.statistic.error;

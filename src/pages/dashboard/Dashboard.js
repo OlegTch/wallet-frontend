@@ -47,12 +47,14 @@ const Dashboard = () => {
         if (!isCategories) {
             dispatch(categoriesOperation.getCategories());
         }
-        // dispatch(getFinanceOpertaion.getOperations());
-        // dispatch(statisticOperation.getStatistic());
     }, []);
 
+    console.log('isSaveTransaction = ', isSaveTransaction);
+    console.log('isOpenModalTransaction = ', isOpenModalTransaction);
+
     useEffect(() => {
-        if (isSaveTransaction && !isModalTransaction) {
+        if (isSaveTransaction && !isOpenModalTransaction) {
+            console.log('dispatch new get transactions');
             dispatch(getFinanceOpertaion.getOperations());
             dispatch(clearSaveModalDateStatic());
         }

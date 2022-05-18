@@ -50,6 +50,7 @@ const financeSlice = createSlice({
         [getFinanceOpertaion.addOperation.fulfilled]: (state, { payload }) => {
             state.data = [payload, ...state.data];
             state.isLoading = false;
+            state.isSaveModalDateStatic = true;
         },
         [getFinanceOpertaion.addOperation.rejected]: (state, { error }) => {
             state.isLoading = false;

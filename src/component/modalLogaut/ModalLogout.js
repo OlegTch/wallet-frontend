@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import React from 'react';
 import './ModalLogout.scss';
-import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
 import { userOperation } from '@redux/user/user-operation';
 import { closeModalLogout } from '@redux/user/user-slice';
 
@@ -10,6 +10,30 @@ export const ModalLogout = () => {
     function closeLogoutModal() {
         dispatch(closeModalLogout());
     }
+    // useEffect(() => {
+    //     const backdrop = document.querySelector('#backdrop');
+
+    //     function clickBackdrop(e) {
+    //         if (e.target === backdrop) {
+    //             closeLogoutModal();
+    //         }
+    //     }
+
+    //     function pressEsc(e) {
+    //         if (e.code === 'Escape') {
+    //             closeLogoutModal();
+    //         }
+    //     }
+
+    //     document.addEventListener('click', clickBackdrop);
+    //     document.addEventListener('keydown', pressEsc);
+
+    //     return function cleanup() {
+    //         document.removeEventListener('click', clickBackdrop);
+    //         document.removeEventListener('keydown', pressEsc);
+    //     };
+    // }, [closeLogoutModal]);
+
     return (
         <div className="containerLogout">
             <p className="textLogout">Вы уверены?</p>

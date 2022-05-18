@@ -17,21 +17,22 @@ export function Table({ category, color, total }) {
 
             <div className="tableBody">
                 <ul>
-                    {category.map(({ category, sum }, i) => (
-                        <li className="categoryItem" key={category}>
-                            <div
-                                style={{
-                                    backgroundColor: color[i],
-                                    minWidth: 24 + 'px',
-                                    minHeight: 24 + 'px',
-                                }}
-                            ></div>
-                            <div className="wrapper">
-                                <p className="categoryName">{category}</p>
-                                <p className="sum">{transformData(sum)}</p>
-                            </div>
-                        </li>
-                    ))}
+                    {category.length > 0 &&
+                        category.map(({ category, sum }, i) => (
+                            <li className="categoryItem" key={category}>
+                                <div
+                                    style={{
+                                        backgroundColor: color[i],
+                                        minWidth: 24 + 'px',
+                                        minHeight: 24 + 'px',
+                                    }}
+                                ></div>
+                                <div className="wrapper">
+                                    <p className="categoryName">{category}</p>
+                                    <p className="sum">{transformData(sum)}</p>
+                                </div>
+                            </li>
+                        ))}
                 </ul>
                 <ul className="tableFooter">
                     <li className="tableFooterItem">

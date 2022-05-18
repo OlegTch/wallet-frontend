@@ -87,7 +87,7 @@ const userSlice = createSlice({
             state.isLoading = false;
         },
         [userOperation.currentUser.rejected]: (state, { error }) => {
-            if (error.status === 401) {
+            if (error.code === 'ERR_BAD_REQUEST') {
                 state.token = null;
                 state.isAuth = false;
             }

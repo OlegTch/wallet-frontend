@@ -18,6 +18,8 @@ const logout = createAsyncThunk('logout', async () => {
 
 const currentUser = createAsyncThunk('current', async token => {
     const result = await getUserAPI(token);
+    console.dir(result);
+    console.log(result);
     return result;
 });
 

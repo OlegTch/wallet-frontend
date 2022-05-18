@@ -1,10 +1,12 @@
 .button {
-    position: sticky;
-    bottom: 40px;
-    right: 40px;
+ position: sticky;
+    bottom: 4vh;
+    left: 95%;
+    // right: 40px;
+    display: none;
 
     border: none;
-    position: absolute;
+  //position: absolute;
     width: 44px;
     height: 44px;
     padding: 5px;

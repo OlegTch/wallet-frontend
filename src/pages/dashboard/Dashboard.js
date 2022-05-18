@@ -9,6 +9,7 @@ import {
     Navigation,
     ModalTransaction,
     Backdrop,
+    ModalLogout,
 } from '@component';
 import Currency from '@component/currency';
 import HomeTab from '@component/homeTab';
@@ -145,7 +146,9 @@ export const Dashboard = () => {
             )}
             {isOpenModalLogout && (
                 <>
-                    <Backdrop></Backdrop>
+                    <Backdrop>
+                        <ModalLogout />
+                    </Backdrop>
                 </>
             )}
         </>

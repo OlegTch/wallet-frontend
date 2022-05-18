@@ -172,7 +172,7 @@ export const ModalTransaction = () => {
     };
     // випадающий список
     function DropMenuActive() {
-        if (category !== 'Выберите категорию') {
+        if (category !== 'Виберіть категорію') {
             const notActiv = 'dropField';
             const active = 'dropFieldActive';
 
@@ -238,14 +238,14 @@ export const ModalTransaction = () => {
                     </svg>
                 </span>
             </div>
-            <h2 className="titleText">Добавить Транзакцию</h2>
+            <h2 className="titleText">Додати Транзакцію</h2>
             <form
                 onSubmit={submitHandler}
                 id="modalTransaction"
                 className="modalForm"
             >
                 <div className="switchTypeBalance">
-                    <span className={switchActiveDebet()}>Доход</span>
+                    <span className={switchActiveDebet()}>Дохід</span>
                     <div className="toggleContainerType">
                         <label
                             className="toggleTypeBody"
@@ -271,7 +271,7 @@ export const ModalTransaction = () => {
                         id="switchType"
                         defaultChecked
                     />
-                    <span className={switchActive()}>Расход</span>
+                    <span className={switchActive()}>Витрати</span>
                 </div>
                 {dropListSelectJSX}
                 <div className="sumContainer">
@@ -309,10 +309,10 @@ export const ModalTransaction = () => {
                 </div>
                 <div className="buttonContainer">
                     <button className="submitButton" type="submit">
-                        Добавить
+                        Додати
                     </button>
                     <button className="cancelButton" onClick={closeModalItem}>
-                        Отмена
+                        Скасувати
                     </button>
                 </div>
             </form>

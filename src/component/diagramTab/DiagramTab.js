@@ -7,11 +7,6 @@ import './diagramTab.scss';
 import { ChartDoughnut } from "@component/chartDoughnut";
 import { DatePicker } from "@component/datePicker";
 import { Table } from '@component/table';
-
-const total = {                 // Для перевірки, повинна приходити по запиту
-    "totalIncome": 22549.24,
-    "totalExpense": 27350.00,
-}
            
 
 const rgb = [
@@ -36,31 +31,56 @@ export function DiagramTab() {
         return num.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
     }
     
-
-    //Фільтрація списку статистика по id категорій
-    function filterById(objCategories, objStat) {
-        const idDebet = objCategories.map(el => el.id)
-        const objById = objStat.filter(el => idDebet.includes(el.category))
-        // console.log(objById)  
-        return objById
+    const filterCategory = (c) => {
+        console.log(c)
+        const income = c.filter(el => el.income);
+        const expense = c.filter(el => !el.income);
+        return {income, expense}
     }
 
-    const nameCategory = categories.map(el => el.name)
+    const categoryList = filterCategory(categories) 
+
+    const getSum = (arr) => {
+       return  arr.reduce((acc, el) => acc + el.sum, 0)
+    }
+
+    const dataExpense = categoryList.expense.map(el => {
+        return {
+            category: statistic.find(
+                elem=>(elem.id===el.category)
+            )?.name,
+            sum: el.sum || 0
+        }
+    })
+
+    const dataIncome = categoryList.income.map(el => {
+        return {
+            category: statistic.find(
+                elem=>(elem.id===el.category)
+            )?.name,
+            sum: el.sum || 0
+        }
+    })
+
+    const getTotal = () => {
+        const expense = getSum(dataExpense);
+        const income = getSum(dataIncome);
+        return {expense, income}
+    }
 
   // Вибір кольору
     const color = rgb.map(el=>el.rgb)
     
         return <div className='diagramTab-section'>
-            {/* <h2 className='diagramTab-header'>Статистика</h2> */}
             <ChartDoughnut
-                category={nameCategory}
-                statistic={filterById(categories, statistic)}
+                category={categoryList.expense}
+                statistic={dataExpense}
                 balance={transformData(balance)}
                 color={color}
             />
             <div className='diagramTab-container'>
                 <DatePicker />
-                <Table category={filterById(categories, statistic)} color={color} name={nameCategory} total={total} />
+                <Table category={dataExpense} color={color} total={getTotal()} />
             </div>
             
         </div>

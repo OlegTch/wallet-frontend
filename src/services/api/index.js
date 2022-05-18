@@ -208,7 +208,8 @@ export const getStatisticAPI = async ({ month, year }) => {
     const result = await axios.get(`transactions/statistics${query}`);
     console.log('-------------- statistic -----------------');
     console.log(result);
-    return result.data.data.transaction;
+    // return result.data.data.transaction;
+    return result.data.transactions;
     // return tempData.statistic;
     // return dataExampl.statistic;
 };

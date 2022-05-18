@@ -3,8 +3,8 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import { isErrorUser } from '@redux/user/user-selector';
+// import { toast } from 'react-toastify';
+// import { isErrorUser } from '@redux/user/user-selector';
 
 import { userOperation } from '../../redux/user/user-operation';
 import { Logo } from '../shared/logo';
@@ -15,13 +15,11 @@ import './loginForm.scss';
 
 export const LoginForm = () => {
     const dispatch = useDispatch();
-    const errorUser = useSelector(isErrorUser);
+    // const errorUser = useSelector(isErrorUser);
 
     useEffect(() => {
-        if (errorUser) {
-            toast.error(errorUser);
-        }
-    }, [errorUser]);
+        //    dispatch(userOperation.login({ email, password }));
+    }, []);
 
     return (
         <section>
@@ -36,12 +34,8 @@ export const LoginForm = () => {
                     dispatch(userOperation.login({ email, password }));
                 }}
                 validationSchema={Yup.object().shape({
-                    email: Yup.string()
-                        .email()
-                        .required('Обов' + "'" + 'язкове поле'),
-                    password: Yup.string().required(
-                        'Обов' + "'" + 'язкове поле',
-                    ),
+                    email: Yup.string().email().required(`Обов'язкове поле`),
+                    password: Yup.string().required(`Обов'язкове поле`),
                 })}
             >
                 {props => {

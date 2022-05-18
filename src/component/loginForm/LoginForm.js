@@ -1,12 +1,13 @@
+import React, { useEffect } from 'react';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { isErrorUser } from '@redux/user/user-selector';
 
 import { userOperation } from '../../redux/user/user-operation';
 import { Logo } from '../shared/logo';
-
 import sprite from '../../assets/sprite.svg';
 import imgMan from '../../assets/img/tablet/tabletMan.svg';
 
@@ -14,6 +15,13 @@ import './loginForm.scss';
 
 export const LoginForm = () => {
     const dispatch = useDispatch();
+    const errorUser = useSelector(isErrorUser);
+
+    useEffect(() => {
+        if (errorUser) {
+            toast.error(errorUser);
+        }
+    }, [errorUser]);
 
     return (
         <section>

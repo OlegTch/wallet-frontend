@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-
 import { useSelector } from 'react-redux';
-import { LoginForm } from '@component/loginForm';
 import { useNavigate } from 'react-router-dom';
 
+import { LoginForm } from '@component/loginForm';
 import { isAuth } from '@redux/user/user-selector';
 
 const LoginPage = () => {

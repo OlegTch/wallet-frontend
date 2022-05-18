@@ -61,7 +61,7 @@ export const getStatisticAPI = async ({ month, year }) => {
 // ------------  Finance (operations) ----------------------------
 
 export const getOperationsAPI = async () => {
-    const result = await axios.get('transactions');
+    const result = await axios.get('transactions?page=1&limit=5');
     return result.data.data;
 };
 

@@ -9,6 +9,7 @@ import { isSaveModalDateStatic } from '@redux/finance/finance-selector';
 import { getFinanceOpertaion } from '@redux/finance/finance-operation';
 import { closeModalTransaction } from '@redux/finance/finance-slice';
 import 'moment/locale/ru';
+import { toast } from 'react-toastify';
 
 import sprite from '@assets/sprite.svg';
 import './modalTransaction.scss';
@@ -155,7 +156,7 @@ export const ModalTransaction = () => {
             closeModalItem();
         } catch (error) {
             console.log(error[0].message);
-            alert(error[0].message);
+            toast.error(error[0].message);
             return;
         }
 

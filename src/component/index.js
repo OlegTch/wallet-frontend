@@ -7,3 +7,4 @@ export * from './backdrop';
 export * from './registrationForm';
 export * from './modalLogaut';
 export * from './loginForm';
+export * from './shared';

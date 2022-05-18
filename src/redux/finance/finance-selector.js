@@ -12,3 +12,10 @@ export const isSaveModalDateStatic = state =>
     state.finance.isSaveModalDateStatic;
 
 export const isErrorFinance = state => state.finance.error;
+
+export const getParamPage = state => ({
+    total: state.finance.total,
+    currentPage: state.finance.currentPage,
+    totalPage: state.finance.totalPage,
+    limit: state.finance.limit,
+});

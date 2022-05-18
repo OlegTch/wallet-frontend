@@ -12,7 +12,7 @@ const homeTabItemTabletAndDesktop = ({
     },
 }) => {
     return (
-        <>
+        <li className="homeTabItemTabletAndDesktop">
             <p>{moment(date).format('DD.MM.YY')}</p>
             <p>{income ? '+' : '-'}</p>
             <p>{name}</p>
@@ -27,7 +27,7 @@ const homeTabItemTabletAndDesktop = ({
                 {sum}
             </p>
             <p>{balance}</p>
-        </>
+        </li>
     );
 };
 

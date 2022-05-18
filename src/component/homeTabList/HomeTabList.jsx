@@ -41,16 +41,13 @@ const HomeTabList = ({ operations }) => {
                                     </li>
                                     {operations.map(operation => {
                                         return (
-                                            <li
-                                                key={operation._id}
-                                                className="homeTabItemTabletAndDesktop"
-                                            >
+                                            <>
                                                 <HomeTabItemTabletAndDesktop
                                                     operation={operation}
                                                     index
-                                                    // key={operation._id}
+                                                    key={operation._id}
                                                 />
-                                            </li>
+                                            </>
                                         );
                                     })}
                                 </>

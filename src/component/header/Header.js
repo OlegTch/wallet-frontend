@@ -1,5 +1,6 @@
 import { HeaderNav } from '@component';
 import { Logo } from '@shared';
+import { Link } from 'react-router-dom';
 import './header.scss';
 
 export const Header = () => {
@@ -7,7 +8,9 @@ export const Header = () => {
         <>
             <div className="header">
                 <div className="container container__header">
-                    <Logo />
+                    <Link to="/" className="logo_link">
+                        <Logo />
+                    </Link>
                     <HeaderNav />
                 </div>
             </div>

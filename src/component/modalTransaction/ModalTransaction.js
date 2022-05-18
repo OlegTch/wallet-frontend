@@ -15,13 +15,13 @@ import './modalTransaction.scss';
 
 import { validate } from 'indicative/validator';
 export const ModalTransaction = () => {
-    const getDebet = useSelector(getCategoryDebet);
     const getCredit = useSelector(getCategoryCredit);
+    const getDebet = useSelector(getCategoryDebet);
     const pushDate = useSelector(isSaveModalDateStatic);
     const [modalTypeTransaction, setModalTypeTransaction] = useState('income');
     const [date, setDate] = useState(new Date());
     const [category, setCategory] = useState(getDebet[0].name);
-    const [idCategory, setIdCategory] = useState(getDebet[0].id);
+    const [idCategory, setIdCategory] = useState(getDebet[0]._id);
     const [listActive, setListActive] = useState(false);
     const [summ, setSumm] = useState('');
     const [comment, setComment] = useState('');
@@ -126,18 +126,19 @@ export const ModalTransaction = () => {
         }
         setModalTypeTransaction('income');
         setCategory(getDebet[0].name);
-        setIdCategory(getDebet[0].id);
+        setIdCategory(getDebet[0]._id);
     }
     const validateSchema = {
         type: 'required|boolean',
-        category: 'required|number',
+        category: 'required|string',
         sum: 'required|number',
         comment: 'string',
         day: 'required|number',
         month: 'required|number',
         year: 'required|number',
     };
-    async function submitHandler(e) {
+    const submitHandler = async e => {
+        // async function submitHandler(e) {
         e.preventDefault();
         const modalTransaction = {
             day: date.getDate(),
@@ -155,17 +156,19 @@ export const ModalTransaction = () => {
         } catch (error) {
             console.log(error[0].message);
             alert(error[0].message);
+            return;
         }
+
         dispatch(
             getFinanceOpertaion.addOperation({
                 datetime: date,
                 income: modalTypeTransaction === 'income' ? true : false,
                 category: idCategory,
-                comment,
+                comment: comment === '' ? undefined : comment,
                 sum: summ,
             }),
         );
-    }
+    };
     // випадающий список
     function DropMenuActive() {
         if (category !== 'Выберите категорию') {
@@ -193,7 +196,7 @@ export const ModalTransaction = () => {
                                     onClick={categoryClick}
                                     className="dropListItem"
                                     key={idx}
-                                    data-id={elem.id}
+                                    data-id={elem._id}
                                 >
                                     {elem.name}
                                 </li>
@@ -208,7 +211,7 @@ export const ModalTransaction = () => {
                                     onClick={categoryClick}
                                     className="dropListItem"
                                     key={idx}
-                                    data-id={elem.id}
+                                    data-id={elem._id}
                                 >
                                     {elem.name}
                                 </li>
@@ -296,7 +299,7 @@ export const ModalTransaction = () => {
                 </div>
                 <div className="commentContainer">
                     <textarea
-                        maxlength="200"
+                        maxLength="200"
                         className="commentField"
                         placeholder="коментарий"
                         onChange={commentInput}

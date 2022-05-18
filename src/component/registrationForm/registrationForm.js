@@ -33,7 +33,7 @@ export const RegistrationForm = () => {
             //відправляємо дані на сервер
             onSubmit={({ email, password, name }) => {
                const user = { name, email, password };
-               console.log(user)
+               // console.log(user)
                dispatch(userOperation.register(user));
 
             }}

@@ -10,29 +10,29 @@ export const ModalLogout = () => {
     function closeLogoutModal() {
         dispatch(closeModalLogout());
     }
-    // useEffect(() => {
-    //     const backdrop = document.querySelector('#backdrop');
+    useEffect(() => {
+        const backdrop = document.querySelector('#backdrop');
 
-    //     function clickBackdrop(e) {
-    //         if (e.target === backdrop) {
-    //             closeLogoutModal();
-    //         }
-    //     }
+        function clickBackdrop(e) {
+            if (e.target === backdrop) {
+                closeLogoutModal();
+            }
+        }
 
-    //     function pressEsc(e) {
-    //         if (e.code === 'Escape') {
-    //             closeLogoutModal();
-    //         }
-    //     }
+        function pressEsc(e) {
+            if (e.code === 'Escape') {
+                closeLogoutModal();
+            }
+        }
 
-    //     document.addEventListener('click', clickBackdrop);
-    //     document.addEventListener('keydown', pressEsc);
+        document.addEventListener('click', clickBackdrop);
+        document.addEventListener('keydown', pressEsc);
 
-    //     return function cleanup() {
-    //         document.removeEventListener('click', clickBackdrop);
-    //         document.removeEventListener('keydown', pressEsc);
-    //     };
-    // }, [closeLogoutModal]);
+        return function cleanup() {
+            document.removeEventListener('click', clickBackdrop);
+            document.removeEventListener('keydown', pressEsc);
+        };
+    }, [closeLogoutModal]);
 
     return (
         <div className="containerLogout">

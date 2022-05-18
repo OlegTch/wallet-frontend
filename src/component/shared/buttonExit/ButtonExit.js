@@ -12,7 +12,7 @@ export const ButtonExit = () => {
 
     const onClick = () => {
         dispatch(openModalLogout());
-        dispatch(userOperation.logout());
+        // dispatch(userOperation.logout());
     };
 
     return (

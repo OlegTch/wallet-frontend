@@ -6,10 +6,8 @@ import { isAuth } from '@redux/user/user-selector';
 import { RegistrationPage } from '../registration/RegistrationPage';
 import { Dashboard } from '@pages';
 
-
 export const LoginPage = () => {
     const isLoggedIn = useSelector(isAuth);
-
 
     return (
         <div>
@@ -21,5 +19,3 @@ export const LoginPage = () => {
         </div>
     );
 };
-
-

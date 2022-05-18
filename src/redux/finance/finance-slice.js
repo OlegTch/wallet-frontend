@@ -9,6 +9,10 @@ const initialState = {
     error: null,
     isModalAddTransaction: false,
     isSaveModalDateStatic: false,
+    total: 0,
+    currentPage: 1,
+    totalPage: 1,
+    limit: 5,
 };
 
 const financeSlice = createSlice({
@@ -27,6 +31,9 @@ const financeSlice = createSlice({
         clearSaveModalDateStatic: state => {
             state.isSaveModalDateStatic = false;
         },
+        setLimit: (state, { payload }) => {
+            state.limit = payload;
+        },
     },
     extraReducers: {
         [getFinanceOpertaion.getOperations.pending]: state => {
@@ -36,6 +43,15 @@ const financeSlice = createSlice({
         [getFinanceOpertaion.getOperations.fulfilled]: (state, { payload }) => {
             state.data = [...payload.transactions];
             state.userBalance = payload.user_balance;
+            if (payload.page) {
+                state.currentPage = payload.page;
+            }
+            if (payload.totalPage) {
+                state.totalPage = payload.totalPage;
+            }
+            if (payload.total) {
+                state.total = payload.total;
+            }
             state.isLoading = false;
         },
         [getFinanceOpertaion.getOperations.rejected]: (state, { error }) => {
@@ -64,5 +80,6 @@ export const {
     closeModalTransaction,
     setSaveModalDateStatic,
     clearSaveModalDateStatic,
+    setLimit,
 } = financeSlice.actions;
 export default financeSlice;

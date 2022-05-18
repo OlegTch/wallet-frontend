@@ -8,3 +8,5 @@ export const getCategoryDebet = state =>
 
 export const getCategoryCredit = state =>
     state.categories.data.filter(el => !el.income);
+
+export const isErrorCategory = state => state.categories.error;

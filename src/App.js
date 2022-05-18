@@ -1,60 +1,54 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
-import { Dashboard } from '@pages';
-import { withAuth } from '@hoc/withAuth';
-import { LoginPage } from '@pages/login';
+// import { Dashboard, RegistrationPage, LoginPage } from '@pages';
+import { Error } from '@component';
 import Loader from '@component/spinnerLoader/spinnerLoader';
+import { withAuth } from '@hoc/withAuth';
 
 import {
     isAuth,
     isToken,
     isLoading,
-    error,
     getToken,
 } from '@redux/user/user-selector';
 import { userOperation } from '@redux/user/user-operation';
-import { RegistrationPage } from './pages';
+
+const Dashboard = lazy(() => import('./pages/dashboard'));
+const RegistrationPage = lazy(() => import('./pages/registration'));
+const LoginPage = lazy(() => import('./pages/login'));
 
 function App() {
+    const dispatch = useDispatch();
     const isUserToken = useSelector(isToken);
     const isUserAuth = useSelector(isAuth);
     const loading = useSelector(isLoading);
-    const isError = useSelector(error);
     const token = useSelector(getToken);
-    const dispatch = useDispatch();
 
     useEffect(() => {
         if (isUserToken && !isUserAuth) {
             dispatch(userOperation.currentUser(token));
-        } else {
-            dispatch(
-                userOperation.login({
-                    email: 'test@gmail.com',
-                    password: 'qwerty',
-                }),
-            );
         }
     }, []);
 
     return (
         <>
-            {loading && <Loader />}
-            {isError && <h1>Error: {isError}</h1>}
+            <Suspense fallback={<Loader />}>
+                {!loading && isUserAuth === isUserToken && (
+                    <Routes>
+                        <Route path="login" element={<LoginPage />} />
+                        <Route path="register" element={<RegistrationPage />} />
 
-            {!loading && !isError && isUserAuth === isUserToken && (
-                <Routes>
-                    <Route path="login" element={<LoginPage />} />
-                    <Route path="register" element={<RegistrationPage />} />
-
-                    <Route path="/" element={withAuth(isUserAuth)} />
-                    <Route
-                        path="/*"
-                        element={withAuth(isUserAuth, <Dashboard />)}
-                    />
-                </Routes>
-            )}
+                        <Route path="/" element={withAuth(isUserAuth)} />
+                        <Route
+                            path="/*"
+                            element={withAuth(isUserAuth, <Dashboard />)}
+                        />
+                    </Routes>
+                )}
+                <Error />
+            </Suspense>
         </>
     );
 }

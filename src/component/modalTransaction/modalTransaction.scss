@@ -236,11 +236,12 @@
 }
 .commentField {
     position: relative;
+
     padding-left: 20px;
-    top: 25px;
+    top: -7px;
     display: block;
     width: 100%;
-    min-height: 74px;
+    max-height: 74px;
     resize: none;
     border: none;
     font-size: 18px;

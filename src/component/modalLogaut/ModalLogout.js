@@ -46,7 +46,7 @@ export const ModalLogout = () => {
                     <span>Вийти</span>
                 </button>
                 <button className="btnLogout" onClick={closeLogoutModal}>
-                    Отмена
+                    Скасувати
                 </button>
             </div>
         </div>

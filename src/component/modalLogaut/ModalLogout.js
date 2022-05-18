@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import './ModalLogout.scss';
-import { useEffect } from 'react';
 import { userOperation } from '@redux/user/user-operation';
 import { closeModalLogout } from '@redux/user/user-slice';
 import { isAuth } from '@redux/user/user-selector';

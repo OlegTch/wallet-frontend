@@ -6,14 +6,14 @@ import { useEffect } from 'react';
 import { isAuth } from '@redux/user/user-selector';
 
 const LoginPage = () => {
-    const push = useNavigate();
     const isLoggedIn = useSelector(isAuth);
+    const push = useNavigate();
 
     useEffect(() => {
         if (isLoggedIn) {
             push('/');
         }
-    }, [isLoggedIn]);
+    }, [isLoggedIn, push]);
 
     return (
         <div>

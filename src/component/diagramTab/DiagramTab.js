@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { getCategoryDebet } from '../../redux/categories/categories-selector';
-import { updateStatistic } from '../../redux/statistic/statistic-selector';
+import { getCategoryDebet, getCategoryCredit } from '../../redux/categories/categories-selector';
+import { getStatistic } from '../../redux/statistic/statistic-selector';
 import { getBalance } from '../../redux/user/user-selector';
 
 import './diagramTab.scss';
@@ -23,48 +23,24 @@ const rgb = [
   
 export function DiagramTab() {
     // const isCategories = useSelector(isCategoriesFull);
-    const statistic = useSelector(updateStatistic);
-    const categories = useSelector(getCategoryDebet);
+    // const statistic = useSelector(updateStatistic);
     const balance = useSelector(getBalance);
-        
+    useSelector(getCategoryCredit);
+    const statisticCredit = useSelector(getStatistic);
+    useSelector(getCategoryDebet); //income
+    const statisticDebet = useSelector(getStatistic);
+
     const transformData = (num) => {
         return num.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
     }
-    
-    const filterCategory = (c) => {
-        console.log(c)
-        const income = c.filter(el => el.income);
-        const expense = c.filter(el => !el.income);
-        return {income, expense}
-    }
-
-    const categoryList = filterCategory(categories) 
 
     const getSum = (arr) => {
        return  arr.reduce((acc, el) => acc + el.sum, 0)
     }
 
-    const dataExpense = categoryList.expense.map(el => {
-        return {
-            category: statistic.find(
-                elem=>(elem.id===el.category)
-            )?.name,
-            sum: el.sum || 0
-        }
-    })
-
-    const dataIncome = categoryList.income.map(el => {
-        return {
-            category: statistic.find(
-                elem=>(elem.id===el.category)
-            )?.name,
-            sum: el.sum || 0
-        }
-    })
-
     const getTotal = () => {
-        const expense = getSum(dataExpense);
-        const income = getSum(dataIncome);
+        const expense = getSum(statisticCredit);
+        const income = getSum(statisticDebet);
         return {expense, income}
     }
 
@@ -73,14 +49,14 @@ export function DiagramTab() {
     
         return <div className='diagramTab-section'>
             <ChartDoughnut
-                category={categoryList.expense}
-                statistic={dataExpense}
+                category={statisticCredit}
+                // statistic={statisticCredit}
                 balance={transformData(balance)}
                 color={color}
             />
             <div className='diagramTab-container'>
                 <DatePicker />
-                <Table category={dataExpense} color={color} total={getTotal()} />
+                <Table category={statisticCredit} color={color} total={getTotal()}/>
             </div>
             
         </div>

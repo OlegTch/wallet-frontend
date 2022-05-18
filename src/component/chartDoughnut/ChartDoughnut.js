@@ -2,8 +2,7 @@ import { useSelector } from 'react-redux';
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import { updateStatistic } from '../../redux/statistic/statistic-selector';
-
+import { getStatistic } from '../../redux/statistic/statistic-selector';
 
 import './chartDoughnut.scss';
 
@@ -20,10 +19,9 @@ const options = {
     }
 }
 
-export function ChartDoughnut({ category, balance, color, statistic }) {
+export function ChartDoughnut({ category, balance, color, }) {
   
-  const isStat = useSelector(updateStatistic);
-  console.log(isStat)
+  const isStat = useSelector(getStatistic);
 
   const data = () => {
       if (isStat.length === 0) {
@@ -46,7 +44,7 @@ export function ChartDoughnut({ category, balance, color, statistic }) {
   datasets: [
     {
       label: '# of Votes',
-      data: statistic.map(el=>el.sum),  //  статистика за місяць та рік по curentUser 
+      data: category.map(el=>el.sum),  //  статистика за місяць та рік по curentUser 
       backgroundColor: color,
       borderColor: color,
       borderWidth: 1,

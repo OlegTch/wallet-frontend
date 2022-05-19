@@ -1,12 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
 import './ModalLogout.scss';
 import { userOperation } from '@redux/user/user-operation';
 import { closeModalLogout } from '@redux/user/user-slice';
-import { isAuth } from '@redux/user/user-selector';
 
 export const ModalLogout = () => {
     const dispatch = useDispatch();
+
     function closeLogoutModal() {
         dispatch(closeModalLogout());
     }

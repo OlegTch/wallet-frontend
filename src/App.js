@@ -14,6 +14,7 @@ import {
     getToken,
 } from '@redux/user/user-selector';
 import { userOperation } from '@redux/user/user-operation';
+import { clear } from '@redux/global/global-action';
 
 const Dashboard = lazy(() => import('./pages/dashboard'));
 const RegistrationPage = lazy(() => import('./pages/registration'));
@@ -31,6 +32,13 @@ function App() {
             dispatch(userOperation.currentUser(token));
         }
     }, []);
+
+    useEffect(() => {
+        console.log('Use effect in app', isUserAuth);
+        if (!isUserAuth) {
+            dispatch(clear());
+        }
+    }, [isUserAuth]);
 
     return (
         <>

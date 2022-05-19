@@ -85,7 +85,6 @@ export const RegistrationForm = () => {
                         values,
                         touched,
                         errors,
-                        isSubmitting,
                         handleChange,
                         handleBlur,
                         handleSubmit,
@@ -101,9 +100,10 @@ export const RegistrationForm = () => {
 
                                 {/* //Поле для вводу емейла */}
                                 <label className="form__label">
-                                    {errors.email &&
-                                        touched.email &&
-                                        errors.email}
+                                    <div style={{ color: 'red' }}>
+                                        {errors.email &&
+                                            touched.email &&
+                                            errors.email}</div>
                                     <svg className="form__icon">
                                         <use href={`${sprite}#email`}></use>
                                     </svg>
@@ -120,9 +120,10 @@ export const RegistrationForm = () => {
 
                                 {/* //Поле для вводу пароля */}
                                 <label className="form__label">
-                                    {errors.password &&
-                                        touched.password &&
-                                        errors.password}
+                                    <div style={{ color: 'red' }}>
+                                        {errors.password &&
+                                            touched.password &&
+                                            errors.password}</div>
                                     <svg className="form__icon">
                                         <use href={`${sprite}#password`}></use>
                                     </svg>
@@ -147,9 +148,10 @@ export const RegistrationForm = () => {
 
                                 {/* //Поле для вводу пароля підтвердження */}
                                 <label className="form__label">
-                                    {errors.confirmPassword &&
-                                        touched.confirmPassword &&
-                                        errors.confirmPassword}
+                                    <div style={{ color: 'red' }}>
+                                        {errors.confirmPassword &&
+                                            touched.confirmPassword &&
+                                            errors.confirmPassword}</div>
                                     <svg className="form__icon">
                                         <use href={`${sprite}#password`}></use>
                                     </svg>
@@ -170,7 +172,8 @@ export const RegistrationForm = () => {
 
                                 {/* //Поле для вводу імені */}
                                 <label className="form__label">
-                                    {errors.name && touched.name && errors.name}
+                                    <div style={{ color: 'red' }}>
+                                        {errors.name && touched.name && errors.name}</div>
                                     <svg className="form__icon">
                                         <use href={`${sprite}#name`}></use>
                                     </svg>

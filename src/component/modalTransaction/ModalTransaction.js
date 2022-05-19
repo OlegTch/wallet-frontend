@@ -153,7 +153,7 @@ export const ModalTransaction = () => {
 
         try {
             await validate(modalTransaction, validateSchema);
-            closeModalItem();
+            // closeModalItem();
         } catch (error) {
             console.log(error[0].message);
             toast.error(error[0].message);

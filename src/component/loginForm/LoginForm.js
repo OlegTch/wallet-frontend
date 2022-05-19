@@ -1,17 +1,14 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { userOperation } from '../../redux/user/user-operation';
 import { Logo } from '../shared/logo';
-
 import sprite from '../../assets/sprite.svg';
 import imgMan from '../../assets/img/tablet/tabletMan.svg';
 
 import './loginForm.scss';
-
 export const LoginForm = () => {
     const dispatch = useDispatch();
 
@@ -24,16 +21,14 @@ export const LoginForm = () => {
 
             <Formik
                 initialValues={{ email: '', password: '' }}
-                onSubmit={({ email, password }) => {
-                    dispatch(userOperation.login({ email, password }));
+                onSubmit={(values, { resetForm }) => {
+                    dispatch(userOperation.login(values));
+
+                    resetForm({ values: '' });
                 }}
                 validationSchema={Yup.object().shape({
-                    email: Yup.string()
-                        .email()
-                        .required('Обов' + "'" + 'язкове поле'),
-                    password: Yup.string().required(
-                        'Обов' + "'" + 'язкове поле',
-                    ),
+                    email: Yup.string().email().required(`Обов'язкове поле`),
+                    password: Yup.string().required(`Обов'язкове поле`),
                 })}
             >
                 {props => {

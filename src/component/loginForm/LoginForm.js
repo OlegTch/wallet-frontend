@@ -21,10 +21,10 @@ export const LoginForm = () => {
 
             <Formik
                 initialValues={{ email: '', password: '' }}
-                onSubmit={(values, { resetForm }) => {
+                onSubmit={values => {
                     dispatch(userOperation.login(values));
 
-                    resetForm({ values: '' });
+                    // resetForm({ values: '' });
                 }}
                 validationSchema={Yup.object().shape({
                     email: Yup.string().email().required(`Обов'язкове поле`),

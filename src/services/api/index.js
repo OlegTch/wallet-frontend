@@ -1,5 +1,5 @@
 import axios from 'axios';
-axios.defaults.baseURL = 'https://wallet-serv.herokuapp.com/api/';
+axios.defaults.baseURL = 'https://wallet-serv.herokuapp.com/api';
 
 const setAxiosToken = token => {
     if (token) {

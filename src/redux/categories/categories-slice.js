@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { categoriesOperation } from './categories-operation';
+import { clear } from '../global/global-action';
 
 const initialState = {
     data: [],
@@ -23,6 +24,11 @@ const categoriesSlice = createSlice({
         [categoriesOperation.getCategories.rejected]: (state, { error }) => {
             state.isLoading = false;
             state.error = error.message;
+        },
+        [clear]: state => {
+            state.data = [];
+            state.isLoading = false;
+            state.error = null;
         },
     },
 });

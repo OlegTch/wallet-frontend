@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { getFinanceOpertaion } from './finance-operation';
+import { clear } from '../global/global-action';
 
 const initialState = {
     data: [],
@@ -71,6 +72,18 @@ const financeSlice = createSlice({
         [getFinanceOpertaion.addOperation.rejected]: (state, { error }) => {
             state.isLoading = false;
             state.error = error.message;
+        },
+        [clear]: state => {
+            state.data = [];
+            state.userBalance = 0;
+            state.currentPage = 1;
+            state.total = 0;
+            state.totalPage = 1;
+            state.limit = 5;
+            state.isModalAddTransaction = false;
+            state.isSaveModalDateStatic = false;
+            state.isLoading = false;
+            state.error = null;
         },
     },
 });

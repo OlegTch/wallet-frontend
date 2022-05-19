@@ -7,10 +7,61 @@ import { Logo } from '../shared/logo';
 import Frame from '../../assets/img/tablet/Frame.png';
 import sprite from '../../assets/sprite.svg';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { isErrorUser } from '@redux/user/user-selector';
+// import zxcvbn from 'zxcvbn';
+
 
 
 export const RegistrationForm = () => {
    const dispatch = useDispatch();
+   const [type, setType] = useState('password');
+   // const [score, setScore] = useState(0);
+   const errorUser = useSelector(isErrorUser);
+   useEffect(() => {
+      if (errorUser) {
+         toast.error(errorUser);
+      }
+   }, [errorUser]);
+
+   const showHiden = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      let currentType = type === 'password' ? 'input' : 'password'
+      setType(currentType);
+   }
+
+   // const strength = (e) => {
+   //    let password = e.target.value;
+   //    if (password.length > 10) {
+   //       strength += 1
+   //    }
+   //    if (password.length > 63) {
+   //       strength += 1
+   //    }
+   //    if (/[a-z]/.test(password)) {
+   //       strength += 1
+   //    }
+   //    if (/[A-Z]/.test(password)) {
+   //       strength += 1
+   //    }
+   //    if (/[0-9]/.test(password)) {
+   //       strength += 1
+   //    }
+   //    if (/[^a-zA-Z0-9]/.test(password)) {
+   //       strength += 1
+   //    }
+   //    if (e.target.value.length === '') {
+
+   //       let result = zxcvbn(e.target.value);
+   //       console.log();
+   //       setScore('1');
+   //    } else {
+   //       setScore(0);
+   //    }
+   // }
 
    return (
       <section className='register'>
@@ -41,11 +92,11 @@ export const RegistrationForm = () => {
 
             //валідація форми
             validationSchema={Yup.object().shape({
-               email: Yup.string().email().required('Required'),
+               email: Yup.string().email().min(10).max(63).required('Required'),
                password: Yup.string()
                   .required('Required')
-                  .min(6, 'Password must be at least 6 characters')
-                  .max(12, 'Password must be at most 12 characters'),
+                  .min(6, 'Password must be at least 10 characters')
+                  .max(16, 'Password must be at most 63 characters'),
                confirmPassword: Yup.string()
                   .required('Required')
                   .oneOf(
@@ -53,9 +104,10 @@ export const RegistrationForm = () => {
                      'Passwords must match',
                   ),
                name: Yup.string().min(
-                  2,
-                  'Name must be at least 2 characters',
-               ),
+                  1,
+                  'Name must be at least 1 characters',
+               )
+                  .max(12, 'Name must be at most 12 characters'),
             })}
          >
             {props => {
@@ -84,6 +136,7 @@ export const RegistrationForm = () => {
 
                         {/* //Поле для вводу емейла */}
                         <label className="form__label">
+                           {errors.email && touched.email && errors.email}
                            <svg className="form__icon">
                               <use href={`${sprite}#email`}></use>
                            </svg>
@@ -97,31 +150,41 @@ export const RegistrationForm = () => {
                               value={values.email}
                            />
                         </label>
-                        {/* {errors.email && touched.email && errors.email} */}
+
 
 
                         {/* //Поле для вводу пароля */}
                         <label className="form__label">
+                           {errors.password &&
+                              touched.password &&
+                              errors.password}
                            <svg className="form__icon">
                               <use href={`${sprite}#password`}></use>
                            </svg>
                            <input
                               className="form__input"
-                              type="password"
+                              type={type}
                               name="password"
                               placeholder="Пароль"
                               onChange={handleChange}
+                              // onKeyUp={strength}
                               onBlur={handleBlur}
                               value={values.password}
                            />
+                           <span className='form__show' onClick={showHiden}>
+                              {type === 'input' ? "HIDE" : 'SHOW'}
+                           </span>
+
                         </label>
-                        {/* {errors.password &&
-                        touched.password &&
-                        errors.password} */}
+
+
 
 
                         {/* //Поле для вводу пароля підтвердження */}
                         <label className="form__label">
+                           {errors.confirmPassword &&
+                              touched.confirmPassword &&
+                              errors.confirmPassword}
                            <svg className="form__icon">
                               <use href={`${sprite}#password`}></use>
                            </svg>
@@ -134,14 +197,14 @@ export const RegistrationForm = () => {
                               onBlur={handleBlur}
                               value={values.confirmPassword}
                            />
+                           {/* <span className='form__strength' data-score={score} /> */}
                         </label>
-                        {/* {errors.confirmPassword &&
-                        touched.confirmPassword &&
-                        errors.confirmPassword} */}
+
 
 
                         {/* //Поле для вводу імені */}
                         <label className="form__label">
+                           {errors.name && touched.name && errors.name}
                            <svg className="form__icon">
                               <use href={`${sprite}#name`}></use>
                            </svg>
@@ -155,7 +218,7 @@ export const RegistrationForm = () => {
                               value={values.name}
                            />
                         </label>
-                        {/* {errors.name && touched.name && errors.name} */}
+
 
 
                         {/* //Кнопка для відправки даних */}
@@ -164,7 +227,7 @@ export const RegistrationForm = () => {
                            disabled={isSubmitting}
                            className="form__button form__button--active"
                         >
-                           РЕГІСТРАЦІЯ
+                           РЕЄСТРАЦІЯ
                         </button>
 
                         {/* //Перехід на сторінку входу */}

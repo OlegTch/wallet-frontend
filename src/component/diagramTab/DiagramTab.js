@@ -35,11 +35,9 @@ export function DiagramTab() {
     console.log(statisticDebet);
     const transformData = num => {
         return num
-            ? num
                   .toFixed(2)
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
-            : null;
     };
 
     const getSum = arr => {

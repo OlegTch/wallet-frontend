@@ -21,7 +21,6 @@ export function PasswordIndicator({ show, password }) {
          case 4:
             return '#4caf50'
 
-
          default:
             return 'none'
       }

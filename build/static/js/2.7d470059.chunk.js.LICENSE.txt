@@ -5,17 +5,17 @@ object-assign
 */
 
 /*!
- * Chart.js v3.7.1
- * https://www.chartjs.org
- * (c) 2022 Chart.js Contributors
- * Released under the MIT License
- */
-
-/*!
  * The buffer module from node.js, for the browser.
  *
  * @author   Feross Aboukhadijeh <http://feross.org>
  * @license  MIT
+ */
+
+/*!
+ * isobject <https://github.com/jonschlinkert/isobject>
+ *
+ * Copyright (c) 2014-2017, Jon Schlinkert.
+ * Released under the MIT License.
  */
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
@@ -59,6 +59,20 @@ object-assign
  * LICENSE.md file in the root directory of this source tree.
  *
  * @license MIT
+ */
+
+/**
+ * charmap
+ *
+ * @license MIT
+ * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
+ */
+
+/**
+ * node-slug
+ *
+ * @license MIT
+ * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
  */
 
 /** @license React v0.20.2

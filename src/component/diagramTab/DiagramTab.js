@@ -7,8 +7,8 @@ import { getBalance } from '@redux/finance/finance-selector';
 import { getFinanceOpertaion } from '@redux/finance/finance-operation';
 
 import './diagramTab.scss';
-import { ChartDoughnut } from "@component/chartDoughnut";
-import { DatePicker } from "@component/datePicker";
+import { ChartDoughnut } from '@component/chartDoughnut';
+import { DatePicker } from '@component/datePicker';
 import { Table } from '@component/table';
            
 const rgb = [
@@ -88,10 +88,14 @@ export function DiagramTab() {
                 balance={transformData(balance)}
                 color={color}
             />
-            <div className='diagramTab-container'>
+            <div className="diagramTab-container">
                 <DatePicker />
-                <Table category={statisticCredit} color={color} total={getTotal()}/>
+                <Table
+                    category={statisticCredit}
+                    color={color}
+                    total={getTotal()}
+                />
             </div>
-            
         </div>
+
 }

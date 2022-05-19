@@ -7,7 +7,7 @@
     margin: 0 auto;
     position: relative;
 
-    &:not(:last-child):after {
+    &:not(:last-child)::after {
         position: absolute;
         bottom: 0;
         left: 0;

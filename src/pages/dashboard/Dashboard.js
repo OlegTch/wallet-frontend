@@ -29,7 +29,6 @@ import { isModalLogout } from '@redux/user/user-selector';
 import { isCategoriesFull } from '@redux/categories/categories-selector';
 import { globalMedia } from '@data';
 
-// import { Statistic } from '@pages/statistic';
 const Statistic = lazy(() => import('../statistic'));
 
 const Dashboard = () => {
@@ -51,7 +50,6 @@ const Dashboard = () => {
 
     useEffect(() => {
         if (isSaveTransaction && !isOpenModalTransaction) {
-            console.log('dispatch new get transactions');
             dispatch(getFinanceOpertaion.getOperations());
             dispatch(clearSaveModalDateStatic());
         }
@@ -100,34 +98,13 @@ const Dashboard = () => {
                         </Media>
                     </div>
                     <Routes>
-                        <Route
-                            path="/home"
-                            element={
-                                <>
-                                    <HomeTab />
-                                    {/* <ButtonClose
-                                        onClick={onOpenModalTransaction}
-                                    /> */}
-                                </>
-                            }
-                        />
+                        <Route path="/home" element={<HomeTab />} />
                         <Route
                             path="/currency"
                             element={
                                 <Media queries={globalMedia}>
                                     {matches => (
-                                        <>
-                                            {matches.medium && (
-                                                <>
-                                                    <HomeTab />
-                                                    {/* <ButtonClose
-                                                        onClick={
-                                                            onOpenModalTransaction
-                                                        }
-                                                    /> */}
-                                                </>
-                                            )}
-                                        </>
+                                        <>{matches.medium && <HomeTab />}</>
                                     )}
                                 </Media>
                             }
@@ -150,7 +127,12 @@ const Dashboard = () => {
                     </Backdrop>
                 </>
             )}
-            <ButtonClose onClick={onOpenModalTransaction} />
+            <Routes>
+                <Route
+                    path="/home"
+                    element={<ButtonClose onClick={onOpenModalTransaction} />}
+                />
+            </Routes>
         </>
     );
 };

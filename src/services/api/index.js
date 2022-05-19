@@ -1,5 +1,6 @@
 import axios from 'axios';
-axios.defaults.baseURL = 'https://wallet-serv.herokuapp.com/api/';
+import { HttpError } from '../error';
+axios.defaults.baseURL = 'https://wallet-serv.herokuapp.com/api';
 
 const setAxiosToken = token => {
     if (token) {
@@ -9,69 +10,112 @@ const setAxiosToken = token => {
     }
 };
 
+const getError = error => {
+    if (error.response) {
+        throw new HttpError(error.response.data.message, error.response.status);
+    } else if (error.request) {
+        throw new HttpError(error.request.statusText, error.request.status);
+    } else {
+        throw new HttpError(error.message, 500);
+    }
+};
+
 //  ----------------   USER   -----------------------
 
 export const registerAPI = async user => {
-    const result = await axios.post('auth/register', {
-        userName: user.name,
-        email: user.email,
-        password: user.password,
-    });
-    setAxiosToken(result.data.data.token);
-    return result.data.data;
+    try {
+        const result = await axios.post('auth/register', {
+            userName: user.name,
+            email: user.email,
+            password: user.password,
+        });
+        setAxiosToken(result.data.data.token);
+        return result.data.data;
+    } catch (error) {
+        getError(error);
+    }
 };
 
 export const loginAPI = async user => {
-    const result = await axios.post('auth/login', user);
-    setAxiosToken(result.data.data.token);
-    return result.data.data;
+    try {
+        const result = await axios.post('auth/login', user);
+        setAxiosToken(result.data.data.token);
+        return result.data.data;
+    } catch (error) {
+        console.dir(error);
+        getError(error);
+    }
 };
 
 export const logoutAPI = async () => {
-    await axios.get('auth/logout');
-    setAxiosToken();
-    return { status: 'ok', code: 204 };
+    try {
+        await axios.get('auth/logout');
+        setAxiosToken();
+        return { status: 'ok', code: 204 };
+    } catch (error) {
+        getError(error);
+    }
 };
 
 export const getUserAPI = async token => {
-    setAxiosToken(token);
-    const result = await axios.get('users/current');
-    return result.data.data.user;
+    try {
+        setAxiosToken(token);
+        const result = await axios.get('users/current');
+        return result.data.data.user;
+    } catch (error) {
+        getError(error);
+    }
 };
 
 // -------------  Category  --------------------------
 
 export const getCategoryAPI = async () => {
-    const resultD = await axios.get('categories/income');
-    const resultC = await axios.get('categories/expense');
-    return [...resultC.data.categories, ...resultD.data.categories];
+    try {
+        const resultD = await axios.get('categories/income');
+        const resultC = await axios.get('categories/expense');
+        return [...resultC.data.categories, ...resultD.data.categories];
+    } catch (error) {
+        getError(error);
+    }
 };
 
 // ------------ Statistic ----------------------------
 
 export const getStatisticAPI = async ({ month, year }) => {
-    const query = `${month || year ? '?' : null}${
-        month ? `month=${month}` : null
+    try {
+        const query = `${month || year ? '?' : null}${
+            month ? `month=${month}` : null
         }${month && year ? '&' : null}${year ? `year=${year}` : null}`;
-    
-    const result = await axios.get(`transactions/statistics${query}`);
-    return result.data.transactions;
+
+        const result = await axios.get(`transactions/statistics${query}`);
+        return result.data.transactions;
+    } catch (error) {
+        getError(error);
+    }
 };
 
 // ------------  Finance (operations) ----------------------------
 
 export const getOperationsAPI = async data => {
-    let query = '';
-    if (data) {
-        query = `transactions?page=${data.page}&limit=${data.limit}`;
-    } else {
-        query = `transactions`;
+    try {
+        let query = '';
+        if (data) {
+            query = `transactions?page=${data.page}&limit=${data.limit}`;
+        } else {
+            query = `transactions`;
+        }
+        const result = await axios.get(query);
+        return result.data.data;
+    } catch (error) {
+        getError(error);
     }
-    const result = await axios.get(query);
-    return result.data.data;
 };
 
 export const addTransactionAPI = async data => {
-    const result = await axios.post('transactions', data);
-    return result.data.data.transaction;
+    try {
+        const result = await axios.post('transactions', data);
+        return result.data.data.transaction;
+    } catch (error) {
+        getError(error);
+    }
 };

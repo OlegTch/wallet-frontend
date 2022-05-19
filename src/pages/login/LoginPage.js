@@ -1,23 +1,27 @@
-
 import React, { useEffect } from 'react';
-
 import { useSelector } from 'react-redux';
-import { LoginForm } from '@component/loginForm';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
-import { isAuth } from '@redux/user/user-selector';
-
+import { LoginForm } from '@component/loginForm';
+import { isAuth, isErrorUser } from '@redux/user/user-selector';
 
 const LoginPage = () => {
-    const push = useNavigate();
     const isLoggedIn = useSelector(isAuth);
+    const errorUser = useSelector(isErrorUser);
+    const push = useNavigate();
+
+    useEffect(() => {
+        if (errorUser) {
+            toast.error(errorUser);
+        }
+    }, [errorUser]);
 
     useEffect(() => {
         if (isLoggedIn) {
             push('/');
         }
-    }, [isLoggedIn]);
+    }, [isLoggedIn, push]);
 
     return (
         <div>

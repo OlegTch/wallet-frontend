@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // import { toast } from 'react-toastify';
 // import { isErrorUser } from '@redux/user/user-selector';
-
+import { isAuth } from '@redux/user/user-selector';
 import { userOperation } from '../../redux/user/user-operation';
 import { Logo } from '../shared/logo';
 import sprite from '../../assets/sprite.svg';
@@ -15,11 +15,16 @@ import './loginForm.scss';
 
 export const LoginForm = () => {
     const dispatch = useDispatch();
+    const isLoggedIn = useSelector(isAuth);
+    console.log(isLoggedIn);
     // const errorUser = useSelector(isErrorUser);
 
     useEffect(() => {
+        if (!isLoggedIn) {
+            // toast.error(errorUser);
+        }
         //    dispatch(userOperation.login({ email, password }));
-    }, []);
+    }, [isLoggedIn]);
 
     return (
         <section>

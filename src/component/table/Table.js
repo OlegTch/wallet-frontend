@@ -5,7 +5,7 @@ export function Table({ category, color, total }) {
         return num
             .toFixed(2)
             .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ' ') || null;  //-------
     };
 
     return (
@@ -17,22 +17,21 @@ export function Table({ category, color, total }) {
 
             <div className="tableBody">
                 <ul>
-                    {category.length > 0 &&
-                        category.map(({ category, sum }, i) => (
-                            <li className="categoryItem" key={category}>
-                                <div
-                                    style={{
-                                        backgroundColor: color[i],
-                                        minWidth: 24 + 'px',
-                                        minHeight: 24 + 'px',
-                                    }}
-                                ></div>
-                                <div className="wrapper">
-                                    <p className="categoryName">{category}</p>
-                                    <p className="sum">{transformData(sum)}</p>
-                                </div>
-                            </li>
-                        ))}
+                    {category.map(({ category, sum, id }, i) => (
+                        <li className="categoryItem" key={id}>
+                            <div
+                                style={{
+                                    backgroundColor: color[i],
+                                    minWidth: 24 + 'px',
+                                    minHeight: 24 + 'px',
+                                }}
+                            ></div>
+                            <div className="wrapper">
+                                <p className="categoryName">{category}</p>
+                                <p className="sum">{transformData(sum)}</p>
+                            </div>
+                        </li>
+                    ))}
                 </ul>
                 <ul className="tableFooter">
                     <li className="tableFooterItem">

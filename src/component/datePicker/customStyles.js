@@ -32,7 +32,8 @@ export const customStyles = {
   
   menu: (provided) => ({  // стилі для контейнеру меню, що відкривається
     ...provided,
-    background: 'rgba(255, 255, 255, 0.7)',
+    // background: 'rgba(255, 255, 255, 0.8)',
+    background: 'rgba(231, 234, 242, 0.9)',
     boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
     backdropFilter: 'blur(5px)',
     borderRadius: 20,
@@ -45,7 +46,7 @@ export const customStyles = {
     ...provided,
     borderTop: '1px solid rgba(218, 212, 212, 0.3)',
     borderBottom: '1px solid rgba(218, 212, 212, 0.3)',
-    background: isFocused || isSelected ? 'rgba(218, 212, 212, 0.3)' : 'transparent',
+    background: isFocused || isSelected ? 'rgba(255, 255, 255, 0.7)' : 'transparent',
     color: isFocused || isSelected ? '#4A56E2' : '#000000',
     cursor: 'pointer',
     padding: '14px 20px',

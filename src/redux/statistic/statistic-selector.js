@@ -1,16 +1,32 @@
+// export const getStatistic = state => {
+//     const result =
+//         state.statistic.data.length === 0
+//             ? []
+//             : state.statistic.data.map(el => {
+//                   return {
+//                       category: state.categories.data.find(
+//                           element => element._id === el.category,
+//                       )?.name,
+//                       sum: el.sum,
+//                   };
+//               });
+//     return result;
+// };
+
 export const getStatistic = state => {
-    const result =
-        state.statistic.data.length === 0
+    const result = state.statistic.data.length === 0
             ? []
-            : state.statistic.data.map(el => {
-                  return {
-                      category: state.categories.data.find(
-                          element => element._id === el.category,
-                      )?.name,
-                      sum: el.sum,
-                  };
-              });
-    return result;
+        : state.statistic.data.map(el => {
+            return {
+                balance: el.balance,
+                sum: el.sum,
+                income: el.income,
+                id: el._id,
+                category: el.category.name,
+                    
+                }
+            })
+    return result 
 };
 
 export const isLoadingStatistic = state => state.statistic.isLoading;

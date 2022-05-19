@@ -52,8 +52,8 @@ export const getCategoryAPI = async () => {
 export const getStatisticAPI = async ({ month, year }) => {
     const query = `${month || year ? '?' : null}${
         month ? `month=${month}` : null
-    }${month && year ? '&' : null}${year ? `year=${year}` : null}`;
-
+        }${month && year ? '&' : null}${year ? `year=${year}` : null}`;
+    
     const result = await axios.get(`transactions/statistics${query}`);
     return result.data.transactions;
 };

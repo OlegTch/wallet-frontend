@@ -5,16 +5,17 @@ import './datePicker.scss';
 import { customStyles } from './customStyles';
 import sprite from '../../assets/sprite.svg';
 import { statisticOperation } from '../../redux/statistic/statistic-operation';
-import { categoriesOperation } from '../../redux/categories/categories-operation';
-import { isLoadingStatistic } from '../../redux/statistic/statistic-selector';
+// import { categoriesOperation } from '../../redux/categories/categories-operation';
+// import { isLoadingStatistic } from '../../redux/statistic/statistic-selector';
 
 import moment from 'moment';
 import 'moment/locale/uk';
 moment.locale('uk');
 
-const thisMonth = new Date().getMonth() + 1;
+const thisMonth = new Date().getMonth();  
 
 const monthsList = moment(new Date(), 'MMMM', 'uk')._locale._months.standalone;
+
 const monthsOptions = monthsList.map(el => ({ value: el, label: el }));
 
 const thisYear = new Date().getFullYear();
@@ -34,12 +35,13 @@ const DropdownIndicator = props => {
 };
 
 export function DatePicker() {
-    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedOption, setSelectedOption] = useState({ month: thisMonth, year: thisYear });
+    // const [selectedOption, setSelectedOption] = useState();
     const dispatch = useDispatch();
-    const { isLoading } = isLoadingStatistic;
+    // const { isLoading } = isLoadingStatistic;
 
     useEffect(() => {
-        dispatch(categoriesOperation.getCategories());
+        // dispatch(categoriesOperation.getCategories());
         // Запит списку статистики по категоріям за обраний період
         if (selectedOption !== null) {
             dispatch(statisticOperation.getStatistic(selectedOption));
@@ -55,8 +57,8 @@ export function DatePicker() {
         }
 
         if (name === 'month') {
-            const num = monthsList.findIndex(e => e === value) + 1;
-            console.log(num);
+            const num = monthsList.findIndex(e => e === value); 
+            // console.log(num)
             setSelectedOption(prev => ({ ...prev, [name]: num }));
         }
 
@@ -69,28 +71,30 @@ export function DatePicker() {
         <div className="containerDatePicker">
             <Select
                 components={{ DropdownIndicator }}
-                defaultValue={selectedOption}
+                // defaultValue={selectedOption}
+                // defaultValue={monthsOptions.find((month)=>month.value===selectedOption.month)}
                 onChange={option => {
                     handleChange('month', option.value);
                 }}
                 options={monthsOptions}
                 placeholder="Місяць"
                 isSearchable={false}
-                // isDisabled={!isLoading}
                 styles={customStyles}
+                // menuPlacement='top'
             />
 
             <Select
                 components={{ DropdownIndicator }}
-                defaultValue={selectedOption}
+                // defaultValue={selectedOption}
+                // defaultValue={yearsOptions.find((year)=>year.value===selectedOption.year)}
                 onChange={option => {
                     handleChange('year', option.value);
                 }}
                 options={yearsOptions}
                 placeholder="Рік"
                 isSearchable={false}
-                // isDisabled={!isLoading}
                 styles={customStyles}
+                // menuPlacement='top'
             />
         </div>
     );

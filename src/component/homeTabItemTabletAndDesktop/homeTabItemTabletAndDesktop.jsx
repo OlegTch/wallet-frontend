@@ -1,5 +1,6 @@
 import './homeTabItemTabletAndDesktop.scss';
 import moment from 'moment';
+import EllipsisText from 'react-ellipsis-text';
 
 const homeTabItemTabletAndDesktop = ({
     operation: {
@@ -8,15 +9,22 @@ const homeTabItemTabletAndDesktop = ({
         sum,
         balance,
         comment,
-        date,
+        datetime,
     },
 }) => {
     return (
         <li className="homeTabItemTabletAndDesktop">
-            <p>{moment(date).format('DD.MM.YY')}</p>
+            <p>{moment(datetime).format('DD.MM.YY')}</p>
             <p>{income ? '+' : '-'}</p>
-            <p>{name}</p>
-            <p>{comment}</p>
+            <p>
+                <EllipsisText text={name} length={10} />
+            </p>
+            <p>
+                <EllipsisText
+                    text={comment === null || '' ? '-' : comment}
+                    length={13}
+                />
+            </p>
             <p
                 className={
                     income
@@ -24,9 +32,11 @@ const homeTabItemTabletAndDesktop = ({
                         : 'homeTabItemAndDesktopResult homeTabItemAndDesktopResult--red'
                 }
             >
-                {sum}
+                <EllipsisText text={String(sum)} length={8} />
             </p>
-            <p>{balance}</p>
+            <p>
+                <EllipsisText text={String(balance)} length={8} />
+            </p>
         </li>
     );
 };

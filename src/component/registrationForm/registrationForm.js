@@ -7,25 +7,24 @@ import { Logo } from '../shared/logo';
 import Frame from '../../assets/img/tablet/Frame.png';
 import sprite from '../../assets/sprite.svg';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+import { PasswordIndicator } from './PasswordIndicator';
+import { isErrorUser } from '@redux/user/user-selector';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { isErrorUser } from '@redux/user/user-selector';
-// import zxcvbn from 'zxcvbn';
-
 
 
 export const RegistrationForm = () => {
    const dispatch = useDispatch();
    const [type, setType] = useState('password');
-   // const [score, setScore] = useState(0);
+   const [showLine, setShowLine] = useState(false);
    const errorUser = useSelector(isErrorUser);
+
    useEffect(() => {
       if (errorUser) {
          toast.error(errorUser);
       }
    }, [errorUser]);
-
    const showHiden = (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -33,35 +32,7 @@ export const RegistrationForm = () => {
       setType(currentType);
    }
 
-   // const strength = (e) => {
-   //    let password = e.target.value;
-   //    if (password.length > 10) {
-   //       strength += 1
-   //    }
-   //    if (password.length > 63) {
-   //       strength += 1
-   //    }
-   //    if (/[a-z]/.test(password)) {
-   //       strength += 1
-   //    }
-   //    if (/[A-Z]/.test(password)) {
-   //       strength += 1
-   //    }
-   //    if (/[0-9]/.test(password)) {
-   //       strength += 1
-   //    }
-   //    if (/[^a-zA-Z0-9]/.test(password)) {
-   //       strength += 1
-   //    }
-   //    if (e.target.value.length === '') {
 
-   //       let result = zxcvbn(e.target.value);
-   //       console.log();
-   //       setScore('1');
-   //    } else {
-   //       setScore(0);
-   //    }
-   // }
 
    return (
       <section className='register'>
@@ -82,32 +53,33 @@ export const RegistrationForm = () => {
 
 
             //відправляємо дані на сервер
-            onSubmit={({ email, password, name }) => {
-               const user = { name, email, password };
-               // console.log(user)
-               dispatch(userOperation.register(user));
+            onSubmit={({ name, email, password }, { resetForm }) => {
+               const user = { name, email, password }
 
+               dispatch(userOperation.register(user));
+               resetForm({ values: '' });
             }}
 
 
             //валідація форми
             validationSchema={Yup.object().shape({
-               email: Yup.string().email().min(10).max(63).required('Required'),
+               email: Yup.string().email().min(10).max(63).required('Обов\'язкове поле'),
                password: Yup.string()
-                  .required('Required')
-                  .min(6, 'Password must be at least 10 characters')
-                  .max(16, 'Password must be at most 63 characters'),
+                  .required('Обов\'язкове поле')
+                  .min(6, 'Пароль занадто короткий (мінімум 6 символів)')
+                  .max(16, 'Пароль занадто довгий (максимум 16 символів)'),
                confirmPassword: Yup.string()
-                  .required('Required')
+                  .required('Обов\'язкове поле')
                   .oneOf(
                      [Yup.ref('password'), null],
-                     'Passwords must match',
+                     'Паролі не співпадають',
                   ),
                name: Yup.string().min(
                   1,
-                  'Name must be at least 1 characters',
+                  'Ім\'я не може бути порожнім',
                )
-                  .max(12, 'Name must be at most 12 characters'),
+                  .max(12, 'Ім\'я не може бути більше 12 символів')
+                  .required('Обов\'язкове поле'),
             })}
          >
             {props => {
@@ -168,6 +140,7 @@ export const RegistrationForm = () => {
                               placeholder="Пароль"
                               onChange={handleChange}
                               // onKeyUp={strength}
+                              onFocus={() => setShowLine(true)}
                               onBlur={handleBlur}
                               value={values.password}
                            />
@@ -197,7 +170,7 @@ export const RegistrationForm = () => {
                               onBlur={handleBlur}
                               value={values.confirmPassword}
                            />
-                           {/* <span className='form__strength' data-score={score} /> */}
+                           <PasswordIndicator show={showLine} password={values.password} />
                         </label>
 
 

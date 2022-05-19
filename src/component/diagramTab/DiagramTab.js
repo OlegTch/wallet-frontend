@@ -31,7 +31,8 @@ export function DiagramTab() {
     const statisticCredit = useSelector(getStatistic);
     useSelector(getCategoryDebet); //income
     const statisticDebet = useSelector(getStatistic);
-
+    console.log(statisticCredit);
+    console.log(statisticDebet);
     const transformData = num => {
         return num
             ? num

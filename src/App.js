@@ -7,12 +7,7 @@ import { Error } from '@component';
 import Loader from '@component/spinnerLoader/spinnerLoader';
 import { withAuth } from '@hoc/withAuth';
 
-import {
-    isAuth,
-    isToken,
-    isLoading,
-    getToken,
-} from '@redux/user/user-selector';
+import { isAuth, isToken, getToken } from '@redux/user/user-selector';
 import { userOperation } from '@redux/user/user-operation';
 import { clear } from '@redux/global/global-action';
 
@@ -24,7 +19,6 @@ function App() {
     const dispatch = useDispatch();
     const isUserToken = useSelector(isToken);
     const isUserAuth = useSelector(isAuth);
-    const loading = useSelector(isLoading);
     const token = useSelector(getToken);
 
     useEffect(() => {
@@ -43,7 +37,7 @@ function App() {
     return (
         <>
             <Suspense fallback={<Loader />}>
-                {!loading && isUserAuth === isUserToken && (
+                {isUserAuth === isUserToken && (
                     <Routes>
                         <Route path="login" element={<LoginPage />} />
                         <Route path="register" element={<RegistrationPage />} />

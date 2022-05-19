@@ -1,30 +1,16 @@
-import React, { useEffect } from 'react';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-// import { toast } from 'react-toastify';
-// import { isErrorUser } from '@redux/user/user-selector';
-import { isAuth } from '@redux/user/user-selector';
+import { useDispatch } from 'react-redux';
+
 import { userOperation } from '../../redux/user/user-operation';
 import { Logo } from '../shared/logo';
 import sprite from '../../assets/sprite.svg';
 import imgMan from '../../assets/img/tablet/tabletMan.svg';
-import { clear } from '@redux/global/global-action';
 
 import './loginForm.scss';
-
 export const LoginForm = () => {
     const dispatch = useDispatch();
-    const isUserAuth = useSelector(isAuth);
-    // const errorUser = useSelector(isErrorUser);
-    // toast.error(errorUser);
-
-    useEffect(() => {
-        if (!isUserAuth) {
-            dispatch(clear());
-        }
-    }, [isUserAuth]);
 
     return (
         <section>

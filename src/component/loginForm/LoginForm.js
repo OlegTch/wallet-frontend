@@ -10,21 +10,21 @@ import { userOperation } from '../../redux/user/user-operation';
 import { Logo } from '../shared/logo';
 import sprite from '../../assets/sprite.svg';
 import imgMan from '../../assets/img/tablet/tabletMan.svg';
+import { clear } from '@redux/global/global-action';
 
 import './loginForm.scss';
 
 export const LoginForm = () => {
     const dispatch = useDispatch();
-    const isLoggedIn = useSelector(isAuth);
-    console.log(isLoggedIn);
+    const isUserAuth = useSelector(isAuth);
     // const errorUser = useSelector(isErrorUser);
+    // toast.error(errorUser);
 
     useEffect(() => {
-        if (!isLoggedIn) {
-            // toast.error(errorUser);
+        if (!isUserAuth) {
+            dispatch(clear());
         }
-        //    dispatch(userOperation.login({ email, password }));
-    }, [isLoggedIn]);
+    }, [isUserAuth]);
 
     return (
         <section>

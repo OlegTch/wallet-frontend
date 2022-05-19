@@ -1,12 +1,13 @@
 export const getStatistic = state => {
+    console.log('--------redux-------------');
+    console.log(state.statistic.data);
+    console.log(state.categories.data);
     const result =
         state.statistic.data.length === 0
             ? []
             : state.statistic.data.map(el => {
                   return {
-                      category: state.categories.data.find(
-                          element => element._id === el.category,
-                      )?.name,
+                      category: el.category.name,
                       sum: el.sum,
                   };
               });

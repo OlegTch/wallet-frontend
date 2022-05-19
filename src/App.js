@@ -29,10 +29,10 @@ function App() {
 
     useEffect(() => {
         console.log('Use effect in app', isUserAuth);
-        if (!isUserAuth) {
+        if (!isUserAuth && !isUserToken) {
             dispatch(clear());
         }
-    }, [isUserAuth]);
+    }, [isUserAuth, isUserToken]);
 
     return (
         <>

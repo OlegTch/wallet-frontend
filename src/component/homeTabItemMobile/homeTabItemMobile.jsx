@@ -34,10 +34,7 @@ const homeTabItemMobile = ({ operations }) => {
                             </p>
                             <p>
                                 Категорія:
-                                <EllipsisText
-                                    text={name ? name : ''}
-                                    length={13}
-                                />
+                                <EllipsisText text={name} length={13} />
                             </p>
                             <p>
                                 Коментар:

@@ -1,6 +1,10 @@
 import './homeTab.scss';
 import { getFinanceOpertaion } from '@redux/finance/finance-operation';
-import { getOperations, isLoading } from '@redux/finance/finance-selector';
+import {
+    getOperations,
+    isLoading,
+    isSaveModalDateStatic,
+} from '@redux/finance/finance-selector';
 import HomeTabList from '../homeTabList';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -8,6 +12,7 @@ import { useEffect } from 'react';
 const HomeTab = () => {
     const dispatch = useDispatch();
     const isLoad = useSelector(isLoading);
+    const isModalAdd = useSelector(isSaveModalDateStatic);
     const operations = useSelector(getOperations);
 
     useEffect(() => {
@@ -15,8 +20,8 @@ const HomeTab = () => {
             dispatch(getFinanceOpertaion.getOperations());
         }
     }, []);
-    console.log('finanse loading = ', isLoad);
-    return !isLoad ? (
+
+    return !isLoad && !isModalAdd ? (
         <section className="homeTab-section">
             <HomeTabList operations={operations} />
         </section>

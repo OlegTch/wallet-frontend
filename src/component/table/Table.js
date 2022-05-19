@@ -3,9 +3,11 @@ import './table.scss';
 export function Table({ category, color, total }) {
     const transformData = num => {
         return num
-            .toFixed(2)
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            ? num
+                  .toFixed(2)
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+            : null;
     };
 
     return (

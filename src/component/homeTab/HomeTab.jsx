@@ -15,7 +15,7 @@ const HomeTab = () => {
             dispatch(getFinanceOpertaion.getOperations());
         }
     }, []);
-
+    console.log('finanse loading = ', isLoad);
     return !isLoad ? (
         <section className="homeTab-section">
             <HomeTabList operations={operations} />

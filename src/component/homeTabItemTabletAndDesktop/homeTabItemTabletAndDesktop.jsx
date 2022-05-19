@@ -27,7 +27,10 @@ const homeTabItemTabletAndDesktop = ({ operations }) => {
                             <p>{moment(datetime).format('DD.MM.YY')}</p>
                             <p>{income ? '+' : '-'}</p>
                             <p>
-                                <EllipsisText text={name} length={10} />
+                                <EllipsisText
+                                    text={name ? name : ''}
+                                    length={10}
+                                />
                             </p>
                             <p>
                                 <EllipsisText

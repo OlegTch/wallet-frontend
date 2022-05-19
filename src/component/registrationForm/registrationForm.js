@@ -188,7 +188,7 @@ export const RegistrationForm = () => {
                                 {/* //Кнопка для відправки даних */}
                                 <button
                                     type="submit"
-                                    disabled={isSubmitting}
+                                    // disabled={isSubmitting}
                                     className="form__button form__button--active"
                                 >
                                     РЕЄСТРАЦІЯ

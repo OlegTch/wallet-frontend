@@ -1,2 +1,0 @@
-(this["webpackJsonpwallet-frontend"]=this["webpackJsonpwallet-frontend"]||[]).push([[6],{683:function(t,e,n){"use strict";n.r(e),n.d(e,"default",(function(){return a}));var c=n(0),r=n(10),s=n(139),u=n(6),f=n(38),i=n(1),a=function(){var t=Object(u.g)(),e=Object(r.c)(f.d);return Object(c.useEffect)((function(){e&&t("/")}),[e]),Object(i.jsx)("div",{children:Object(i.jsx)(s.a,{})})}}}]);
-//# sourceMappingURL=6.a5cc5538.chunk.js.map

@@ -94,7 +94,7 @@ export const LoginForm = () => {
                                 <button
                                     className="login_form__btn login_form__btn--current  "
                                     type="submit"
-                                    disabled={isSubmitting}
+                                    // disabled={isSubmitting}
                                 >
                                     <span>Вхід</span>
                                 </button>

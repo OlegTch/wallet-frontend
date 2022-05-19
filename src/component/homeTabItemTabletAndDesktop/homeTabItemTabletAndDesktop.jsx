@@ -21,9 +21,10 @@ const homeTabItemTabletAndDesktop = ({ operations }) => {
                     balance,
                     comment,
                     datetime,
+                    _id,
                 }) => {
                     return (
-                        <li className="homeTabItemTabletAndDesktop">
+                        <li className="homeTabItemTabletAndDesktop" key={_id}>
                             <p>{moment(datetime).format('DD.MM.YY')}</p>
                             <p>{income ? '+' : '-'}</p>
                             <p>

@@ -13,6 +13,7 @@ const homeTabItemMobile = ({ operations }) => {
                     balance,
                     comment,
                     datetime,
+                    _id,
                 }) => {
                     console.log(comment);
                     return (
@@ -22,6 +23,7 @@ const homeTabItemMobile = ({ operations }) => {
                                     ? 'homeTabItem homeTabItem--green'
                                     : 'homeTabItem homeTabItem--red'
                             }
+                            key={_id}
                         >
                             <p>
                                 Дата:

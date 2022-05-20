@@ -4,9 +4,11 @@ import currencyApi from '../../services/currencyApi';
 import { currencies } from '../../assets/constants.js';
 // import styles from "./Currency.module.css";
 import './curr.scss';
+import { useTranslation } from 'react-i18next';
 
 export default function CurrencyTable() {
     const [currency, setCurrency] = useState([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         const fetchCurrency = async () => {
@@ -48,9 +50,9 @@ export default function CurrencyTable() {
             <table>
                 <thead>
                     <tr>
-                        <td>Валюта</td>
-                        <td>Купівля</td>
-                        <td>Продаж</td>
+                        <td>{t('currency')}</td>
+                        <td>{t('buy')}</td>
+                        <td>{t('sale')}</td>
                     </tr>
                 </thead>
                 <tbody>

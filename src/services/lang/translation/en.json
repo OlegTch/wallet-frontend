@@ -12,5 +12,14 @@
     "addExpens": "Expence",
     "addTransactionButton": "Add",
     "abortAddTransaction": "Abort",
-    "comment": "Comment"
+    "comment": "Comment",
+    "tableDate": "Date",
+    "tableCategory": "Category",
+    "tableComment": "Comment",
+    "tableSum": "Sum",
+    "tableBalance": "Balance",
+    "tableType": "Type",
+    "currency": "Currency",
+    "buy": "Purchase",
+    "sale": "Selling"
 }

@@ -12,5 +12,14 @@
     "addExpens": "Витрати",
     "addTransactionButton": "Додати",
     "abortAddTransaction": "Скасувати",
-    "comment": "Коментар"
+    "comment": "Коментар",
+    "tableDate": "Дата",
+    "tableCategory": "Категорія",
+    "tableComment": "Коментар",
+    "tableSum": "Сума",
+    "tableBalance": "Баланс",
+    "tableType": "Тип",
+    "currency": "Валюта",
+    "buy": "Купівля",
+    "sale": "Продаж"
 }

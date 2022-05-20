@@ -40,7 +40,7 @@ export function Table({ category, color, total }) {
                 <ul className="tableFooter">
                     <li className="tableFooterItem">
                         <p className="row">
-                            {t('expence')}
+                            {t('expences')}
                             <span className="expense">
                                 {transformData(total.expense)}
                             </span>
@@ -48,7 +48,7 @@ export function Table({ category, color, total }) {
                     </li>
                     <li className="tableFooterItem">
                         <p className="row">
-                            {t('income')}
+                            {t('incomes')}
                             <span className="income">
                                 {transformData(total.income)}
                             </span>

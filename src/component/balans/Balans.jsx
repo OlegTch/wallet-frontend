@@ -1,10 +1,11 @@
 import { useSelector } from 'react-redux';
 import './balans.scss';
 import { getBalance } from '@redux/finance/finance-selector';
-import i18n from '../../services/lang';
+import { useTranslation } from 'react-i18next';
 
 export const Balans = () => {
     const balans = useSelector(getBalance);
+    const { t } = useTranslation();
 
     const makeMoney = n => {
         return parseFloat(n)
@@ -14,7 +15,7 @@ export const Balans = () => {
 
     return (
         <div className="balans">
-            <p className="balans__title">{i18n.t('balance')}</p>
+            <p className="balans__title">{t('balance')}</p>
             {/* <p className="balans__title">Ваш баланс</p> */}
             <p className="balans__order">&#8372; {makeMoney(balans)}</p>
         </div>

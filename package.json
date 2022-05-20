@@ -38,7 +38,8 @@
         "redux-persist": "^6.0.0",
         "sass": "^1.51.0",
         "yarn": "^1.22.18",
-        "yup": "^0.32.11"
+        "yup": "^0.32.11",
+        "zxcvbn": "^4.4.2"
     },
     "scripts": {
         "start": "craco start",

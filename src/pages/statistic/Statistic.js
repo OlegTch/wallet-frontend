@@ -6,7 +6,7 @@ import { statisticOperation } from '../../redux/statistic/statistic-operation';
 
 // Поточна дата
 
-const thisMonth = new Date().getMonth() + 1;
+const thisMonth = new Date().getMonth();
 const thisYear = new Date().getFullYear();
 
 const Statistic = () => {

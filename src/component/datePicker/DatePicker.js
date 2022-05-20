@@ -12,7 +12,7 @@ import moment from 'moment';
 import 'moment/locale/uk';
 moment.locale('uk');
 
-const thisMonth = new Date().getMonth();  
+const thisMonth = new Date().getMonth();
 
 const monthsList = moment(new Date(), 'MMMM', 'uk')._locale._months.standalone;
 
@@ -35,7 +35,10 @@ const DropdownIndicator = props => {
 };
 
 export function DatePicker() {
-    const [selectedOption, setSelectedOption] = useState({ month: thisMonth, year: thisYear });
+    const [selectedOption, setSelectedOption] = useState({
+        month: thisMonth,
+        year: thisYear,
+    });
     // const [selectedOption, setSelectedOption] = useState();
     const dispatch = useDispatch();
     // const { isLoading } = isLoadingStatistic;
@@ -57,7 +60,7 @@ export function DatePicker() {
         }
 
         if (name === 'month') {
-            const num = monthsList.findIndex(e => e === value); 
+            const num = monthsList.findIndex(e => e === value);
             // console.log(num)
             setSelectedOption(prev => ({ ...prev, [name]: num }));
         }

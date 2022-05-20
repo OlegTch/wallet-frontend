@@ -15,7 +15,13 @@ export const Navigation = () => {
                                     <li className="nav_list__item" key={idx}>
                                         <ItemNav
                                             icon={el.icon}
-                                            text={el.text}
+                                            text={
+                                                el.text[
+                                                    localStorage.getItem(
+                                                        'lang',
+                                                    ) ?? 'ua'
+                                                ]
+                                            }
                                             linkTo={el.linkTo}
                                         />
                                     </li>

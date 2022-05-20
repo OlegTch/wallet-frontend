@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
 
 // import { Dashboard, RegistrationPage, LoginPage } from '@pages';
 import { Error } from '@component';
@@ -38,16 +39,21 @@ function App() {
         <>
             <Suspense fallback={<Loader />}>
                 {isUserAuth === isUserToken && (
-                    <Routes>
-                        <Route path="login" element={<LoginPage />} />
-                        <Route path="register" element={<RegistrationPage />} />
+                    <>
+                        <Routes>
+                            <Route path="login" element={<LoginPage />} />
+                            <Route
+                                path="register"
+                                element={<RegistrationPage />}
+                            />
 
-                        <Route path="/" element={withAuth(isUserAuth)} />
-                        <Route
-                            path="/*"
-                            element={withAuth(isUserAuth, <Dashboard />)}
-                        />
-                    </Routes>
+                            <Route path="/" element={withAuth(isUserAuth)} />
+                            <Route
+                                path="/*"
+                                element={withAuth(isUserAuth, <Dashboard />)}
+                            />
+                        </Routes>
+                    </>
                 )}
                 <Error />
             </Suspense>
@@ -55,4 +61,4 @@ function App() {
     );
 }
 
-export default App;
+export default withTranslation()(App);

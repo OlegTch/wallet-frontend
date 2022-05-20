@@ -6,9 +6,11 @@ import './buttonExit.scss';
 
 import { openModalLogout } from '@redux/user/user-slice';
 import { globalMedia } from '@data';
+import { useTranslation } from 'react-i18next';
 
 export const ButtonExit = () => {
     const dispatch = useDispatch();
+    const { t } = useTranslation();
 
     const onClick = () => {
         dispatch(openModalLogout());
@@ -26,7 +28,7 @@ export const ButtonExit = () => {
                 {matches => (
                     <>
                         {matches.medium && (
-                            <p className="button_exit__text">Вийти</p>
+                            <p className="button_exit__text">{t('exit')}</p>
                         )}
                     </>
                 )}

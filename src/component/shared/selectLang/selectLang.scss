@@ -1,0 +1,42 @@
+.lang {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // top: 30px;
+    // right: 30px;
+    // width: 40px;
+    // height: 40px;
+
+    // @media screen and (min-width: 768px) {
+    //     width: 50px;
+    //     height: 50px;
+    //     // top: 40px;
+    //     // right: 40px;
+    // }
+}
+
+.button_lang {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    &.ua {
+        background-image: url(../../../assets/uk.png);
+    }
+
+    &.en {
+        background-image: url(../../../assets/en.png);
+    }
+}
+
+.block_select {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

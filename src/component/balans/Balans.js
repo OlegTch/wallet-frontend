@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import './balans.scss';
 import { getBalance } from '@redux/finance/finance-selector';
+import i18n from '../../services/lang';
 
 export const Balans = () => {
     const balans = useSelector(getBalance);
@@ -13,7 +14,8 @@ export const Balans = () => {
 
     return (
         <div className="balans">
-            <p className="balans__title">Ваш баланс</p>
+            <p className="balans__title">{i18n.t('balance')}</p>
+            {/* <p className="balans__title">Ваш баланс</p> */}
             <p className="balans__order">&#8372; {makeMoney(balans)}</p>
         </div>
     );

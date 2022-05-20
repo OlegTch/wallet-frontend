@@ -1,18 +1,22 @@
+import { useTranslation } from 'react-i18next';
 import './table.scss';
 
 export function Table({ category, color, total }) {
+    const { t } = useTranslation();
     const transformData = num => {
-        return num
-            .toFixed(2)
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ' ') || null;  //-------
+        return (
+            num
+                .toFixed(2)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ' ') || null
+        ); //-------
     };
 
     return (
         <div className="diagramTab-table">
             <div className="tableHeader">
-                <p>Категорія</p>
-                <p>Сума</p>
+                <p>{t('category')}</p>
+                <p>{t('summ')}</p>
             </div>
 
             <div className="tableBody">
@@ -36,7 +40,7 @@ export function Table({ category, color, total }) {
                 <ul className="tableFooter">
                     <li className="tableFooterItem">
                         <p className="row">
-                            Витрати:
+                            {t('expence')}
                             <span className="expense">
                                 {transformData(total.expense)}
                             </span>
@@ -44,7 +48,7 @@ export function Table({ category, color, total }) {
                     </li>
                     <li className="tableFooterItem">
                         <p className="row">
-                            Доходи:
+                            {t('income')}
                             <span className="income">
                                 {transformData(total.income)}
                             </span>

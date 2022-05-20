@@ -15,7 +15,9 @@ import sprite from '@assets/sprite.svg';
 import './modalTransaction.scss';
 
 import { validate } from 'indicative/validator';
+import { useTranslation } from 'react-i18next';
 export const ModalTransaction = () => {
+    const { t } = useTranslation();
     const getCredit = useSelector(getCategoryCredit);
     const getDebet = useSelector(getCategoryDebet);
     const pushDate = useSelector(isSaveModalDateStatic);
@@ -121,7 +123,7 @@ export const ModalTransaction = () => {
     function switchClickHandler(e) {
         if (!e.target.checked) {
             setModalTypeTransaction('spending');
-            setCategory('Виберіть категорію');
+            setCategory(t('selectCategory'));
             setIdCategory(null);
             return;
         }
@@ -172,7 +174,7 @@ export const ModalTransaction = () => {
     };
     // випадающий список
     function DropMenuActive() {
-        if (category !== 'Виберіть категорію') {
+        if (category !== t('selectCategory')) {
             const notActiv = 'dropField';
             const active = 'dropFieldActive';
 
@@ -238,14 +240,14 @@ export const ModalTransaction = () => {
                     </svg>
                 </span>
             </div>
-            <h2 className="titleText">Додати Транзакцію</h2>
+            <h2 className="titleText">{t('addTransaction')}</h2>
             <form
                 onSubmit={submitHandler}
                 id="modalTransaction"
                 className="modalForm"
             >
                 <div className="switchTypeBalance">
-                    <span className={switchActiveDebet()}>Дохід</span>
+                    <span className={switchActiveDebet()}>{t('addIncom')}</span>
                     <div className="toggleContainerType">
                         <label
                             className="toggleTypeBody"
@@ -271,7 +273,7 @@ export const ModalTransaction = () => {
                         id="switchType"
                         defaultChecked
                     />
-                    <span className={switchActive()}>Витрати</span>
+                    <span className={switchActive()}> {t('addExpens')}</span>
                 </div>
                 {dropListSelectJSX}
                 <div className="sumContainer">
@@ -302,17 +304,17 @@ export const ModalTransaction = () => {
                     <textarea
                         maxLength="200"
                         className="commentField"
-                        placeholder="коментар"
+                        placeholder={t('comment')}
                         onChange={commentInput}
                         value={comment}
                     />
                 </div>
                 <div className="buttonContainer">
                     <button className="submitButton" type="submit">
-                        Додати
+                        {t('addTransactionButton')}
                     </button>
                     <button className="cancelButton" onClick={closeModalItem}>
-                        Скасувати
+                        {t('abortAddTransaction')}
                     </button>
                 </div>
             </form>

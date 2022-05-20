@@ -1,4 +1,16 @@
 {
     "balance": "Your balance",
-    "exit": "Exit"
+    "exit": "Exit",
+    "loading": "Loading ...",
+    "category": "Category",
+    "summ": "Sum",
+    "expence": "Expences :",
+    "income": "Incomes:",
+    "selectCategory": "Choose category",
+    "addTransaction": "Add transaction",
+    "addIncom": "Income",
+    "addExpens": "Expence",
+    "addTransactionButton": "Add",
+    "abortAddTransaction": "Abort",
+    "comment": "Comment"
 }

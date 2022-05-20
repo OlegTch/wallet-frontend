@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next';
 import './spinnerLoader.scss';
 
 function LoaderRoket() {
-    return <div className="loader">Loading...</div>;
+    const { t } = useTranslation();
+    return <div className="loader">{t('loading')}</div>;
 }
 export default LoaderRoket;

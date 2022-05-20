@@ -1,4 +1,16 @@
 {
     "balance": "Ваш баланс",
-    "exit": "Вихід"
+    "exit": "Вихід",
+    "loading": "Завантаження ...",
+    "category": "Категорія",
+    "summ": "Сума",
+    "expence": "Витрати:",
+    "income": "Доходи:",
+    "selectCategory": "Виберіть категорію",
+    "addTransaction": "Додати транзакцію",
+    "addIncom": "Дохід",
+    "addExpens": "Витрати",
+    "addTransactionButton": "Додати",
+    "abortAddTransaction": "Скасувати",
+    "comment": "Коментар"
 }

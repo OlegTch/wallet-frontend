@@ -20,11 +20,11 @@ const options = {
 }
 
 export function ChartDoughnut({ category, balance, color, }) {
-  const isStat = useSelector(getStatistic);
-  // const isLoading = useSelector(isLoadingStatistic);
+  const statistic = useSelector(getStatistic);
+  const isLoading = useSelector(isLoadingStatistic);
 
   const data = () => {
-    if (isStat.length === 0) {
+    if ( !isLoading && statistic.expense.length===0) {
     
         return {
           labels: ['No statistic'],
@@ -54,7 +54,7 @@ export function ChartDoughnut({ category, balance, color, }) {
 
   }
   
-  return <div>
+  return  <div>
     <h2 className='diagramTab-header'>Статистика</h2>
     <div className='wrapper-chart'>
       <div className='balance'>&#8372; {" " + balance} </div>

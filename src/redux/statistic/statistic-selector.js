@@ -21,7 +21,7 @@ export const getStatistic = state => {
             ? []
             : state.statistic.dataExpense.map(el => ({
                   sum: el.totalSum,
-                  name: el._id[0].name,
+                  category: el._id[0].name,
               }));
 
     result.income =
@@ -29,7 +29,7 @@ export const getStatistic = state => {
             ? []
             : state.statistic.dataIncome.map(el => ({
                   sum: el.totalSum,
-                  name: el._id[0].name,
+                  category: el._id[0].name,
               }));
     result.totalExpense = state.statistic.totalExpense;
     result.totalIncome = state.statistic.totalIncome;

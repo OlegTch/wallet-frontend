@@ -86,7 +86,7 @@ export function DiagramTab() {
         return num;
     };
     const color = colorTempl.concat(generateColor());
-
+    console.log(statisticCredit);
     return (
         <div className="diagramTab-section">
             <ChartDoughnut

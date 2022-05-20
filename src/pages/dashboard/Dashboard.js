@@ -55,6 +55,8 @@ const Dashboard = () => {
         }
     }, [isSaveTransaction, isOpenModalTransaction]);
 
+    console.log('Dashboard');
+
     return (
         <>
             <Header />

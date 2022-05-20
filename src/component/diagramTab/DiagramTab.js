@@ -10,19 +10,19 @@ import './diagramTab.scss';
 import { ChartDoughnut } from '@component/chartDoughnut';
 import { DatePicker } from '@component/datePicker';
 import { Table } from '@component/table';
-           
+
 const rgb = [
     '#ffcf57',
     '#ffd8d0',
     '#fd9498',
-    '#c5baff', 
-    '#6e78e8', 
-    '#4a56e2', 
-    '#81e1ff', 
-    '#24cca7', 
+    '#c5baff',
+    '#6e78e8',
+    '#4a56e2',
+    '#81e1ff',
+    '#24cca7',
     '#00ad84',
-]
-  
+];
+
 export function DiagramTab() {
     const dispatch = useDispatch();
     // const isCategories = useSelector(isCategoriesFull);
@@ -35,30 +35,30 @@ export function DiagramTab() {
     const statistic = useSelector(getStatistic);
 
     useEffect(() => {
-    dispatch(getFinanceOpertaion.getOperations())
-  }, [dispatch])
+        dispatch(getFinanceOpertaion.getOperations());
+    }, [dispatch]);
 
-    const getSum = (arr) => {
-       return  arr.reduce((acc, el) => acc + el.sum, 0)
-    }
+    const getSum = arr => {
+        return arr.reduce((acc, el) => acc + el.sum, 0);
+    };
 
-    const statisticDebet = statistic.filter(el => el.income);
+    const statisticDebet = statistic.income;
     // console.log(statisticDebet)
 
-    const statisticCredit = statistic.filter(el => !el.income);
+    const statisticCredit = statistic.expense;
     // console.log(statisticCredit)
 
     const getTotal = () => {
         const expense = getSum(statisticCredit);
         const income = getSum(statisticDebet);
-        return {expense, income}
-    }
+        return { expense, income };
+    };
     // console.log(getTotal())
 
     // const allCategoryName = (statisticCredit.map((el) => el.category));
     // console.log(allCategoryName)
-    
-    // const filtrCategory= (statisticCredit.reduce((acc, currV) => { 
+
+    // const filtrCategory= (statisticCredit.reduce((acc, currV) => {
     //     if (acc.indexOf(currV.category)) {
     //         acc.push(currV.category)
     //     }
@@ -66,23 +66,29 @@ export function DiagramTab() {
     // }, []))
     // console.log(filtrCategory)
 
-    const transformData = (num) => {
-        return num.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") || null  //---------
-    }
+    const transformData = num => {
+        return (
+            num
+                .toFixed(2)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ' ') || null
+        ); //---------
+    };
 
-  // Кольори за макетом
-    const colorTempl = rgb.map(el => el)
+    // Кольори за макетом
+    const colorTempl = rgb.map(el => el);
 
     // генерація випадкового кольору
-    const generateColor=()=> {
+    const generateColor = () => {
         const num = statisticCredit.map(() => {
-            return '#' + Math.floor(Math.random() * 16777215).toString(16)
-        })
-        return num
-    }
+            return '#' + Math.floor(Math.random() * 16777215).toString(16);
+        });
+        return num;
+    };
     const color = colorTempl.concat(generateColor());
-    
-        return <div className='diagramTab-section'>
+
+    return (
+        <div className="diagramTab-section">
             <ChartDoughnut
                 category={statisticCredit}
                 balance={transformData(balance)}
@@ -93,9 +99,13 @@ export function DiagramTab() {
                 <Table
                     category={statisticCredit}
                     color={color}
-                    total={getTotal()}
+                    total={{
+                        expense: statistic.totalExpense,
+                        income: statistic.totalIncome,
+                    }}
+                    // total={getTotal()}
                 />
             </div>
         </div>
-
+    );
 }

@@ -88,6 +88,10 @@ export const getStatisticAPI = async ({ month, year }) => {
         }${month && year ? '&' : null}${year ? `year=${year}` : null}`;
 
         const result = await axios.get(`transactions/statistics${query}`);
+        console.log(
+            '------------------------------statistic api------------------------',
+        );
+        console.log(result);
         return result.data.transactions;
     } catch (error) {
         getError(error);

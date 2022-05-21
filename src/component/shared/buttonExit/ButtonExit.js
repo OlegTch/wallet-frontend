@@ -1,18 +1,16 @@
 import { useDispatch } from 'react-redux';
 import Media from 'react-media';
 
-import sprite from '@assets/sprite.svg';
-import './buttonExit.scss';
-
 import { openModalLogout } from '@redux/user/user-slice';
 import { globalMedia } from '@data';
+import sprite from '@assets/sprite.svg';
+import './buttonExit.scss';
 
 export const ButtonExit = () => {
     const dispatch = useDispatch();
 
     const onClick = () => {
         dispatch(openModalLogout());
-        // dispatch(userOperation.logout());
     };
 
     return (

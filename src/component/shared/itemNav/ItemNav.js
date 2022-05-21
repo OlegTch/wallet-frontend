@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import Media from 'react-media';
 
+import { globalMedia } from '@data';
 import sprite from '@assets/sprite.svg';
 import './itemNav.scss';
-import { globalMedia } from '@data';
 
 export const ItemNav = ({ icon, text, linkTo }) => {
     return (

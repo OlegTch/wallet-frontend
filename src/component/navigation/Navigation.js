@@ -1,4 +1,5 @@
 import Media from 'react-media';
+
 import { navList, globalMedia } from '@data';
 import { ItemNav } from '@shared';
 import './navigation.scss';

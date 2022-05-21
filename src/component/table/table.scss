@@ -10,7 +10,7 @@
     padding: 15px 20px 15px 20px;
     justify-content: space-between;
 
-    font-family: 'Circe, sans-serif';
+    font-family: 'Circe';
     font-weight: 700;
     font-size: 18px;
     line-height: 27px;
@@ -29,10 +29,10 @@
     padding: 14px 20px 14px 20px;
     border-bottom: 1px solid #DCDCDF;
 
-    font-family: 'Circe, sans-serif';
+    font-family: 'Circe';
     font-weight: 400;
     font-size: 16px;
-    line-height: 18px;
+    line-height: 24px;
     color: var(--primary-text-color);
 
     @media screen and (min-width: $TabletWidth) {
@@ -59,7 +59,7 @@
 }
 
 .tableFooter {
-    font-family: 'Circe, sans-serif';
+    font-family: 'Circe';
     font-weight: 700;
     font-size: 16px;
     line-height: 24px;

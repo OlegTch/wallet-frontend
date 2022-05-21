@@ -1,35 +1,34 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-// import Media from 'react-media';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { DiagramTab } from '@component/diagramTab';
-import { statisticOperation } from '../../redux/statistic/statistic-operation';
+import {
+    isLoadingStatistic,
+    isErrorStatistic,
+    getStatistic,
+} from '@redux/statistic/statistic-selector';
 
-// Поточна дата
 
-const thisMonth = new Date().getMonth();
-const thisYear = new Date().getFullYear();
+//Поточна дата
 
 const Statistic = () => {
-    const dispatch = useDispatch();
+    const isLoading = useSelector(isLoadingStatistic);
+    const error = useSelector(isErrorStatistic);
+    const statistic = useSelector(getStatistic);
 
     useEffect(() => {
-        // Запит статистики за поточний період
-        dispatch(
-            statisticOperation.getStatistic({
-                month: thisMonth,
-                year: thisYear,
-            }),
-        );
-    }, [dispatch]);
+        if (error) {
+            toast.error(error);
+        }
+    }, [error]);
 
     return (
-        <div className="statistic-section">
-            {/* <Media query='(min-width:1280px)'
-      render={() => <h2 className='diagramTab-header'>Статистика</h2>} /> */}
-            <h1 className="statistic-header__main">Статистика</h1>
-            <DiagramTab />
-        </div>
-    );
+        <>
+            <div className="statistic-section">
+                <h1 className="statistic-header__main">Статистика</h1>
+                <DiagramTab/>
+            </div>
+            
+        </>)
 };
-
 export default Statistic;

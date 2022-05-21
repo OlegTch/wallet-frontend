@@ -5,7 +5,7 @@ export function Table({ category, color, total }) {
         return num
             .toFixed(2)
             .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ' ') || null;  //-------
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ' ') || null;
     };
 
     return (
@@ -17,8 +17,8 @@ export function Table({ category, color, total }) {
 
             <div className="tableBody">
                 <ul>
-                    {category.map(({ category, sum, id }, i) => (
-                        <li className="categoryItem" key={id}>
+                    {category.map(({ category, sum }, i) => (
+                        <li className="categoryItem" key={"statistic-"+i}>
                             <div
                                 style={{
                                     backgroundColor: color[i],

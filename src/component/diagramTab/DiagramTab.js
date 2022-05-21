@@ -1,15 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-// import { getCategoryDebet, getCategoryCredit } from '../../redux/categories/categories-selector';
-import { getStatistic } from '../../redux/statistic/statistic-selector';
-import { statisticOperation } from '../../redux/statistic/statistic-operation';
+import { getStatistic } from '@redux/statistic/statistic-selector';
 import { getBalance } from '@redux/finance/finance-selector';
 import { getFinanceOpertaion } from '@redux/finance/finance-operation';
-
-import './diagramTab.scss';
 import { ChartDoughnut } from '@component/chartDoughnut';
 import { DatePicker } from '@component/datePicker';
 import { Table } from '@component/table';
+import './diagramTab.scss';
 
 const rgb = [
     '#ffcf57',
@@ -25,46 +22,14 @@ const rgb = [
 
 export function DiagramTab() {
     const dispatch = useDispatch();
-    // const isCategories = useSelector(isCategoriesFull);
-    // const statistic = useSelector(updateStatistic);
     const balance = useSelector(getBalance);
-    // useSelector(getCategoryCredit);
-    // const statisticCredit = useSelector(getStatistic);
-    // useSelector(getCategoryDebet);                     // -------income
-    // const statisticDebet = useSelector(getStatistic);
     const statistic = useSelector(getStatistic);
 
     useEffect(() => {
-        dispatch(getFinanceOpertaion.getOperations());
+        dispatch(getFinanceOpertaion.getOperations());  
     }, [dispatch]);
 
-    const getSum = arr => {
-        return arr.reduce((acc, el) => acc + el.sum, 0);
-    };
-
-    const statisticDebet = statistic.income;
-    // console.log(statisticDebet)
-
     const statisticCredit = statistic.expense;
-    // console.log(statisticCredit)
-
-    const getTotal = () => {
-        const expense = getSum(statisticCredit);
-        const income = getSum(statisticDebet);
-        return { expense, income };
-    };
-    // console.log(getTotal())
-
-    // const allCategoryName = (statisticCredit.map((el) => el.category));
-    // console.log(allCategoryName)
-
-    // const filtrCategory= (statisticCredit.reduce((acc, currV) => {
-    //     if (acc.indexOf(currV.category)) {
-    //         acc.push(currV.category)
-    //     }
-    //     return acc
-    // }, []))
-    // console.log(filtrCategory)
 
     const transformData = num => {
         return (
@@ -72,7 +37,7 @@ export function DiagramTab() {
                 .toFixed(2)
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ' ') || null
-        ); //---------
+        ); 
     };
 
     // Кольори за макетом
@@ -86,9 +51,9 @@ export function DiagramTab() {
         return num;
     };
     const color = colorTempl.concat(generateColor());
-    console.log(statisticCredit);
-    return (
-        <div className="diagramTab-section">
+    
+    return  (
+         <div className="diagramTab-section">
             <ChartDoughnut
                 category={statisticCredit}
                 balance={transformData(balance)}
@@ -103,7 +68,6 @@ export function DiagramTab() {
                         expense: statistic.totalExpense,
                         income: statistic.totalIncome,
                     }}
-                    // total={getTotal()}
                 />
             </div>
         </div>

@@ -5,7 +5,7 @@ import { globalMedia } from '@data';
 import sprite from '@assets/sprite.svg';
 import './itemNav.scss';
 
-export const ItemNav = ({ icon, text, linkTo }) => {
+const ItemNav = ({ icon, text, linkTo }) => {
     return (
         <NavLink
             className={({ isActive }) =>
@@ -28,3 +28,5 @@ export const ItemNav = ({ icon, text, linkTo }) => {
         </NavLink>
     );
 };
+
+export default ItemNav;

@@ -1,10 +1,10 @@
 import Media from 'react-media';
 
 import { navList, globalMedia } from '@data';
-import { ItemNav } from '@shared';
+import ItemNav from '@component/itemNav';
 import './navigation.scss';
 
-export const Navigation = () => {
+const Navigation = () => {
     return (
         <ul className="nav_list">
             {navList.map((el, idx) => {
@@ -29,3 +29,5 @@ export const Navigation = () => {
         </ul>
     );
 };
+
+export default Navigation;

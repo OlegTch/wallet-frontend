@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { getBalance } from '@redux/finance/finance-selector';
 import './balans.scss';
 
-export const Balans = () => {
+const Balans = () => {
     const balans = useSelector(getBalance);
 
     const makeMoney = n => {
@@ -19,3 +19,5 @@ export const Balans = () => {
         </div>
     );
 };
+
+export default Balans;

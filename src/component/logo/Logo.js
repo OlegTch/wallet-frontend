@@ -1,7 +1,7 @@
 import sprite from '@assets/sprite.svg';
 import './logo.scss';
 
-export const Logo = () => {
+const Logo = () => {
     return (
         <div className="logo">
             <svg className="logo_icon">
@@ -11,3 +11,5 @@ export const Logo = () => {
         </div>
     );
 };
+
+export default Logo;

@@ -1,1 +1,1 @@
-export * from './Balans';
+export { default } from './Balans';

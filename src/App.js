@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 // import { Dashboard, RegistrationPage, LoginPage } from '@pages';
-import { Error } from '@component';
+import Error from '@component/errorApp';
 import Loader from '@component/spinnerLoader/spinnerLoader';
-import { withAuth } from '@hoc/withAuth';
 
+import { withAuth } from '@hoc/withAuth';
 import { isAuth, isToken, getToken } from '@redux/user/user-selector';
 import { userOperation } from '@redux/user/user-operation';
 import { clear } from '@redux/global/global-action';

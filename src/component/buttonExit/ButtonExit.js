@@ -6,7 +6,7 @@ import { globalMedia } from '@data';
 import sprite from '@assets/sprite.svg';
 import './buttonExit.scss';
 
-export const ButtonExit = () => {
+const ButtonExit = () => {
     const dispatch = useDispatch();
 
     const onClick = () => {
@@ -32,3 +32,5 @@ export const ButtonExit = () => {
         </button>
     );
 };
+
+export default ButtonExit;

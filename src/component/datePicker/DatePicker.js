@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Select, { components } from 'react-select';
-import './datePicker.scss';
-import { customStyles } from './customStyles';
-import sprite from '../../assets/sprite.svg';
-import { statisticOperation } from '../../redux/statistic/statistic-operation';
-
 import moment from 'moment';
 import 'moment/locale/uk';
+import sprite from '@assets/sprite.svg';
+import { statisticOperation } from '@redux/statistic/statistic-operation';
+import { customStyles } from './customStyles';
+import './datePicker.scss';
+
 moment.locale('uk');
 
 const thisMonth = new Date().getMonth();
@@ -67,7 +67,6 @@ export function DatePicker() {
                 placeholder="Місяць"
                 isSearchable={false}
                 styles={customStyles}
-                // menuPlacement='top'
             />
 
             <Select
@@ -79,7 +78,6 @@ export function DatePicker() {
                 placeholder="Рік"
                 isSearchable={false}
                 styles={customStyles}
-                // menuPlacement='top'
             />
         </div>
     );

@@ -1,21 +1,17 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { DiagramTab } from '@component/diagramTab';
-// import { statisticOperation } from '../../redux/statistic/statistic-operation';
 import {
     isLoadingStatistic,
     isErrorStatistic,
     getStatistic,
-} from '../../redux/statistic/statistic-selector';
-import { toast } from 'react-toastify';
+} from '@redux/statistic/statistic-selector';
+
 
 //Поточна дата
 
-// const thisMonth = new Date().getMonth();  // в компоненті DatePicker
-// const thisYear = new Date().getFullYear();
-
 const Statistic = () => {
-    // const dispatch = useDispatch();
     const isLoading = useSelector(isLoadingStatistic);
     const error = useSelector(isErrorStatistic);
     const statistic = useSelector(getStatistic);
@@ -25,17 +21,6 @@ const Statistic = () => {
             toast.error(error);
         }
     }, [error]);
-
-    // useEffect(() => {
-    //     // Запит статистики за поточний період
-
-    //     dispatch(
-    //         statisticOperation.getStatistic({   // dispatch в компоненті DatePicker
-    //             month: thisMonth,
-    //             year: thisYear,
-    //         }),
-    //     );
-    // }, []);
 
     return (
         <>

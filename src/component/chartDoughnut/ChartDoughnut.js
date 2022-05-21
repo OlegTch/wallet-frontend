@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import { getStatistic, isLoadingStatistic } from '../../redux/statistic/statistic-selector';
+import { getStatistic, isLoadingStatistic } from '@redux/statistic/statistic-selector';
 
 import './chartDoughnut.scss';
 
@@ -57,7 +57,7 @@ export function ChartDoughnut({ category, balance, color, }) {
   return  <div>
     <h2 className='diagramTab-header'>Статистика</h2>
     <div className='wrapper-chart'>
-      <div className='balance'>&#8372; {" " + balance} </div>
+      <div className='balance-chart'>&#8372; {" " + balance} </div>
       <Doughnut data={data()} options={options}/>
     </div>
     

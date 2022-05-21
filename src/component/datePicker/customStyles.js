@@ -52,13 +52,14 @@ export const customStyles = {
     padding: '14px 20px',
     fontSize: '16px',
     lineHeight: '24px',
-    fontFamily: 'Circe, sans-serif',
+    fontFamily: 'Circe',
     textTransform: 'capitalize',
   }),
 
   placeholder: (provided) => ({
     ...provided,
     color: '#000000',
+    fontFamily: 'Circe',
     fontSize: '16px',
     fontWeight: 400,
     lineHeight: '24px',
@@ -66,6 +67,7 @@ export const customStyles = {
 
   singleValue: (provided, {placeholder}) => ({
     ...provided,
+    fontFamily: 'Circe',
     fontSize: '16px',
     lineHeight: '24px',
     color: '#4A56E2',

@@ -1,14 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getStatistic } from '../../redux/statistic/statistic-selector';
-// import { statisticOperation } from '../../redux/statistic/statistic-operation';
+import { getStatistic } from '@redux/statistic/statistic-selector';
 import { getBalance } from '@redux/finance/finance-selector';
 import { getFinanceOpertaion } from '@redux/finance/finance-operation';
-
-import './diagramTab.scss';
 import { ChartDoughnut } from '@component/chartDoughnut';
 import { DatePicker } from '@component/datePicker';
 import { Table } from '@component/table';
+import './diagramTab.scss';
 
 const rgb = [
     '#ffcf57',
@@ -28,7 +26,7 @@ export function DiagramTab() {
     const statistic = useSelector(getStatistic);
 
     useEffect(() => {
-        dispatch(getFinanceOpertaion.getOperations());  // щоб приходив баланс, бо після оновлення сторінки 0
+        dispatch(getFinanceOpertaion.getOperations());  
     }, [dispatch]);
 
     const statisticCredit = statistic.expense;

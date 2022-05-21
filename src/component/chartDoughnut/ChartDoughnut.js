@@ -2,11 +2,11 @@ import { useSelector } from 'react-redux';
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import { getStatistic } from '../../redux/statistic/statistic-selector';
+import { getStatistic, isLoadingStatistic } from '../../redux/statistic/statistic-selector';
 
 import './chartDoughnut.scss';
 
-ChartJS.register(ArcElement, Tooltip, Legend );
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const options = {
   responsive: true,
@@ -20,18 +20,18 @@ const options = {
 }
 
 export function ChartDoughnut({ category, balance, color, }) {
-  
   const isStat = useSelector(getStatistic);
+  // const isLoading = useSelector(isLoadingStatistic);
 
   const data = () => {
-      if (isStat.length === 0) {
+    if (isStat.length === 0) {
     
         return {
-          // labels: ['No statistic'],
+          labels: ['No statistic'],
       datasets: [
         {
-          // label: '# of Votes',
-          data: [1,1,2,2,3,3,4 ],  
+          label: '# of Votes',
+          data: [1,1,2,2,3,3,4 ],
           backgroundColor: ["#f5f7fa", "#ebeff5","#dde3ed", "#c8d1e0", "#afbacc", "#8e99ab", "#707a8a"],
           borderColor: ["#f5f7fa", "#ebeff5","#dde3ed", "#c8d1e0", "#afbacc", "#8e99ab", "#707a8a"],
           borderWidth: 1,
@@ -40,11 +40,11 @@ export function ChartDoughnut({ category, balance, color, }) {
     }
 
     return {
-  labels: category.map(el=>el.name),  
+  labels: category.map(el=>el.category),
   datasets: [
     {
       label: '# of Votes',
-      data: category.map(el=>el.sum),  //  статистика за місяць та рік по curentUser 
+      data: category.map(el=>el.sum),  //  статистика за місяць та рік по curentUser
       backgroundColor: color,
       borderColor: color,
       borderWidth: 1,

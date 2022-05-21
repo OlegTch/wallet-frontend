@@ -50,11 +50,12 @@ const Dashboard = () => {
 
     useEffect(() => {
         if (isSaveTransaction && !isOpenModalTransaction) {
-            console.log('dispatch new get transactions');
             dispatch(getFinanceOpertaion.getOperations());
             dispatch(clearSaveModalDateStatic());
         }
     }, [isSaveTransaction, isOpenModalTransaction]);
+
+    console.log('Dashboard');
 
     return (
         <>

@@ -3,10 +3,6 @@
 }
 
 .logo {
-    // display: flex;
-    //    align-items: center;
-    //    width: 120px;
-    //    height: 30px;
     margin-bottom: 60px;
 }
 
@@ -36,7 +32,29 @@
         padding: 9px 5px 9px 60px;
         border-bottom: 1px solid var(--disabled-grey-text-color);
     }
-
+    &__show {
+        cursor: pointer;
+        position: absolute;
+        bottom: 11px;
+        right: 16px;
+        right: 0;
+        background-color: var(--placeholder-text);
+        color: var(--primary-background-color);
+        padding: 4px 8px;
+        font-size: 13px;
+        border-radius: 5px;
+        line-height: 1.5;
+    }
+    &__strength {
+        position: absolute;
+        width: 0%;
+        height: 4px;
+        bottom: -8px;
+        left: 0;
+        background: transparent;
+        transition: all 300ms ease-in-out;
+        border-radius: 5px;
+    }
     &__icon {
         position: absolute;
         width: 24px;
@@ -88,16 +106,17 @@
 
 @media screen and (min-width: 768px) {
     .register {
-        display: flex;
-        flex-direction: column;
-
         padding: 60px 100px;
     }
     .container__img {
         display: flex;
-        margin: 0 auto;
         align-items: center;
+
+        margin-left: auto;
+        margin-right: auto;
         margin-bottom: 50px;
+
+        width: 545px;
     }
     .position {
         display: flex;
@@ -106,8 +125,8 @@
 
     .img {
         width: 274px;
-        height: 250px;
-        margin-right: 40px;
+        height: 252px;
+        margin-right: 27px;
     }
     .title {
         font-family: 'Poppins';
@@ -167,7 +186,7 @@
         top: 0;
         right: 0;
 
-        width: 50%;
+        width: 55%;
         height: 100%;
         padding-top: 52px;
 

@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { userOperation } from './user-operation';
+import { clear } from '../global/global-action';
 
 const initialState = {
     user: {},
@@ -29,8 +30,8 @@ const userSlice = createSlice({
             state.isAuth = false;
         },
         [userOperation.register.fulfilled]: (state, { payload }) => {
-            state.user.name = payload.userName;
-            state.user.email = payload.email;
+            state.user.name = payload.user.userName;
+            state.user.email = payload.user.email;
             state.token = payload.token;
             state.isAuth = true;
             state.isLoading = false;
@@ -87,12 +88,20 @@ const userSlice = createSlice({
             state.isLoading = false;
         },
         [userOperation.currentUser.rejected]: (state, { error }) => {
-            if (error.status === 401) {
-                state.token = null;
-                state.isAuth = false;
-            }
+            // if (error.code === 'ERR_BAD_REQUEST') {
+            state.token = null;
+            state.isAuth = false;
+            // }
             state.isLoading = false;
             state.error = error.message;
+        },
+        [clear]: state => {
+            state.user = {};
+            state.token = null;
+            state.isAuth = false;
+            state.isModalLogout = false;
+            state.isLoading = false;
+            state.error = null;
         },
     },
 });

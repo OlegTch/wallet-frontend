@@ -8,6 +8,7 @@ import {
 import HomeTabList from '../homeTabList';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import SpinnerLoader from '../spinnerLoader/spinnerLoader';
 
 const HomeTab = () => {
     const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const HomeTab = () => {
             <HomeTabList operations={operations} />
         </section>
     ) : (
-        <h1>Загрузка...</h1>
+        <SpinnerLoader />
     );
 };
 

@@ -27,36 +27,36 @@ export function ChartDoughnut({ category, balance, color, isEmpty }) {
     const isLoading = useSelector(isLoadingStatistic);
 
     const data = () => {
-        if (!isLoading && statistic.expense.length === 0) {
-            return {
-                labels: ['No statistic'],
-                datasets: [
-                    {
-                        label: '# of Votes',
-                        data: [1, 1, 2, 2, 3, 3, 4],
-                        backgroundColor: [
-                            '#f5f7fa',
-                            '#ebeff5',
-                            '#dde3ed',
-                            '#c8d1e0',
-                            '#afbacc',
-                            '#8e99ab',
-                            '#707a8a',
-                        ],
-                        borderColor: [
-                            '#f5f7fa',
-                            '#ebeff5',
-                            '#dde3ed',
-                            '#c8d1e0',
-                            '#afbacc',
-                            '#8e99ab',
-                            '#707a8a',
-                        ],
-                        borderWidth: 1,
-                    },
-                ],
-            };
-        }
+        // if (!isLoading && statistic.expense.length === 0) {
+        //     return {
+        //         labels: ['No statistic'],
+        //         datasets: [
+        //             {
+        //                 label: '# of Votes',
+        //                 data: [1, 1, 2, 2, 3, 3, 4],
+        //                 backgroundColor: [
+        //                     '#f5f7fa',
+        //                     '#ebeff5',
+        //                     '#dde3ed',
+        //                     '#c8d1e0',
+        //                     '#afbacc',
+        //                     '#8e99ab',
+        //                     '#707a8a',
+        //                 ],
+        //                 borderColor: [
+        //                     '#f5f7fa',
+        //                     '#ebeff5',
+        //                     '#dde3ed',
+        //                     '#c8d1e0',
+        //                     '#afbacc',
+        //                     '#8e99ab',
+        //                     '#707a8a',
+        //                 ],
+        //                 borderWidth: 1,
+        //             },
+        //         ],
+        //     };
+        // }
 
         return {
             labels: category.map(el => el.category),
@@ -75,7 +75,7 @@ export function ChartDoughnut({ category, balance, color, isEmpty }) {
     return (
         <div>
             <h2 className="diagramTab-header">Статистика</h2>
-            {isEmpty && <Cat />}
+            {isEmpty && !isLoading && <Cat />}
             {!isEmpty && (
                 <div className="wrapper-chart">
                     <div className="balance-chart">

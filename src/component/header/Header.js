@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
+
 import { HeaderNav } from '@component';
 import { Logo } from '@shared';
-import { Link } from 'react-router-dom';
 import './header.scss';
 
 export const Header = () => {

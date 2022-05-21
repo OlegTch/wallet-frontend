@@ -16,10 +16,18 @@
 .nav_item__icon {
     width: 44px;
     height: 44px;
+    fill: var(--accent-color-light);
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
     @media screen and (min-width: 768px) {
         margin-right: 20px;
         width: 24px;
         height: 24px;
+    }
+
+    .nav_item.active & {
+        fill: var(--accent-color-blue);
+        filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
     }
 }
 

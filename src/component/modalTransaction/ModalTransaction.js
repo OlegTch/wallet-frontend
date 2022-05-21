@@ -84,33 +84,24 @@ export const ModalTransaction = () => {
 
     function switchActiveDebet() {
         if (modalTypeTransaction === 'income') {
-            const notActiv = 'switchTypeBalance__text';
-            const active = 'switchTypeBalance__text__active';
-            return `${notActiv} ${active}`;
+            const defPoss = 'switchTypeBalance__text';
+            const switchPoss = 'switchTypeBalance__text__active';
+            return `${defPoss} ${switchPoss}`;
         }
 
         return 'switchTypeBalance__text';
     }
     function switchActive() {
         if (modalTypeTransaction === 'spending') {
-            const notActiv = 'switchTypeBalance__text';
-            const active = 'switchTypeBalance__text__active';
-            return `${notActiv} ${active}`;
+            const defPoss = 'switchTypeBalance__text';
+            const switchPoss = 'switchTypeBalance__text__active';
+            return `${defPoss} ${switchPoss}`;
         }
 
         return 'switchTypeBalance__text';
     }
 
     function summInput(e) {
-        const number = Number(e.target.value);
-        const integer = Number.isInteger(number);
-
-        if (!integer) {
-            const [int, float] = String(number).split('.');
-            setSumm(`${int}.${float.slice(0, 2)}`);
-            return;
-        }
-
         setSumm(e.target.value);
     }
 
@@ -173,15 +164,15 @@ export const ModalTransaction = () => {
     // випадающий список
     function DropMenuActive() {
         if (category !== 'Виберіть категорію') {
-            const notActiv = 'dropField';
-            const active = 'dropFieldActive';
+            const defPoss = 'dropField';
+            const switchPoss = 'dropFieldActive';
 
-            return `${notActiv} ${active}`;
+            return `${defPoss} ${switchPoss}`;
         }
 
         return 'dropField';
     }
-    const dropListSelectJSX = (
+    const dropListSelect = (
         <div className="dropContainer">
             <div className={DropMenuActive()} onClick={listOpen}>
                 <span className="categoryDrop">{category}</span>
@@ -273,7 +264,7 @@ export const ModalTransaction = () => {
                     />
                     <span className={switchActive()}>Витрати</span>
                 </div>
-                {dropListSelectJSX}
+                {dropListSelect}
                 <div className="sumContainer">
                     <input
                         className="sumField"

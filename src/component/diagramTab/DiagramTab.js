@@ -26,7 +26,7 @@ export function DiagramTab() {
     const statistic = useSelector(getStatistic);
 
     useEffect(() => {
-        dispatch(getFinanceOpertaion.getOperations());  
+        dispatch(getFinanceOpertaion.getOperations());
     }, [dispatch]);
 
     const statisticCredit = statistic.expense;
@@ -37,7 +37,7 @@ export function DiagramTab() {
                 .toFixed(2)
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ' ') || null
-        ); 
+        );
     };
 
     // Кольори за макетом
@@ -51,13 +51,18 @@ export function DiagramTab() {
         return num;
     };
     const color = colorTempl.concat(generateColor());
-    
-    return  (
-         <div className="diagramTab-section">
+
+    return (
+        <div className="diagramTab-section">
             <ChartDoughnut
                 category={statisticCredit}
                 balance={transformData(balance)}
                 color={color}
+                isEmpty={
+                    statistic.totalExpense === 0 && statistic.totalIncome === 0
+                        ? true
+                        : false
+                }
             />
             <div className="diagramTab-container">
                 <DatePicker />

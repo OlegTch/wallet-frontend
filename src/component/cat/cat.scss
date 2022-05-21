@@ -1,7 +1,11 @@
 .cat {
     background-image: url('../../assets/img/cat.png');
     background-repeat: no-repeat;
-    background-size: cover;
-    width: 10%;
-    height: 10%;
+    background-size: contain;
+    width: 100%;
+    height: 100px;
+
+    &.big {
+        height: 300px;
+    }
 }

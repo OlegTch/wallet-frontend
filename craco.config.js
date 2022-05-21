@@ -15,7 +15,7 @@ module.exports = {
                     '@data': './data',
                     '@pages': './pages',
                     '@redux': './redux',
-                    '@hoc': './services/hoc',
+                    '@hoc': './hoc',
                     '@api': './services/api',
                     '@style': './styles',
                     '@node_modules': '../node_modules',

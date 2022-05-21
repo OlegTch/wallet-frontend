@@ -1,1 +1,1 @@
-export * from './cat';
+export { default } from './Cat';

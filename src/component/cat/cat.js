@@ -1,10 +1,11 @@
 // import cat from '../../assets/img/cat.png';
 import './cat.scss';
 
-const Cat = () => {
+const Cat = ({ nameClass }) => {
     return (
-        <div className="cat">
+        <div>
             <p className="catText">Транзакції відсутні</p>
+            <div className={`cat ${nameClass}`}></div>
         </div>
     );
 };

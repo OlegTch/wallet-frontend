@@ -2,10 +2,6 @@
     display: none;
 }
 
-.logo {
-    margin-bottom: 60px;
-}
-
 .form {
     padding: 32px 20px;
     display: flex;
@@ -14,9 +10,13 @@
     flex-direction: column;
     background: var(--primary-background-color);
 
+    &__logo {
+        margin-bottom: 60px;
+    }
+
     &__label {
         position: relative;
-        margin-bottom: 41px;
+        margin-bottom: 22px;
     }
 
     &__input::placeholder {

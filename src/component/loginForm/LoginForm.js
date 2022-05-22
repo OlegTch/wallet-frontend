@@ -1,16 +1,37 @@
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { userOperation } from '../../redux/user/user-operation';
-import Logo from '../logo';
-import sprite from '../../assets/sprite.svg';
+import { isErrorUser } from '@redux/user/user-selector';
 import imgMan from '../../assets/img/tablet/tabletMan.svg';
+import sprite from '../../assets/sprite.svg';
+import Logo from '../logo';
 
 import './loginForm.scss';
+import '../registrationForm/registrationsForm.scss';
+
 export const LoginForm = () => {
     const dispatch = useDispatch();
+    const [type, setType] = useState('password');
+    const errorUser = useSelector(isErrorUser);
+
+    useEffect(() => {
+        if (errorUser) {
+            toast.error(errorUser);
+        }
+    }, [errorUser]);
+
+    const showHiden = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        let currentType = type === 'password' ? 'input' : 'password';
+        setType(currentType);
+    };
 
     return (
         <section>
@@ -23,12 +44,10 @@ export const LoginForm = () => {
                 initialValues={{ email: '', password: '' }}
                 onSubmit={values => {
                     dispatch(userOperation.login(values));
-
-                    // resetForm({ values: '' });
                 }}
                 validationSchema={Yup.object().shape({
-                    email: Yup.string().email().required(`Обов'язкове поле`),
-                    password: Yup.string().required(`Обов'язкове поле`),
+                    email: Yup.string().email().required("Обов'язкове поле"),
+                    password: Yup.string().required("Обов'язкове поле"),
                 })}
             >
                 {props => {
@@ -36,7 +55,6 @@ export const LoginForm = () => {
                         values,
                         touched,
                         errors,
-                        isSubmitting,
                         handleChange,
                         handleBlur,
                         handleSubmit,
@@ -52,10 +70,12 @@ export const LoginForm = () => {
                                     <Logo />
                                 </div>
                                 <label className="login_form__label">
-                                    {errors.email && touched.email && (
-                                        <div className="input-feedback">
+                                    {errors.email && touched.email ? (
+                                        <div style={{ color: 'red' }}>
                                             {errors.email}
                                         </div>
+                                    ) : (
+                                        <div style={{ height: '19px' }}></div>
                                     )}
                                     <svg className="login_form__icon">
                                         <use href={`${sprite}#email`}></use>
@@ -72,11 +92,14 @@ export const LoginForm = () => {
                                 </label>
 
                                 <label className="login_form__label">
-                                    {errors.password && touched.password && (
-                                        <div className="input-feedback">
+                                    {errors.password && touched.password ? (
+                                        <div style={{ color: 'red' }}>
                                             {errors.password}
                                         </div>
+                                    ) : (
+                                        <div style={{ height: '19px' }}></div>
                                     )}
+
                                     <svg className="login_form__icon">
                                         <use href={`${sprite}#password`}></use>
                                     </svg>
@@ -84,17 +107,23 @@ export const LoginForm = () => {
                                         className="login_form__input"
                                         id="password"
                                         placeholder="Пароль"
-                                        type="password"
+                                        type={type}
                                         value={values.password}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
+
+                                    <span
+                                        className="form__show"
+                                        onClick={showHiden}
+                                    >
+                                        {type === 'input' ? 'HIDE' : 'SHOW'}
+                                    </span>
                                 </label>
 
                                 <button
                                     className="login_form__btn login_form__btn--current  "
                                     type="submit"
-                                    // disabled={isSubmitting}
                                 >
                                     <span>Вхід</span>
                                 </button>

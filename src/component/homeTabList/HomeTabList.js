@@ -73,7 +73,9 @@ const HomeTabList = ({ operations }) => {
                                     <Cat />
                                 )}
                             </>
+
                         }
+
                     </>
                 );
             }}

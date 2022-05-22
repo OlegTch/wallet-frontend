@@ -19,4 +19,6 @@
  * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
  */
 
+//! moment.js
+
 //! moment.js locale configuration

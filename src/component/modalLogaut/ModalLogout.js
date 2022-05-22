@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
-import './ModalLogout.scss';
 import { userOperation } from '@redux/user/user-operation';
 import { closeModalLogout } from '@redux/user/user-slice';
+import './ModalLogout.scss';
 
 export const ModalLogout = () => {
     const dispatch = useDispatch();
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     function closeLogoutModal() {
         dispatch(closeModalLogout());
     }

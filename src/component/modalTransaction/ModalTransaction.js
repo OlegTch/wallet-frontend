@@ -10,11 +10,10 @@ import { getFinanceOpertaion } from '@redux/finance/finance-operation';
 import { closeModalTransaction } from '@redux/finance/finance-slice';
 import 'moment/locale/ru';
 import { toast } from 'react-toastify';
-
+import { validate } from 'indicative/validator';
 import sprite from '@assets/sprite.svg';
 import './modalTransaction.scss';
 
-import { validate } from 'indicative/validator';
 export const ModalTransaction = () => {
     const getCredit = useSelector(getCategoryCredit);
     const getDebet = useSelector(getCategoryDebet);
@@ -84,33 +83,24 @@ export const ModalTransaction = () => {
 
     function switchActiveDebet() {
         if (modalTypeTransaction === 'income') {
-            const notActiv = 'switchTypeBalance__text';
-            const active = 'switchTypeBalance__text__active';
-            return `${notActiv} ${active}`;
+            const defPoss = 'switchTypeBalance__text';
+            const switchPoss = 'switchTypeBalance__text__active';
+            return `${defPoss} ${switchPoss}`;
         }
 
         return 'switchTypeBalance__text';
     }
     function switchActive() {
         if (modalTypeTransaction === 'spending') {
-            const notActiv = 'switchTypeBalance__text';
-            const active = 'switchTypeBalance__text__active';
-            return `${notActiv} ${active}`;
+            const defPoss = 'switchTypeBalance__text';
+            const switchPoss = 'switchTypeBalance__text__active_red';
+            return `${defPoss} ${switchPoss}`;
         }
 
         return 'switchTypeBalance__text';
     }
 
     function summInput(e) {
-        const number = Number(e.target.value);
-        const integer = Number.isInteger(number);
-
-        if (!integer) {
-            const [int, float] = String(number).split('.');
-            setSumm(`${int}.${float.slice(0, 2)}`);
-            return;
-        }
-
         setSumm(e.target.value);
     }
 
@@ -139,7 +129,6 @@ export const ModalTransaction = () => {
         year: 'required|number',
     };
     const submitHandler = async e => {
-        // async function submitHandler(e) {
         e.preventDefault();
         const modalTransaction = {
             day: date.getDate(),
@@ -153,7 +142,7 @@ export const ModalTransaction = () => {
 
         try {
             await validate(modalTransaction, validateSchema);
-            // closeModalItem();
+            closeModalItem();
         } catch (error) {
             console.log(error[0].message);
             toast.error(error[0].message);
@@ -170,18 +159,18 @@ export const ModalTransaction = () => {
             }),
         );
     };
-    // випадающий список
+
     function DropMenuActive() {
         if (category !== 'Виберіть категорію') {
-            const notActiv = 'dropField';
-            const active = 'dropFieldActive';
+            const defPoss = 'dropField';
+            const switchPoss = 'dropFieldActive';
 
-            return `${notActiv} ${active}`;
+            return `${defPoss} ${switchPoss}`;
         }
 
         return 'dropField';
     }
-    const dropListSelectJSX = (
+    const dropListSelect = (
         <div className="dropContainer">
             <div className={DropMenuActive()} onClick={listOpen}>
                 <span className="categoryDrop">{category}</span>
@@ -189,7 +178,6 @@ export const ModalTransaction = () => {
 
             {listActive && (
                 <ul className="dropList">
-                    {/* категории для доходв */}
                     {modalTypeTransaction === 'income' &&
                         getDebet.map((elem, idx) => {
                             return (
@@ -204,7 +192,6 @@ export const ModalTransaction = () => {
                             );
                         })}
 
-                    {/* категории для расхода */}
                     {modalTypeTransaction === 'spending' &&
                         getCredit.map((elem, idx) => {
                             return (
@@ -273,7 +260,7 @@ export const ModalTransaction = () => {
                     />
                     <span className={switchActive()}>Витрати</span>
                 </div>
-                {dropListSelectJSX}
+                {dropListSelect}
                 <div className="sumContainer">
                     <input
                         className="sumField"
@@ -300,11 +287,13 @@ export const ModalTransaction = () => {
                 </div>
                 <div className="commentContainer">
                     <textarea
+                        type="text"
                         maxLength="200"
                         className="commentField"
                         placeholder="коментар"
                         onChange={commentInput}
                         value={comment}
+                        pattern="/^[A-Za-zа-яА-я]{5,10}$/"
                     />
                 </div>
                 <div className="buttonContainer">

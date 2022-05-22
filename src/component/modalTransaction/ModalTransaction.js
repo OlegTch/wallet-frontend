@@ -10,11 +10,10 @@ import { getFinanceOpertaion } from '@redux/finance/finance-operation';
 import { closeModalTransaction } from '@redux/finance/finance-slice';
 import 'moment/locale/ru';
 import { toast } from 'react-toastify';
-
+import { validate } from 'indicative/validator';
 import sprite from '@assets/sprite.svg';
 import './modalTransaction.scss';
 
-import { validate } from 'indicative/validator';
 export const ModalTransaction = () => {
     const getCredit = useSelector(getCategoryCredit);
     const getDebet = useSelector(getCategoryDebet);
@@ -130,7 +129,6 @@ export const ModalTransaction = () => {
         year: 'required|number',
     };
     const submitHandler = async e => {
-        // async function submitHandler(e) {
         e.preventDefault();
         const modalTransaction = {
             day: date.getDate(),
@@ -161,7 +159,7 @@ export const ModalTransaction = () => {
             }),
         );
     };
-    // випадающий список
+
     function DropMenuActive() {
         if (category !== 'Виберіть категорію') {
             const defPoss = 'dropField';
@@ -180,7 +178,6 @@ export const ModalTransaction = () => {
 
             {listActive && (
                 <ul className="dropList">
-                    {/* категории для доходв */}
                     {modalTypeTransaction === 'income' &&
                         getDebet.map((elem, idx) => {
                             return (
@@ -195,7 +192,6 @@ export const ModalTransaction = () => {
                             );
                         })}
 
-                    {/* категории для расхода */}
                     {modalTypeTransaction === 'spending' &&
                         getCredit.map((elem, idx) => {
                             return (

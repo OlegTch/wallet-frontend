@@ -12,6 +12,11 @@ const initialState = {
 const categoriesSlice = createSlice({
     name: 'categories',
     initialState,
+    reducers: {
+        clearError: state => {
+            state.error = null;
+        },
+    },
     extraReducers: {
         [categoriesOperation.getCategories.pending]: state => {
             state.isLoading = true;
@@ -33,4 +38,5 @@ const categoriesSlice = createSlice({
     },
 });
 
+export const { clearError } = categoriesSlice.actions;
 export default categoriesSlice;

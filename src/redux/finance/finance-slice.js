@@ -35,6 +35,9 @@ const financeSlice = createSlice({
         setLimit: (state, { payload }) => {
             state.limit = payload;
         },
+        clearError: state => {
+            state.error = null;
+        },
     },
     extraReducers: {
         [getFinanceOpertaion.getOperations.pending]: state => {
@@ -94,5 +97,6 @@ export const {
     setSaveModalDateStatic,
     clearSaveModalDateStatic,
     setLimit,
+    clearError,
 } = financeSlice.actions;
 export default financeSlice;

@@ -53,7 +53,7 @@ export const LoginForm = () => {
                                 </div>
                                 <label className="login_form__label">
                                     {errors.email && touched.email && (
-                                        <div className="input-feedback">
+                                        <div style={{ color: 'red' }}>
                                             {errors.email}
                                         </div>
                                     )}
@@ -73,7 +73,7 @@ export const LoginForm = () => {
 
                                 <label className="login_form__label">
                                     {errors.password && touched.password && (
-                                        <div className="input-feedback">
+                                        <div style={{ color: 'red' }}>
                                             {errors.password}
                                         </div>
                                     )}
@@ -94,7 +94,6 @@ export const LoginForm = () => {
                                 <button
                                     className="login_form__btn login_form__btn--current  "
                                     type="submit"
-                                    // disabled={isSubmitting}
                                 >
                                     <span>Вхід</span>
                                 </button>

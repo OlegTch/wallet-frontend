@@ -9,5 +9,3 @@ const Cat = ({ nameClass }) => {
     );
 };
 export default Cat;
-
-console.log();

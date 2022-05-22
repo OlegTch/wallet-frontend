@@ -11,13 +11,6 @@ object-assign
  * @license  MIT
  */
 
-/*!
- * isobject <https://github.com/jonschlinkert/isobject>
- *
- * Copyright (c) 2014-2017, Jon Schlinkert.
- * Released under the MIT License.
- */
-
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
 /**
@@ -59,20 +52,6 @@ object-assign
  * LICENSE.md file in the root directory of this source tree.
  *
  * @license MIT
- */
-
-/**
- * charmap
- *
- * @license MIT
- * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
- */
-
-/**
- * node-slug
- *
- * @license MIT
- * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
  */
 
 /** @license React v0.20.2
@@ -121,5 +100,3 @@ object-assign
  */
 
 //! moment.js
-
-//! moment.js locale configuration

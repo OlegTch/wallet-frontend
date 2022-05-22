@@ -41,11 +41,12 @@ const HomeTabItemTabletAndDesktop = ({ operation }) => {
                 )}
             </p>
             <p
-                className={
-                    operation.income
-                        ? 'homeTabItemAndDesktopResult homeTabItemAndDesktopResult--green'
-                        : 'homeTabItemAndDesktopResult homeTabItemAndDesktopResult--red'
-                }
+                className={`
+                    ${
+                        operation.income
+                            ? 'homeTabItemAndDesktopResult homeTabItemAndDesktopResult--green'
+                            : 'homeTabItemAndDesktopResult homeTabItemAndDesktopResult--red'
+                    } ${openRow ? 'homeTabItemAndDesktopResult--open' : ''}`}
             >
                 {openRow ? (
                     operation.sum

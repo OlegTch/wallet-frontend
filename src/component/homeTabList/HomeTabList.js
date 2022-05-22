@@ -35,33 +35,66 @@ const HomeTabList = ({ operations }) => {
                         )}
                     </>
                 ) : (
-                    <ul className="homeTabList">
-                        <li
-                            className="homeTabTabletAndDesktop"
-                            key={'HomeTabItem'}
-                        >
-                            <h3>Дата</h3>
-                            <h3>Тип</h3>
-                            <h3>Категорія</h3>
-                            <h3>Коментар</h3>
-                            <h3>Сума</h3>
-                            <h3>Баланс</h3>
-                        </li>
+                    <>
                         {operations.length > 0 ? (
-                            operations.map(el => (
-                                <li
-                                    className="homeTabItemTabletAndDesktop"
-                                    key={el._id}
-                                >
-                                    <HomeTabItemTabletAndDesktop
-                                        operation={el}
-                                    />
-                                </li>
-                            ))
+                            <table width="100%">
+                                <thead>
+                                    <tr
+                                        className="homeTabTabletAndDesktop"
+                                        key={'HomeTabItem'}
+                                    >
+                                        <th>Дата</th>
+                                        <th>Тип</th>
+                                        <th>Категорія</th>
+                                        <th>Коментар</th>
+                                        <th>Сума</th>
+                                        <th>Баланс</th>
+                                    </tr>
+                                </thead>
+                                {operations.length > 0 && (
+                                    <tbody>
+                                        {operations.map(el => (
+                                            <HomeTabItemTabletAndDesktop
+                                                operation={el}
+                                                key={el._id}
+                                            />
+                                        ))}
+                                    </tbody>
+                                )}
+                            </table>
                         ) : (
                             <Cat />
                         )}
-                    </ul>
+                        {/* {operations.length > 0 ? (
+                            <table width="100%" className="homeTabList">
+                                <thead>
+                                    <tr
+                                        className="homeTabTabletAndDesktop"
+                                        key={'HomeTabItem'}
+                                    >
+                                        <th>Дата</th>
+                                        <th>Тип</th>
+                                        <th>Категорія</th>
+                                        <th>Коментар</th>
+                                        <th>Сума</th>
+                                        <th>Баланс</th>
+                                    </tr>
+                                </thead>
+                                {operations.length > 0 && (
+                                    <tbody>
+                                        {operations.map(el => (
+                                            <HomeTabItemTabletAndDesktop
+                                                operation={el}
+                                                key={el._id}
+                                            />
+                                        ))}
+                                    </tbody>
+                                )}
+                            </table>
+                        ) : (
+                            <Cat />
+                        )} */}
+                    </>
                 );
             }}
         </Media>

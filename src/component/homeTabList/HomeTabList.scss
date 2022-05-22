@@ -22,12 +22,13 @@
     top: 0;
     z-index: 1;
 
-    & h3 {
+    & th {
         font-family: Circe;
         font-size: 18px;
         font-weight: 700;
         line-height: 27px;
-        width: 70px;
+        // width: 70px;
+        width: 16%;
 
         &:nth-child(1) {
             width: 50px;

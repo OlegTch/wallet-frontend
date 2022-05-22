@@ -2,7 +2,7 @@
 
 .homeTabItem {
     width: 280px;
-    height: 282px;
+    // height: 282px;
     background-color: var(--primary-background-color);
     border-radius: 10px;
     overflow: hidden;
@@ -31,7 +31,7 @@
 
         &::after {
             position: absolute;
-            top: 47px;
+            // top: 47px;
             left: -15px;
             content: '';
             width: 275px;
@@ -48,6 +48,7 @@
             font-weight: 400;
             font-size: 16px;
             line-height: 24px;
+            padding-left: 20px;
         }
     }
 }
@@ -70,4 +71,8 @@
     & .homeTabItemResult {
         color: var(--accent-color-red);
     }
+}
+
+.homeTabItem p.homeTabItem--open {
+    height: auto;
 }

@@ -7,9 +7,8 @@ import { Formik } from 'formik';
 import { toast } from 'react-toastify';
 
 import { userOperation } from '../../redux/user/user-operation';
-import { isErrorUser } from '@redux/user/user-selector';
-import imgMan from '../../assets/img/tablet/tabletMan.svg';
-import sprite from '../../assets/sprite.svg';
+import imgMan from '@assets/img/tablet/tabletMan.svg';
+import sprite from '@assets/sprite.svg';
 import Logo from '../logo';
 
 import './loginForm.scss';
@@ -18,13 +17,6 @@ import '../registrationForm/registrationsForm.scss';
 export const LoginForm = () => {
     const dispatch = useDispatch();
     const [type, setType] = useState('password');
-    const errorUser = useSelector(isErrorUser);
-
-    useEffect(() => {
-        if (errorUser) {
-            toast.error(errorUser);
-        }
-    }, [errorUser]);
 
     const showHiden = e => {
         e.preventDefault();

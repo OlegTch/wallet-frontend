@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 import { isErrorCategory } from '@redux/categories/categories-selector';
 import { isErrorFinance } from '@redux/finance/finance-selector';
 import { isErrorStatistic } from '@redux/statistic/statistic-selector';
-import { defineLocale } from 'moment';
 
 const Error = () => {
     const errorCategory = useSelector(isErrorCategory);

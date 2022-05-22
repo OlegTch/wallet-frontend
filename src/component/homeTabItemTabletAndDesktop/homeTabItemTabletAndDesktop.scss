@@ -56,3 +56,7 @@
 .homeTabItemAndDesktopResult--red {
     color: var(--accent-color-red);
 }
+
+.homeTabItemTabletAndDesktop p.homeTabItemAndDesktopResult--open {
+    height: 100%;
+}

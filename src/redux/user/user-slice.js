@@ -22,6 +22,9 @@ const userSlice = createSlice({
         closeModalLogout: state => {
             state.isModalLogout = false;
         },
+        clearError: state => {
+            state.error = null;
+        },
     },
     extraReducers: {
         [userOperation.register.pending]: state => {
@@ -106,5 +109,6 @@ const userSlice = createSlice({
     },
 });
 
-export const { openModalLogout, closeModalLogout } = userSlice.actions;
+export const { openModalLogout, closeModalLogout, clearError } =
+    userSlice.actions;
 export default userSlice;

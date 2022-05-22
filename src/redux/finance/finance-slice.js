@@ -8,6 +8,9 @@ const initialState = {
     userBalance: 0,
     isLoading: false,
     error: null,
+    deleteId: null,
+    isModalDeleteTransaction: false,
+    isDeleteTransaction: false,
     isModalAddTransaction: false,
     isSaveModalDateStatic: false,
     total: 0,
@@ -20,6 +23,21 @@ const financeSlice = createSlice({
     name: 'finance',
     initialState,
     reducers: {
+        openModalDeleteTransaction: (state, { payload }) => {
+            state.isModalDeleteTransaction = true;
+            state.isDeleteTransaction = false;
+            state.deleteId = payload;
+        },
+        closeModalDeleteTransaction: state => {
+            state.isModalDeleteTransaction = false;
+        },
+        setDeleteTransaction: state => {
+            state.isDeleteTransaction = true;
+        },
+        clearDeleteTransaction: state => {
+            state.isDeleteTransaction = false;
+            state.deleteId = null;
+        },
         openModalTransaction: state => {
             state.isModalAddTransaction = true;
         },
@@ -76,6 +94,26 @@ const financeSlice = createSlice({
             state.isLoading = false;
             state.error = error.message;
         },
+
+        [getFinanceOpertaion.deleteOperation.pending]: state => {
+            state.isLoading = true;
+            state.error = null;
+            state.isDeleteTransaction = false;
+        },
+        [getFinanceOpertaion.deleteOperation.fulfilled]: state => {
+            console.log('11111111111111111111111');
+            state.isLoading = false;
+            state.isDeleteTransaction = true;
+            state.isModalDeleteTransaction = false;
+            console.log('22222222222222222222');
+        },
+        [getFinanceOpertaion.deleteOperation.rejected]: (state, { error }) => {
+            state.isLoading = false;
+            state.error = error.message;
+            state.isDeleteTransaction = false;
+            state.isModalDeleteTransaction = false;
+        },
+
         [clear]: state => {
             state.data = [];
             state.userBalance = 0;
@@ -98,5 +136,9 @@ export const {
     clearSaveModalDateStatic,
     setLimit,
     clearError,
+    openModalDeleteTransaction,
+    closeModalDeleteTransaction,
+    setDeleteTransaction,
+    clearDeleteTransaction,
 } = financeSlice.actions;
 export default financeSlice;

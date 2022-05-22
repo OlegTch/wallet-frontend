@@ -2,6 +2,7 @@ import { useState } from 'react';
 import moment from 'moment';
 import EllipsisText from 'react-ellipsis-text';
 
+import ButtonDelete from '@component/buttonDelete';
 import sprite from '@assets/sprite.svg';
 import './homeTabItemTabletAndDesktop.scss';
 
@@ -84,11 +85,7 @@ const HomeTabItemTabletAndDesktop = ({ operation }) => {
                 )}
             </td>
             <td>
-                <button className="homeTab__buttonDelete">
-                    <svg className="homeTab__iconDelete">
-                        <use href={`${sprite}#buttonDel`}></use>
-                    </svg>
-                </button>
+                <ButtonDelete id={operation._id} />
             </td>
         </tr>
     );

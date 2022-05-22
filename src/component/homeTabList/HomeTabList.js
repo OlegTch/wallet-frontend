@@ -35,33 +35,33 @@ const HomeTabList = ({ operations }) => {
                         )}
                     </>
                 ) : (
-                    <ul className="homeTabList">
-                        <li
+                    <table className="homeTabList">
+                        <tr
                             className="homeTabTabletAndDesktop"
                             key={'HomeTabItem'}
                         >
-                            <h3>Дата</h3>
-                            <h3>Тип</h3>
-                            <h3>Категорія</h3>
-                            <h3>Коментар</h3>
-                            <h3>Сума</h3>
-                            <h3>Баланс</h3>
-                        </li>
+                            <th>Дата</th>
+                            <th>Тип</th>
+                            <th>Категорія</th>
+                            <th>Коментар</th>
+                            <th>Сума</th>
+                            <th>Баланс</th>
+                        </tr>
                         {operations.length > 0 ? (
                             operations.map(el => (
-                                <li
+                                <tr
                                     className="homeTabItemTabletAndDesktop"
                                     key={el._id}
                                 >
                                     <HomeTabItemTabletAndDesktop
                                         operation={el}
                                     />
-                                </li>
+                                </tr>
                             ))
                         ) : (
                             <Cat />
                         )}
-                    </ul>
+                    </table>
                 );
             }}
         </Media>

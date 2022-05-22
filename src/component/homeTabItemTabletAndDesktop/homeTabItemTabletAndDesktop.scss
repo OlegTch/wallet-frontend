@@ -21,7 +21,7 @@
         font-weight: 700;
     }
 
-    & p {
+    & td {
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -57,7 +57,7 @@
     color: var(--accent-color-red);
 }
 
-.homeTabItemTabletAndDesktop p.homeTabItemAndDesktopResult--open {
+.homeTabItemTabletAndDesktop td.homeTabItemAndDesktopResult--open {
     height: auto;
     display: flex;
     align-items: flex-start;

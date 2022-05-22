@@ -1,1 +1,1 @@
-export { default } from './homeTabItemMobile.jsx';
+export { default } from './homeTabItemMobile';

@@ -2,7 +2,6 @@ import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
-// import { Dashboard, RegistrationPage, LoginPage } from '@pages';
 import Error from '@component/errorApp';
 import Loader from '@component/spinnerLoader/spinnerLoader';
 

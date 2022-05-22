@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import currencyApi from '../../services/currencyApi';
+import currencyApi from '@services/currencyApi';
 
-import { currencies } from '../../assets/constants.js';
-// import styles from "./Currency.module.css";
+import { currencies } from '@assets/constants.js';
 import './curr.scss';
 
 export default function CurrencyTable() {

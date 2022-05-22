@@ -1,1 +1,1 @@
-export { default } from './HomeTabList.jsx';
+export { default } from './HomeTabList';

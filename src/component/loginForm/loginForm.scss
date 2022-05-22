@@ -68,17 +68,12 @@
 
 .login_form {
     &__logo {
-        display: flex;
-        align-items: center;
-
         margin-bottom: 60px;
     }
 
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    border-radius: 20px;
 
     background: var(--primary-background-color);
 
@@ -89,17 +84,19 @@
     @media screen and (min-width: 768px) {
         padding: 40px 61px 62px 61px;
         margin: 0 auto;
+        border-radius: 20px;
 
         width: 533px;
     }
 
     @media screen and (min-width: 1280px) {
         margin: 0 auto;
+        border-radius: 20px;
     }
 
     &__label {
         position: relative;
-        margin-bottom: 41px;
+        margin-bottom: 22px;
     }
 
     &__input::placeholder {

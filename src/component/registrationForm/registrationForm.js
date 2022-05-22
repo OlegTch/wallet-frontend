@@ -24,6 +24,7 @@ export const RegistrationForm = () => {
             toast.error(errorUser);
         }
     }, [errorUser]);
+
     const showHiden = e => {
         e.preventDefault();
         e.stopPropagation();
@@ -52,7 +53,6 @@ export const RegistrationForm = () => {
                     const user = { name, email, password };
 
                     dispatch(userOperation.register(user));
-                    // resetForm({ values: '' });
                 }}
                 //валідація форми
                 validationSchema={Yup.object().shape({
@@ -100,11 +100,14 @@ export const RegistrationForm = () => {
 
                                 {/* //Поле для вводу емейла */}
                                 <label className="form__label">
-                                    <div style={{ color: 'red' }}>
-                                        {errors.email &&
-                                            touched.email &&
-                                            errors.email}
-                                    </div>
+                                    {errors.email && touched.email ? (
+                                        <div style={{ color: 'red' }}>
+                                            {errors.email}
+                                        </div>
+                                    ) : (
+                                        <div style={{ height: '19px' }}></div>
+                                    )}
+
                                     <svg className="form__icon">
                                         <use href={`${sprite}#email`}></use>
                                     </svg>
@@ -121,11 +124,13 @@ export const RegistrationForm = () => {
 
                                 {/* //Поле для вводу пароля */}
                                 <label className="form__label">
-                                    <div style={{ color: 'red' }}>
-                                        {errors.password &&
-                                            touched.password &&
-                                            errors.password}
-                                    </div>
+                                    {errors.password && touched.password ? (
+                                        <div style={{ color: 'red' }}>
+                                            {errors.password}
+                                        </div>
+                                    ) : (
+                                        <div style={{ height: '19px' }}></div>
+                                    )}
                                     <svg className="form__icon">
                                         <use href={`${sprite}#password`}></use>
                                     </svg>
@@ -150,11 +155,14 @@ export const RegistrationForm = () => {
 
                                 {/* //Поле для вводу пароля підтвердження */}
                                 <label className="form__label">
-                                    <div style={{ color: 'red' }}>
-                                        {errors.confirmPassword &&
-                                            touched.confirmPassword &&
-                                            errors.confirmPassword}
-                                    </div>
+                                    {errors.confirmPassword &&
+                                    touched.confirmPassword ? (
+                                        <div style={{ color: 'red' }}>
+                                            {errors.confirmPassword}
+                                        </div>
+                                    ) : (
+                                        <div style={{ height: '19px' }}></div>
+                                    )}
                                     <svg className="form__icon">
                                         <use href={`${sprite}#password`}></use>
                                     </svg>
@@ -175,11 +183,13 @@ export const RegistrationForm = () => {
 
                                 {/* //Поле для вводу імені */}
                                 <label className="form__label">
-                                    <div style={{ color: 'red' }}>
-                                        {errors.name &&
-                                            touched.name &&
-                                            errors.name}
-                                    </div>
+                                    {errors.name && touched.name ? (
+                                        <div style={{ color: 'red' }}>
+                                            {errors.name}
+                                        </div>
+                                    ) : (
+                                        <div style={{ height: '19px' }}></div>
+                                    )}
                                     <svg className="form__icon">
                                         <use href={`${sprite}#name`}></use>
                                     </svg>
@@ -197,7 +207,6 @@ export const RegistrationForm = () => {
                                 {/* //Кнопка для відправки даних */}
                                 <button
                                     type="submit"
-                                    // disabled={isSubmitting}
                                     className="form__button form__button--active"
                                 >
                                     РЕЄСТРАЦІЯ

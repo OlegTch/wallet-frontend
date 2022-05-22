@@ -77,3 +77,9 @@
     height: auto;
     min-height: 47px;
 }
+
+.homeTabItem p.homeTabItem--center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

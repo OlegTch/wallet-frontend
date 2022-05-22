@@ -123,3 +123,13 @@ export const addTransactionAPI = async data => {
         getError(error);
     }
 };
+
+export const deleteTransactionAPI = async id => {
+    try {
+        const result = await axios.delete(`transactions/${id}`);
+        console.log(result);
+        return result;
+    } catch (error) {
+        getError(error);
+    }
+};

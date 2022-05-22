@@ -1,4 +1,4 @@
-import { useEffect, lazy } from 'react';
+import { useEffect, lazy, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Media from 'react-media';
@@ -6,6 +6,7 @@ import Media from 'react-media';
 import Header from '@component/header';
 import Balans from '@component/balans';
 import Navigation from '@component/navigation';
+import ModalDelete from '@component/modalDelete';
 
 import { ModalTransaction, Backdrop, ModalLogout } from '@component';
 
@@ -22,6 +23,8 @@ import {
 import {
     isModalTransaction,
     isSaveModalDateStatic,
+    isDeleteTransaction,
+    isTransactionDeleting,
 } from '@redux/finance/finance-selector';
 import { isModalLogout } from '@redux/user/user-selector';
 import { isCategoriesFull } from '@redux/categories/categories-selector';
@@ -35,6 +38,8 @@ const Dashboard = () => {
     const isOpenModalTransaction = useSelector(isModalTransaction);
     const isOpenModalLogout = useSelector(isModalLogout);
     const isSaveTransaction = useSelector(isSaveModalDateStatic);
+    const isDeletingTrans = useSelector(isTransactionDeleting);
+    const isModalDelTransaction = useSelector(isDeleteTransaction);
 
     const onOpenModalTransaction = () => {
         dispatch(openModalTransaction());
@@ -47,13 +52,21 @@ const Dashboard = () => {
     }, []);
 
     useEffect(() => {
+        console.log('----------Effect----------------');
+        console.log(isSaveTransaction, isOpenModalTransaction);
         if (isSaveTransaction && !isOpenModalTransaction) {
             dispatch(getFinanceOpertaion.getOperations());
             dispatch(clearSaveModalDateStatic());
         }
     }, [isSaveTransaction, isOpenModalTransaction]);
 
-    console.log('Dashboard');
+    useEffect(() => {
+        console.log();
+        if (isDeletingTrans && !isModalDelTransaction) {
+            dispatch(getFinanceOpertaion.getOperations());
+            dispatch(clearSaveModalDateStatic());
+        }
+    }, [isDeletingTrans, isModalDelTransaction]);
 
     return (
         <>
@@ -124,6 +137,13 @@ const Dashboard = () => {
                 <>
                     <Backdrop>
                         <ModalLogout />
+                    </Backdrop>
+                </>
+            )}
+            {isModalDelTransaction && (
+                <>
+                    <Backdrop>
+                        <ModalDelete />
                     </Backdrop>
                 </>
             )}

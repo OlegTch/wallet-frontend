@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import moment from 'moment';
 import EllipsisText from 'react-ellipsis-text';
+
+import ButtonDelete from '@component/buttonDelete';
 import './homeTabItemMobile.scss';
 
 const HomeTabItemMobile = ({ operation }) => {
@@ -114,6 +116,9 @@ const HomeTabItemMobile = ({ operation }) => {
                         />
                     )}
                 </span>
+            </p>
+            <p className="homeTabItem--center">
+                <ButtonDelete id={operation._id} />
             </p>
         </>
     );

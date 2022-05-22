@@ -5,8 +5,9 @@ import { toast } from 'react-toastify';
 import { isErrorCategory } from '@redux/categories/categories-selector';
 import { isErrorFinance } from '@redux/finance/finance-selector';
 import { isErrorStatistic } from '@redux/statistic/statistic-selector';
+import { defineLocale } from 'moment';
 
-export const Error = () => {
+const Error = () => {
     const errorCategory = useSelector(isErrorCategory);
     const errorFinance = useSelector(isErrorFinance);
     const errorStatistic = useSelector(isErrorStatistic);
@@ -22,6 +23,7 @@ export const Error = () => {
             toast.error(errorStatistic);
         }
     }, [errorCategory, errorFinance, errorStatistic]);
-    // errorUser
     return <></>;
 };
+
+export default Error;

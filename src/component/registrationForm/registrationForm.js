@@ -3,7 +3,7 @@ import { userOperation } from '../../redux/user/user-operation';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import './registrationsForm.scss';
-import { Logo } from '../shared/logo';
+import Logo from '../logo';
 import Frame from '../../assets/img/tablet/Frame.png';
 import sprite from '../../assets/sprite.svg';
 import { Link } from 'react-router-dom';
@@ -103,7 +103,8 @@ export const RegistrationForm = () => {
                                     <div style={{ color: 'red' }}>
                                         {errors.email &&
                                             touched.email &&
-                                            errors.email}</div>
+                                            errors.email}
+                                    </div>
                                     <svg className="form__icon">
                                         <use href={`${sprite}#email`}></use>
                                     </svg>
@@ -123,7 +124,8 @@ export const RegistrationForm = () => {
                                     <div style={{ color: 'red' }}>
                                         {errors.password &&
                                             touched.password &&
-                                            errors.password}</div>
+                                            errors.password}
+                                    </div>
                                     <svg className="form__icon">
                                         <use href={`${sprite}#password`}></use>
                                     </svg>
@@ -151,7 +153,8 @@ export const RegistrationForm = () => {
                                     <div style={{ color: 'red' }}>
                                         {errors.confirmPassword &&
                                             touched.confirmPassword &&
-                                            errors.confirmPassword}</div>
+                                            errors.confirmPassword}
+                                    </div>
                                     <svg className="form__icon">
                                         <use href={`${sprite}#password`}></use>
                                     </svg>
@@ -173,7 +176,10 @@ export const RegistrationForm = () => {
                                 {/* //Поле для вводу імені */}
                                 <label className="form__label">
                                     <div style={{ color: 'red' }}>
-                                        {errors.name && touched.name && errors.name}</div>
+                                        {errors.name &&
+                                            touched.name &&
+                                            errors.name}
+                                    </div>
                                     <svg className="form__icon">
                                         <use href={`${sprite}#name`}></use>
                                     </svg>

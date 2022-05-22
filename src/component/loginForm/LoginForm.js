@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { userOperation } from '../../redux/user/user-operation';
-import { Logo } from '../shared/logo';
+import Logo from '../logo';
 import sprite from '../../assets/sprite.svg';
 import imgMan from '../../assets/img/tablet/tabletMan.svg';
 

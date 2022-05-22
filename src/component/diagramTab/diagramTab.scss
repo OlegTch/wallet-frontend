@@ -1,6 +1,7 @@
 @import '@style/utils/breakpoints';
 
-.diagramTab-header, .statistic-header {
+.diagramTab-header,
+.statistic-header {
     margin-bottom: 20px;
     font-family: 'Poppins';
     font-weight: 400;
@@ -8,13 +9,13 @@
     line-height: 45px;
     color: #000000;
     @media screen and (max-width: $MaxMobileWidth) {
-            margin-bottom: 8px;
-        }
-                @media screen and (min-width: 1280px) {
-                    display: none;
-                }
+        margin-bottom: 8px;
+    }
+    @media screen and (min-width: 1280px) {
+        display: none;
+    }
 }
-.statistic-header__main{
+.statistic-header__main {
     margin-bottom: 20px;
     font-family: 'Poppins';
     font-weight: 400;
@@ -22,31 +23,29 @@
     line-height: 45px;
     color: #000000;
     @media screen and (max-width: 1279px) {
-            display: none;
-        }
-
+        display: none;
+    }
 }
 
 .diagramTab-section {
-
     @media screen and (min-width: $TabletWidth) {
-            display: flex;
-        }
+        display: flex;
+    }
 }
 
-.diagramTab-container{
+.diagramTab-container {
     width: 280px;
     margin: 0 auto;
-    
+
     @media screen and (max-width: $MaxMobileWidth) {
-            margin-top: 32px;
-        }
-        @media screen and (min-width: $TabletWidth) {
-            width: 336px;
-            margin-left: 32px;
-        }
-        
-        @media screen and (min-width: $DesktopWidth) {
-                    width: 395px;
-                }
+        margin-top: 32px;
+    }
+    @media screen and (min-width: $TabletWidth) {
+        width: 336px;
+        margin-left: 32px;
+    }
+
+    @media screen and (min-width: $DesktopWidth) {
+        width: 395px;
+    }
 }

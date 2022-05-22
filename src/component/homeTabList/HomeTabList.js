@@ -36,7 +36,7 @@ const HomeTabList = ({ operations }) => {
                     </>
                 ) : (
                     <>
-                        {operations.length > 0 ? (
+                        {
                             <>
                                 <table className="tab-stick">
                                     <thead>
@@ -54,26 +54,28 @@ const HomeTabList = ({ operations }) => {
                                         </tr>
                                     </thead>
                                 </table>
-                                <div className="block_table">
-                                    <table idth="100%">
-                                        {operations.length > 0 && (
-                                            <tbody>
-                                                {operations.map(el => (
-                                                    <HomeTabItemTabletAndDesktop
-                                                        operation={el}
-                                                        key={el._id}
-                                                    />
-                                                ))}
-                                            </tbody>
-                                        )}
-                                    </table>
-                                </div>
+                                {operations.length > 0 ? (
+                                    <div className="block_table">
+                                        <table idth="100%">
+                                            {operations.length > 0 && (
+                                                <tbody>
+                                                    {operations.map(el => (
+                                                        <HomeTabItemTabletAndDesktop
+                                                            operation={el}
+                                                            key={el._id}
+                                                        />
+                                                    ))}
+                                                </tbody>
+                                            )}
+                                        </table>
+                                    </div>
+                                ) : (
+                                    <Cat />
+                                )}
                             </>
-                        ) : (
-                            <>
-                                <Cat nameClass="big" />
-                            </>
-                        )}
+
+                        }
+
                     </>
                 );
             }}

@@ -28,6 +28,12 @@ const HomeTabItemMobile = ({ operation }) => {
         }
     };
 
+    const makeMoney = n => {
+        return parseFloat(n)
+            .toFixed(2)
+            .replace(/(\d)(?=(\d{3})+\.)/g, '$1 ');
+    };
+
     return (
         <>
             <p>
@@ -43,11 +49,16 @@ const HomeTabItemMobile = ({ operation }) => {
                 onClick={onClick}
             >
                 Категорія:
-                {openComment ? (
-                    operation.category.name
-                ) : (
-                    <EllipsisText text={operation.category.name} length={13} />
-                )}{' '}
+                <span>
+                    {openComment ? (
+                        operation.category.name
+                    ) : (
+                        <EllipsisText
+                            text={operation.category.name}
+                            length={13}
+                        />
+                    )}
+                </span>
             </p>
             <p
                 data-name="comment"
@@ -78,10 +89,10 @@ const HomeTabItemMobile = ({ operation }) => {
                 Сума:
                 <span className="homeTabItemResult">
                     {openComment ? (
-                        operation.sum
+                        makeMoney(operation.sum)
                     ) : (
                         <EllipsisText
-                            text={String(operation.sum)}
+                            text={String(makeMoney(operation.sum))}
                             length={13}
                         />
                     )}{' '}
@@ -95,10 +106,10 @@ const HomeTabItemMobile = ({ operation }) => {
                 Баланс:
                 <span>
                     {openComment ? (
-                        operation.balance
+                        makeMoney(operation.balance)
                     ) : (
                         <EllipsisText
-                            text={String(operation.balance)}
+                            text={String(makeMoney(operation.balance))}
                             length={13}
                         />
                     )}

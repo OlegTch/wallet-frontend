@@ -9,6 +9,13 @@ const HomeTabItemTabletAndDesktop = ({ operation }) => {
     const onClick = e => {
         setOpenRow(openRow ? false : true);
     };
+
+    const makeMoney = n => {
+        return parseFloat(n)
+            .toFixed(2)
+            .replace(/(\d)(?=(\d{3})+\.)/g, '$1 ');
+    };
+
     return (
         <>
             <p>{moment(operation.datetime).format('DD.MM.YY')}</p>
@@ -49,9 +56,12 @@ const HomeTabItemTabletAndDesktop = ({ operation }) => {
                     } ${openRow ? 'homeTabItemAndDesktopResult--open' : ''}`}
             >
                 {openRow ? (
-                    operation.sum
+                    makeMoney(operation.sum)
                 ) : (
-                    <EllipsisText text={String(operation.sum)} length={8} />
+                    <EllipsisText
+                        text={String(makeMoney(operation.sum))}
+                        length={8}
+                    />
                 )}
             </p>
             <p
@@ -59,9 +69,12 @@ const HomeTabItemTabletAndDesktop = ({ operation }) => {
                 onClick={onClick}
             >
                 {openRow ? (
-                    operation.balance
+                    makeMoney(operation.balance)
                 ) : (
-                    <EllipsisText text={String(operation.balance)} length={8} />
+                    <EllipsisText
+                        text={String(makeMoney(operation.balance))}
+                        length={8}
+                    />
                 )}
             </p>
         </>

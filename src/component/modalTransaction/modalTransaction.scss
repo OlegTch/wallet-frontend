@@ -76,6 +76,9 @@
 .switchTypeBalance__text__active {
     color: var(--accent-color-grean);
 }
+.switchTypeBalance__text__active_red {
+    color: var(--accent-color-red);
+}
 
 .toggleContainerType {
     position: relative;
@@ -331,7 +334,7 @@
     padding: 0;
     z-index: 1;
     margin: 0;
-    top: calc(100% + 5px);
+    top: calc(100% + 3px);
     width: 100%;
     overflow: scroll;
     border-radius: 20px;

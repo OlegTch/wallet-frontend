@@ -94,7 +94,7 @@ export const ModalTransaction = () => {
     function switchActive() {
         if (modalTypeTransaction === 'spending') {
             const defPoss = 'switchTypeBalance__text';
-            const switchPoss = 'switchTypeBalance__text__active';
+            const switchPoss = 'switchTypeBalance__text__active_red';
             return `${defPoss} ${switchPoss}`;
         }
 
@@ -144,7 +144,7 @@ export const ModalTransaction = () => {
 
         try {
             await validate(modalTransaction, validateSchema);
-            // closeModalItem();
+            closeModalItem();
         } catch (error) {
             console.log(error[0].message);
             toast.error(error[0].message);
@@ -291,11 +291,13 @@ export const ModalTransaction = () => {
                 </div>
                 <div className="commentContainer">
                     <textarea
+                        type="text"
                         maxLength="200"
                         className="commentField"
                         placeholder="коментар"
                         onChange={commentInput}
                         value={comment}
+                        pattern="/^[A-Za-zа-яА-я]{5,10}$/"
                     />
                 </div>
                 <div className="buttonContainer">

@@ -49,6 +49,7 @@ const HomeTabList = ({ operations }) => {
                                         <th>Коментар</th>
                                         <th>Сума</th>
                                         <th>Баланс</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 {operations.length > 0 && (

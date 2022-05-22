@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import moment from 'moment';
 import EllipsisText from 'react-ellipsis-text';
+
+import sprite from '@assets/sprite.svg';
 import './homeTabItemTabletAndDesktop.scss';
 
+console.log(sprite);
 const HomeTabItemTabletAndDesktop = ({ operation }) => {
     const [openRow, setOpenRow] = useState(false);
 
@@ -17,10 +20,12 @@ const HomeTabItemTabletAndDesktop = ({ operation }) => {
     };
 
     return (
-        <>
-            <p>{moment(operation.datetime).format('DD.MM.YY')}</p>
-            <p>{operation.income ? '+' : '-'}</p>
-            <p
+        <tr className="homeTabItemTabletAndDesktop" key={operation._id}>
+            <td onClick={onClick}>
+                {moment(operation.datetime).format('DD.MM.YY')}
+            </td>
+            <td onClick={onClick}>{operation.income ? '+' : '-'}</td>
+            <td
                 className={openRow ? 'homeTabItemAndDesktopResult--open' : ''}
                 onClick={onClick}
             >
@@ -29,8 +34,8 @@ const HomeTabItemTabletAndDesktop = ({ operation }) => {
                 ) : (
                     <EllipsisText text={operation.category.name} length={10} />
                 )}
-            </p>
-            <p
+            </td>
+            <td
                 className={openRow ? 'homeTabItemAndDesktopResult--open' : ''}
                 onClick={onClick}
             >
@@ -46,25 +51,26 @@ const HomeTabItemTabletAndDesktop = ({ operation }) => {
                         length={13}
                     />
                 )}
-            </p>
-            <p
+            </td>
+            <td
                 className={`
                     ${
                         operation.income
                             ? 'homeTabItemAndDesktopResult homeTabItemAndDesktopResult--green'
                             : 'homeTabItemAndDesktopResult homeTabItemAndDesktopResult--red'
                     } ${openRow ? 'homeTabItemAndDesktopResult--open' : ''}`}
+                onClick={onClick}
             >
                 {openRow ? (
                     makeMoney(operation.sum)
                 ) : (
                     <EllipsisText
                         text={String(makeMoney(operation.sum))}
-                        length={8}
+                        length={14}
                     />
                 )}
-            </p>
-            <p
+            </td>
+            <td
                 className={openRow ? 'homeTabItemAndDesktopResult--open' : ''}
                 onClick={onClick}
             >
@@ -73,11 +79,18 @@ const HomeTabItemTabletAndDesktop = ({ operation }) => {
                 ) : (
                     <EllipsisText
                         text={String(makeMoney(operation.balance))}
-                        length={8}
+                        length={14}
                     />
                 )}
-            </p>
-        </>
+            </td>
+            <td>
+                <button className="homeTab__buttonDelete">
+                    <svg className="homeTab__iconDelete">
+                        <use href={`${sprite}#buttonDel`}></use>
+                    </svg>
+                </button>
+            </td>
+        </tr>
     );
 };
 

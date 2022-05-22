@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 
 import { getName } from '@redux/user/user-selector';
-import { ButtonExit } from '@shared';
+import ButtonExit from '@component/buttonExit';
 import './headerNav.scss';
 
-export const HeaderNav = () => {
+const HeaderNav = () => {
     const userName = useSelector(getName);
     return (
         <ul className="header_nav__list">
@@ -17,3 +17,5 @@ export const HeaderNav = () => {
         </ul>
     );
 };
+
+export default HeaderNav;

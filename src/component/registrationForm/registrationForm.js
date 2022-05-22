@@ -3,7 +3,7 @@ import { userOperation } from '../../redux/user/user-operation';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import './registrationsForm.scss';
-import { Logo } from '../shared/logo';
+import Logo from '../logo';
 import Frame from '../../assets/img/tablet/Frame.png';
 import sprite from '../../assets/sprite.svg';
 import { Link } from 'react-router-dom';

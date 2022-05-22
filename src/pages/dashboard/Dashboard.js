@@ -3,14 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Media from 'react-media';
 
-import {
-    Header,
-    Balans,
-    Navigation,
-    ModalTransaction,
-    Backdrop,
-    ModalLogout,
-} from '@component';
+import Header from '@component/header';
+import Balans from '@component/balans';
+import Navigation from '@component/navigation';
+
+import { ModalTransaction, Backdrop, ModalLogout } from '@component';
+
 import Currency from '@component/currency';
 import HomeTab from '@component/homeTab';
 import ButtonClose from '@component/buttonClose/buttonClose';

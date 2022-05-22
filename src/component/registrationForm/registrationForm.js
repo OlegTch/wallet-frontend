@@ -24,6 +24,7 @@ export const RegistrationForm = () => {
             toast.error(errorUser);
         }
     }, [errorUser]);
+
     const showHiden = e => {
         e.preventDefault();
         e.stopPropagation();

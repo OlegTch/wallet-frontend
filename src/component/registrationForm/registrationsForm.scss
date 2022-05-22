@@ -2,10 +2,6 @@
     display: none;
 }
 
-.logo {
-    margin-bottom: 60px;
-}
-
 .form {
     padding: 32px 20px;
     display: flex;
@@ -13,6 +9,10 @@
     justify-content: center;
     flex-direction: column;
     background: var(--primary-background-color);
+
+    &__logo {
+        margin-bottom: 60px;
+    }
 
     &__label {
         position: relative;

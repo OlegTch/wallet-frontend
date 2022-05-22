@@ -1,16 +1,37 @@
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { userOperation } from '../../redux/user/user-operation';
-import Logo from '../logo';
-import sprite from '../../assets/sprite.svg';
+import { isErrorUser } from '@redux/user/user-selector';
 import imgMan from '../../assets/img/tablet/tabletMan.svg';
+import sprite from '../../assets/sprite.svg';
+import Logo from '../logo';
 
 import './loginForm.scss';
+import '../registrationForm/registrationsForm.scss';
+
 export const LoginForm = () => {
     const dispatch = useDispatch();
+    const [type, setType] = useState('password');
+    const errorUser = useSelector(isErrorUser);
+
+    useEffect(() => {
+        if (errorUser) {
+            toast.error(errorUser);
+        }
+    }, [errorUser]);
+
+    const showHiden = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        let currentType = type === 'password' ? 'input' : 'password';
+        setType(currentType);
+    };
 
     return (
         <section>
@@ -25,8 +46,8 @@ export const LoginForm = () => {
                     dispatch(userOperation.login(values));
                 }}
                 validationSchema={Yup.object().shape({
-                    email: Yup.string().email().required(`Обов'язкове поле`),
-                    password: Yup.string().required(`Обов'язкове поле`),
+                    email: Yup.string().email().required("Обов'язкове поле"),
+                    password: Yup.string().required("Обов'язкове поле"),
                 })}
             >
                 {props => {
@@ -86,11 +107,18 @@ export const LoginForm = () => {
                                         className="login_form__input"
                                         id="password"
                                         placeholder="Пароль"
-                                        type="password"
+                                        type={type}
                                         value={values.password}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
+
+                                    <span
+                                        className="form__show"
+                                        onClick={showHiden}
+                                    >
+                                        {type === 'input' ? 'HIDE' : 'SHOW'}
+                                    </span>
                                 </label>
 
                                 <button

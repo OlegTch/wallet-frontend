@@ -49,11 +49,16 @@ const HomeTabItemMobile = ({ operation }) => {
                 onClick={onClick}
             >
                 Категорія:
-                {openComment ? (
-                    operation.category.name
-                ) : (
-                    <EllipsisText text={operation.category.name} length={13} />
-                )}{' '}
+                <span>
+                    {openComment ? (
+                        operation.category.name
+                    ) : (
+                        <EllipsisText
+                            text={operation.category.name}
+                            length={13}
+                        />
+                    )}
+                </span>
             </p>
             <p
                 data-name="comment"

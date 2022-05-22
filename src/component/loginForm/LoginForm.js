@@ -23,8 +23,6 @@ export const LoginForm = () => {
                 initialValues={{ email: '', password: '' }}
                 onSubmit={values => {
                     dispatch(userOperation.login(values));
-
-                    // resetForm({ values: '' });
                 }}
                 validationSchema={Yup.object().shape({
                     email: Yup.string().email().required(`Обов'язкове поле`),
@@ -36,7 +34,6 @@ export const LoginForm = () => {
                         values,
                         touched,
                         errors,
-                        isSubmitting,
                         handleChange,
                         handleBlur,
                         handleSubmit,
@@ -52,10 +49,12 @@ export const LoginForm = () => {
                                     <Logo />
                                 </div>
                                 <label className="login_form__label">
-                                    {errors.email && touched.email && (
+                                    {errors.email && touched.email ? (
                                         <div style={{ color: 'red' }}>
                                             {errors.email}
                                         </div>
+                                    ) : (
+                                        <div style={{ height: '19px' }}></div>
                                     )}
                                     <svg className="login_form__icon">
                                         <use href={`${sprite}#email`}></use>
@@ -72,11 +71,14 @@ export const LoginForm = () => {
                                 </label>
 
                                 <label className="login_form__label">
-                                    {errors.password && touched.password && (
+                                    {errors.password && touched.password ? (
                                         <div style={{ color: 'red' }}>
                                             {errors.password}
                                         </div>
+                                    ) : (
+                                        <div style={{ height: '19px' }}></div>
                                     )}
+
                                     <svg className="login_form__icon">
                                         <use href={`${sprite}#password`}></use>
                                     </svg>

@@ -59,8 +59,9 @@ export function DiagramTab() {
                 balance={transformData(balance)}
                 color={color}
                 isEmpty={
-                    statistic.totalExpense === 0 && statistic.totalIncome === 0
-                        ? true
+                    statistic.totalExpense === 0
+                        ? // && statistic.totalIncome === 0
+                          true
                         : false
                 }
             />

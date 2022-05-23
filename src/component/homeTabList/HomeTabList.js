@@ -70,12 +70,10 @@ const HomeTabList = ({ operations }) => {
                                         </table>
                                     </div>
                                 ) : (
-                                    <Cat />
+                                    <Cat nameClass="big" />
                                 )}
                             </>
-
                         }
-
                     </>
                 );
             }}

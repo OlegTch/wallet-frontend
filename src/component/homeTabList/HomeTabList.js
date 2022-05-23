@@ -3,9 +3,9 @@ import Media from 'react-media';
 import HomeTabItemMobile from '@component/homeTabItemMobile';
 import HomeTabItemTabletAndDesktop from '@component/homeTabItemTabletAndDesktop';
 import { globalMedia } from '@data';
-import SpinnerLoader from '@component/spinnerLoader/';
+import SpinnerLoader from '@component/spinnerLoader';
 import Cat from '@component/cat';
-import './HomeTabList.scs';
+import './HomeTabList.scss';
 import { isLoading } from '@redux/finance/finance-selector';
 import { useSelector } from 'react-redux';
 

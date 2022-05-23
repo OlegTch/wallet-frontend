@@ -8,6 +8,7 @@ import './ModalDelete.scss';
 const ModalDelete = () => {
     const dispatch = useDispatch();
     const id = useSelector(getDeleteId);
+    const [isDelete, setIsDelete] = useState(false);
 
     const closeDeleteModal = () => {
         dispatch(closeModalDeleteTransaction());
@@ -16,6 +17,7 @@ const ModalDelete = () => {
     const onClickYes = e => {
         e.target.style.disabled = true;
         dispatch(getFinanceOpertaion.deleteOperation(id));
+        setIsDelete(true);
     };
 
     useEffect(() => {
@@ -52,10 +54,16 @@ const ModalDelete = () => {
                     className="btnDelete"
                     type="button"
                     onClick={onClickYes}
+                    disabled={isDelete}
                 >
                     <span>Видалити</span>
                 </button>
-                <button className="btnDelete" onClick={closeDeleteModal}>
+
+                <button
+                    className="btnDelete"
+                    onClick={closeDeleteModal}
+                    disabled={isDelete}
+                >
                     Скасувати
                 </button>
             </div>

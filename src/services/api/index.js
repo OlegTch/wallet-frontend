@@ -12,9 +12,10 @@ const setAxiosToken = token => {
 };
 
 const getError = error => {
-    if (error.response) {
+    console.dir(error);
+    if (error.response.status !== 0) {
         throw new HttpError(error.response.data.message, error.response.status);
-    } else if (error.request) {
+    } else if (error.request.status !== 0) {
         throw new HttpError(error.request.statusText, error.request.status);
     } else {
         throw new HttpError(error.message, 500);
@@ -43,7 +44,6 @@ export const loginAPI = async user => {
         setAxiosToken(result.data.data.token);
         return result.data.data;
     } catch (error) {
-        console.dir(error);
         getError(error);
     }
 };

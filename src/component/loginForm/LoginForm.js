@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { toast } from 'react-toastify';
 
 import { userOperation } from '../../redux/user/user-operation';
 import imgMan from '@assets/img/tablet/tabletMan.svg';
@@ -13,6 +12,7 @@ import Logo from '../logo';
 
 import './loginForm.scss';
 import '../registrationForm/registrationsForm.scss';
+// import '../buttonForm/buttonStyleForm.scss';
 
 export const LoginForm = () => {
     const dispatch = useDispatch();
@@ -114,7 +114,8 @@ export const LoginForm = () => {
                                 </label>
 
                                 <button
-                                    className="login_form__btn login_form__btn--current  "
+                                    // className="button"
+                                    className="login_form__btn login_form__btn--current"
                                     type="submit"
                                 >
                                     <span>Вхід</span>

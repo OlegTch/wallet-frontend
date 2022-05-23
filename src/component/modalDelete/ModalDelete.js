@@ -58,7 +58,12 @@ const ModalDelete = () => {
                 >
                     <span>Видалити</span>
                 </button>
-                <button className="btnDelete" onClick={closeDeleteModal}>
+
+                <button
+                    className="btnDelete"
+                    onClick={closeDeleteModal}
+                    disabled={isDelete}
+                >
                     Скасувати
                 </button>
             </div>

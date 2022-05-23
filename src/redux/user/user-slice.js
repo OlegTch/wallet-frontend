@@ -51,7 +51,6 @@ const userSlice = createSlice({
         },
 
         [userOperation.login.fulfilled]: (state, { payload }) => {
-            console.log(payload);
             state.user.name = payload.user.userName;
             state.user.email = payload.user.email;
             state.token = payload.token;
@@ -95,6 +94,21 @@ const userSlice = createSlice({
             state.token = null;
             state.isAuth = false;
             // }
+            state.isLoading = false;
+            state.error = error.message;
+        },
+        [userOperation.updateUser.pending]: state => {
+            state.isLoading = true;
+            state.error = null;
+        },
+        [userOperation.updateUser.fulfilled]: (state, { payload }) => {
+            state.user.name = payload.userName;
+            state.user.email = payload.email;
+            state.user.balance = payload.balance;
+            state.isAuth = true;
+            state.isLoading = false;
+        },
+        [userOperation.updateUser.rejected]: (state, { error }) => {
             state.isLoading = false;
             state.error = error.message;
         },

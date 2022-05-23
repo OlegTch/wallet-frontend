@@ -52,8 +52,6 @@ const Dashboard = () => {
     }, []);
 
     useEffect(() => {
-        console.log('----------Effect----------------');
-        console.log(isSaveTransaction, isOpenModalTransaction);
         if (isSaveTransaction && !isOpenModalTransaction) {
             dispatch(getFinanceOpertaion.getOperations());
             dispatch(clearSaveModalDateStatic());
@@ -61,7 +59,6 @@ const Dashboard = () => {
     }, [isSaveTransaction, isOpenModalTransaction]);
 
     useEffect(() => {
-        console.log();
         if (isDeletingTrans && !isModalDelTransaction) {
             dispatch(getFinanceOpertaion.getOperations());
             dispatch(clearSaveModalDateStatic());

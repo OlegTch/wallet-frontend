@@ -14,9 +14,7 @@ const ModalDelete = () => {
     };
 
     const onClickYes = e => {
-        console.log('Delete transaction');
         e.target.style.disable = true;
-        console.log(id);
         dispatch(getFinanceOpertaion.deleteOperation(id));
     };
 

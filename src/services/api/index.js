@@ -93,9 +93,7 @@ export const getCategoryAPI = async () => {
 
 export const getStatisticAPI = async ({ month, year }) => {
     try {
-        const query = `${month || year ? '?' : null}${
-            month ? `month=${month}` : null
-        }${month && year ? '&' : null}${year ? `year=${year}` : null}`;
+        const query = `?${`month=${month}`}&${year ? `year=${year}` : null}`;
 
         const result = await axios.get(`transactions/statistics${query}`);
 
@@ -103,6 +101,17 @@ export const getStatisticAPI = async ({ month, year }) => {
     } catch (error) {
         getError(error);
     }
+    //  try {
+    //      const query = `${month || year ? '?' : null}${
+    //          month ? `month=${month}` : null
+    //      }${month && year ? '&' : null}${year ? `year=${year}` : null}`;
+
+    //      const result = await axios.get(`transactions/statistics${query}`);
+
+    //      return result.data.transactions;
+    //  } catch (error) {
+    //      getError(error);
+    //  }
 };
 
 // ------------  Finance (operations) ----------------------------

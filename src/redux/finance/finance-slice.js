@@ -101,11 +101,9 @@ const financeSlice = createSlice({
             state.isDeleteTransaction = false;
         },
         [getFinanceOpertaion.deleteOperation.fulfilled]: state => {
-            console.log('11111111111111111111111');
             state.isLoading = false;
             state.isDeleteTransaction = true;
             state.isModalDeleteTransaction = false;
-            console.log('22222222222222222222');
         },
         [getFinanceOpertaion.deleteOperation.rejected]: (state, { error }) => {
             state.isLoading = false;

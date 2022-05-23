@@ -58,7 +58,11 @@ export function DiagramTab() {
                 category={statisticCredit}
                 balance={transformData(balance)}
                 color={color}
-                isEmpty={statistic.totalExpense === 0 ? true : false}
+                isEmpty={
+                    statistic.totalExpense === 0 && statistic.totalIncome === 0
+                        ? true
+                        : false
+                }
             />
             <div className="diagramTab-container">
                 <DatePicker />

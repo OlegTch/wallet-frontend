@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getFinanceOpertaion } from '@redux/finance/finance-operation';
 import { closeModalDeleteTransaction } from '@redux/finance/finance-slice';
 import { getDeleteId } from '@redux/finance/finance-selector';

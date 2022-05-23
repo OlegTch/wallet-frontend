@@ -3,16 +3,21 @@ import Media from 'react-media';
 import HomeTabItemMobile from '@component/homeTabItemMobile';
 import HomeTabItemTabletAndDesktop from '@component/homeTabItemTabletAndDesktop';
 import { globalMedia } from '@data';
+import SpinnerLoader from '@component/spinnerLoader/';
 import Cat from '@component/cat';
-import './HomeTabList.scss';
+import './HomeTabList.scs';
+import { isLoading } from '@redux/finance/finance-selector';
+import { useSelector } from 'react-redux';
 
 const HomeTabList = ({ operations }) => {
+    const isLoad = useSelector(isLoading);
     return (
         <Media queries={globalMedia}>
             {matches => {
                 return matches.small ? (
                     <>
-                        {operations.length > 0 ? (
+                        {isLoading && <SpinnerLoader />}
+                        {!isLoading && operations.length > 0 ? (
                             <ul className="homeTabList">
                                 {operations.map(el => {
                                     return (
@@ -53,7 +58,8 @@ const HomeTabList = ({ operations }) => {
                                         </tr>
                                     </thead>
                                 </table>
-                                {operations.length > 0 ? (
+                                {isLoading && <SpinnerLoader />}
+                                {!isLoading && operations.length > 0 ? (
                                     <div className="block_table">
                                         <table idth="100%">
                                             {operations.length > 0 && (

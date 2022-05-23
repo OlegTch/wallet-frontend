@@ -26,7 +26,7 @@ const HomeTabItemMobile = ({ operation }) => {
                 setOpenBalance(openBalance ? false : true);
                 break;
             default:
-                return;
+                return; 
         }
     };
 

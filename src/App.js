@@ -27,7 +27,6 @@ function App() {
     }, []);
 
     useEffect(() => {
-        console.log('Use effect in app', isUserAuth);
         if (!isUserAuth && !isUserToken) {
             dispatch(clear());
         }

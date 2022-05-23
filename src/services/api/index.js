@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { HttpError } from '../error';
+// axios.defaults.baseURL = 'http://localhost:3001/api';
 axios.defaults.baseURL = 'https://wallet-serv.herokuapp.com/api';
 
 const setAxiosToken = token => {
@@ -67,6 +68,15 @@ export const getUserAPI = async token => {
     }
 };
 
+export const updateNameUserAPI = async user => {
+    try {
+        const result = await axios.patch('users', user);
+        return result.data.data.user;
+    } catch (error) {
+        getError(error);
+    }
+};
+
 // -------------  Category  --------------------------
 
 export const getCategoryAPI = async () => {
@@ -88,10 +98,7 @@ export const getStatisticAPI = async ({ month, year }) => {
         }${month && year ? '&' : null}${year ? `year=${year}` : null}`;
 
         const result = await axios.get(`transactions/statistics${query}`);
-        console.log(
-            '------------------------------statistic api------------------------',
-        );
-        console.log(result);
+
         return result.data.transactions;
     } catch (error) {
         getError(error);
@@ -127,7 +134,6 @@ export const addTransactionAPI = async data => {
 export const deleteTransactionAPI = async id => {
     try {
         const result = await axios.delete(`transactions/${id}`);
-        console.log(result);
         return result;
     } catch (error) {
         getError(error);

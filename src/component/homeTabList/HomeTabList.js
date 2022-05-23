@@ -15,7 +15,6 @@ const HomeTabList = ({ operations }) => {
                         {operations.length > 0 ? (
                             <ul className="homeTabList">
                                 {operations.map(el => {
-                                    // console.log(el);
                                     return (
                                         <li
                                             className={
@@ -73,9 +72,7 @@ const HomeTabList = ({ operations }) => {
                                     <Cat />
                                 )}
                             </>
-
                         }
-
                     </>
                 );
             }}

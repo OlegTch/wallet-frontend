@@ -6,7 +6,6 @@ import ButtonDelete from '@component/buttonDelete';
 import sprite from '@assets/sprite.svg';
 import './homeTabItemTabletAndDesktop.scss';
 
-console.log(sprite);
 const HomeTabItemTabletAndDesktop = ({ operation }) => {
     const [openRow, setOpenRow] = useState(false);
 

@@ -8,7 +8,6 @@ import Balans from '@component/balans';
 import Navigation from '@component/navigation';
 
 import { ModalTransaction, Backdrop, ModalLogout } from '@component';
-
 import Currency from '@component/currency';
 import HomeTab from '@component/homeTab';
 import ButtonClose from '@component/buttonClose/buttonClose';

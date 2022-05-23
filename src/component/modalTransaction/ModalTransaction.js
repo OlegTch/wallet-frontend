@@ -32,18 +32,69 @@ export const ModalTransaction = () => {
     function closeModalItem() {
         dispatch(closeModalTransaction());
     }
+    function saveLocStorage() {
+        const typeLocStor = localStorage.setItem('Тип', modalTypeTransaction);
+
+        const dateLocStor = localStorage.setItem('дата', date);
+
+        const categLocStor = localStorage.setItem('категорії', category);
+
+        const sumLocStor = localStorage.setItem('сума', summ);
+
+        const commenLocStor = localStorage.setItem('коментар', comment);
+
+        const listLocStor = localStorage.setItem('список', listActive);
+
+        const idCategoryLocStorage = localStorage.setItem(
+            'ідКатегорія',
+            idCategory,
+        );
+    }
+    function locStorageClear() {
+        localStorage.clear();
+    }
+    function locStorageUseDate() {
+        const typeLocStor = localStorage.getItem('Тип', modalTypeTransaction);
+        if (typeLocStor) {
+            setModalTypeTransaction(typeLocStor);
+        }
+        const categLocStor = localStorage.getItem('категорії', category);
+        if (categLocStor) {
+            setCategory(categLocStor);
+        }
+        const commenLocStor = localStorage.getItem('коментар', comment);
+        if (commenLocStor) {
+            setComment(commenLocStor);
+        }
+        const sumLocStor = localStorage.getItem('сума', summ);
+        if (sumLocStor) {
+            setSumm(sumLocStor);
+        }
+        const idCategoryLocStorage = localStorage.getItem(
+            'ідКатегорія',
+            idCategory,
+        );
+        if (idCategoryLocStorage) {
+            setIdCategory(idCategoryLocStorage);
+        }
+    }
+    useEffect(() => {
+        locStorageUseDate();
+    }, []);
 
     useEffect(() => {
         const backdrop = document.querySelector('#backdrop');
 
         function clickBackdrop(e) {
             if (e.target === backdrop) {
+                saveLocStorage();
                 closeModalItem();
             }
         }
 
         function pressEsc(e) {
             if (e.code === 'Escape') {
+                saveLocStorage();
                 closeModalItem();
             }
         }
@@ -158,6 +209,7 @@ export const ModalTransaction = () => {
                 sum: summ,
             }),
         );
+        locStorageClear();
     };
 
     function DropMenuActive() {
@@ -271,6 +323,9 @@ export const ModalTransaction = () => {
                         step="0.01"
                         type="number"
                         placeholder="0.00"
+                        lang="ua"
+                        // data-regexp="^\d+(?:[,.]\d{0,2})?$"
+                        // onKeyPress=
                     />
                 </div>
                 <div className="calendarContainer">

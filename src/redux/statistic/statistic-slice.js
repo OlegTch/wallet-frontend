@@ -15,6 +15,11 @@ const initialState = {
 const statisticSlice = createSlice({
     name: 'statistic',
     initialState,
+    reducers: {
+        clearError: state => {
+            state.error = null;
+        },
+    },
     extraReducers: {
         [statisticOperation.getStatistic.pending]: state => {
             state.isLoading = true;
@@ -42,4 +47,5 @@ const statisticSlice = createSlice({
     },
 });
 
+export const { clearError } = statisticSlice.actions;
 export default statisticSlice;

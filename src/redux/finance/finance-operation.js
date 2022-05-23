@@ -1,5 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getOperationsAPI, addTransactionAPI } from '@api';
+import {
+    deleteTransactionAPI,
+    getOperationsAPI,
+    addTransactionAPI,
+} from '@api';
 
 const getOperations = createAsyncThunk('getOperations', async data => {
     const result = await getOperationsAPI(data);
@@ -11,4 +15,13 @@ const addOperation = createAsyncThunk('addOperation', async data => {
     return result;
 });
 
-export const getFinanceOpertaion = { getOperations, addOperation };
+const deleteOperation = createAsyncThunk('deleteOperation', async id => {
+    const result = await deleteTransactionAPI(id);
+    return result;
+});
+
+export const getFinanceOpertaion = {
+    deleteOperation,
+    getOperations,
+    addOperation,
+};

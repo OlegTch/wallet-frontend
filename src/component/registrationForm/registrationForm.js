@@ -1,17 +1,18 @@
-import { useDispatch } from 'react-redux';
-import { userOperation } from '../../redux/user/user-operation';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import './registrationsForm.scss';
+import { toast } from 'react-toastify';
+
+import { userOperation } from '@redux/user/user-operation';
 import Logo from '../logo';
-import Frame from '../../assets/img/tablet/Frame.png';
-import sprite from '../../assets/sprite.svg';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import Frame from '@assets/img/tablet/Frame.png';
+import sprite from '@assets/sprite.svg';
 import { PasswordIndicator } from './PasswordIndicator';
 import { isErrorUser } from '@redux/user/user-selector';
-import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
+import { clearError } from '@redux/user/user-slice';
+import './registrationsForm.scss';
 
 export const RegistrationForm = () => {
     const dispatch = useDispatch();
@@ -22,6 +23,7 @@ export const RegistrationForm = () => {
     useEffect(() => {
         if (errorUser) {
             toast.error(errorUser);
+            dispatch(clearError());
         }
     }, [errorUser]);
 

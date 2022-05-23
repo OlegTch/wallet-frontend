@@ -2,9 +2,10 @@
 
 .homeTabItemTabletAndDesktop {
     display: flex;
-    justify-content: space-around;
-    width: 704px;
-    margin: 0 auto;
+    // justify-content: space-around;
+    // width: 704px;
+    // margin: 0 auto;
+    width: 100%;
     position: relative;
 
     &:not(:last-child)::after {
@@ -21,10 +22,11 @@
         font-weight: 700;
     }
 
-    & p {
+    & td {
         display: flex;
         justify-content: flex-start;
-        align-items: center;
+        padding-left: 24px;
+        align-items: flex-start;
         font-family: Circe;
         font-size: 16px;
         font-weight: 400;
@@ -35,16 +37,29 @@
         position: relative;
 
         &:nth-child(1) {
-            width: 50px;
-        }
-        &:nth-child(2) {
-            width: 30px;
-        }
-        &:nth-child(3) {
             width: 100px;
         }
+        &:nth-child(2) {
+            width: 60px;
+        }
+        &:nth-child(3) {
+            width: 120px;
+        }
+        &:nth-child(4) {
+            width: 120px;
+        }
         &:nth-child(5) {
-            width: 50px;
+            justify-content: flex-end;
+            padding-right: 20px;
+            padding-left: 0;
+            width: 120px;
+        }
+        &:nth-child(6) {
+            justify-content: flex-end;
+            width: 120px;
+        }
+        &:nth-child(7) {
+            width: 40px;
         }
     }
 }
@@ -55,4 +70,11 @@
 
 .homeTabItemAndDesktopResult--red {
     color: var(--accent-color-red);
+}
+
+.homeTabItemTabletAndDesktop td.homeTabItemAndDesktopResult--open {
+    height: auto;
+    min-height: 40px;
+    display: flex;
+    align-items: flex-start;
 }

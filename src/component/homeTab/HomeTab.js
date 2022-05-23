@@ -1,19 +1,12 @@
 import './homeTab.scss';
 import { getFinanceOpertaion } from '@redux/finance/finance-operation';
-import {
-    getOperations,
-    isLoading,
-    isSaveModalDateStatic,
-} from '@redux/finance/finance-selector';
+import { getOperations } from '@redux/finance/finance-selector';
 import HomeTabList from '../homeTabList';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import SpinnerLoader from '../spinnerLoader/spinnerLoader';
 
 const HomeTab = () => {
     const dispatch = useDispatch();
-    const isLoad = useSelector(isLoading);
-    const isModalAdd = useSelector(isSaveModalDateStatic);
     const operations = useSelector(getOperations);
 
     useEffect(() => {
@@ -22,12 +15,10 @@ const HomeTab = () => {
         }
     }, []);
 
-    return !isLoad && !isModalAdd ? (
+    return (
         <section className="homeTab-section">
             <HomeTabList operations={operations} />
         </section>
-    ) : (
-        <SpinnerLoader />
     );
 };
 

@@ -1,1 +1,1 @@
-export { default } from './HomeTab.jsx';
+export { default } from './HomeTab';

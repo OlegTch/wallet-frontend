@@ -255,6 +255,12 @@
     padding: 0 10px;
 }
 .submitButton {
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -262,31 +268,46 @@
     height: 50px;
     border-radius: 20px;
     border: none;
-    font-size: 18px;
     font-weight: 400;
     background-color: var(--accent-color-grean);
     color: var(--primary-background-color);
+    transition: all 150ms ease-in-out;
+
     @media screen and (min-width: 768px) {
         width: 300px;
     }
 }
 .cancelButton {
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
     width: 100%;
     height: 50px;
-    font-size: 18px;
+
     font-weight: 400;
+
     border-radius: 20px;
     border: 1px solid var(--accent-color-blue);
     color: var(--accent-color-blue);
     background-color: transparent;
+    transition: all 150ms ease-in-out;
+
     @media screen and (min-width: 768px) {
         width: 300px;
     }
 }
+.cancelButton:hover,
+.submitButton:hover {
+    box-shadow: 0 0 10px 4px var(--accent-color-grean);
+}
+
 // випадающий список стилі
 .dropContainer {
     position: relative;

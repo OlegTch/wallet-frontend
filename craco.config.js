@@ -17,6 +17,7 @@ module.exports = {
                     '@redux': './redux',
                     '@hoc': './hoc',
                     '@api': './services/api',
+                    '@services': './services',
                     '@style': './styles',
                     '@node_modules': '../node_modules',
                 },

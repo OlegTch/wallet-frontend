@@ -33,7 +33,6 @@ export const getStatistic = state => {
               }));
     result.totalExpense = state.statistic.totalExpense;
     result.totalIncome = state.statistic.totalIncome;
-    console.log('Selector statistic = ', result);
     return result;
 };
 

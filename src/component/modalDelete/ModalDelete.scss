@@ -1,4 +1,4 @@
-.containerLogout {
+.containerDelete {
     padding: 40px 20px;
     width: 100%;
     margin-top: 20vh;
@@ -21,10 +21,17 @@
     }
 }
 
-.textLogout {
+.textDelete {
     font-size: 30px;
 }
-.btnLogout {
+
+.btnDelete {
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
     display: block;
     margin-right: auto;
     margin-left: auto;
@@ -32,22 +39,17 @@
     width: 150px;
     height: 50px;
     border: 0;
-
-    font-size: 18px;
-    line-height: 1.5;
-    text-align: center;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-
+    text-decoration: none;
     padding-top: 13px;
     padding-bottom: 13px;
     transition: all 150ms ease-in-out;
 
     &:first-child {
-        margin-top: 60px;
+        margin-top: 40px;
         color: var(--secondary-text-color);
         background-color: var(--accent-color-grean);
     }
+
     &:last-child {
         margin-top: 20px;
         color: var(--accent-color-blue);
@@ -55,6 +57,6 @@
         background-color: var(--primary-background-color);
     }
 }
-.btnLogout:hover {
+.btnDelete:hover {
     box-shadow: 0 0 10px 4px var(--accent-color-grean);
 }

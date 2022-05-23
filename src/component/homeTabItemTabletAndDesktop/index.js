@@ -1,1 +1,1 @@
-export { default } from './homeTabItemTabletAndDesktop.jsx';
+export { default } from './homeTabItemTabletAndDesktop';

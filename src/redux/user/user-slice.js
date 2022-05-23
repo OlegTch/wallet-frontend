@@ -22,6 +22,9 @@ const userSlice = createSlice({
         closeModalLogout: state => {
             state.isModalLogout = false;
         },
+        clearError: state => {
+            state.error = null;
+        },
     },
     extraReducers: {
         [userOperation.register.pending]: state => {
@@ -48,7 +51,6 @@ const userSlice = createSlice({
         },
 
         [userOperation.login.fulfilled]: (state, { payload }) => {
-            console.log(payload);
             state.user.name = payload.user.userName;
             state.user.email = payload.user.email;
             state.token = payload.token;
@@ -95,6 +97,21 @@ const userSlice = createSlice({
             state.isLoading = false;
             state.error = error.message;
         },
+        [userOperation.updateUser.pending]: state => {
+            state.isLoading = true;
+            state.error = null;
+        },
+        [userOperation.updateUser.fulfilled]: (state, { payload }) => {
+            state.user.name = payload.userName;
+            state.user.email = payload.email;
+            state.user.balance = payload.balance;
+            state.isAuth = true;
+            state.isLoading = false;
+        },
+        [userOperation.updateUser.rejected]: (state, { error }) => {
+            state.isLoading = false;
+            state.error = error.message;
+        },
         [clear]: state => {
             state.user = {};
             state.token = null;
@@ -106,5 +123,6 @@ const userSlice = createSlice({
     },
 });
 
-export const { openModalLogout, closeModalLogout } = userSlice.actions;
+export const { openModalLogout, closeModalLogout, clearError } =
+    userSlice.actions;
 export default userSlice;

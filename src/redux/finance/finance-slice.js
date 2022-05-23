@@ -84,8 +84,11 @@ const financeSlice = createSlice({
         [getFinanceOpertaion.addOperation.pending]: state => {
             state.isLoading = true;
             state.error = null;
+            state.isSaveModalDateStatic = false;
         },
         [getFinanceOpertaion.addOperation.fulfilled]: (state, { payload }) => {
+            console.log('------------slice add operation--------------------');
+            console.log(payload);
             state.data = [payload, ...state.data];
             state.isLoading = false;
             state.isSaveModalDateStatic = true;
@@ -111,7 +114,6 @@ const financeSlice = createSlice({
             state.isDeleteTransaction = false;
             state.isModalDeleteTransaction = false;
         },
-
         [clear]: state => {
             state.data = [];
             state.userBalance = 0;

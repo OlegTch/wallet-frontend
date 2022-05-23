@@ -30,6 +30,7 @@ export const ModalTransaction = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function closeModalItem() {
+        console.log('close modal dispatch');
         dispatch(closeModalTransaction());
     }
 
@@ -58,6 +59,7 @@ export const ModalTransaction = () => {
     }, [closeModalItem]);
     useEffect(() => {
         if (pushDate) {
+            console.log('pushDate');
             closeModalItem();
         }
     }, [pushDate]);
@@ -142,12 +144,12 @@ export const ModalTransaction = () => {
 
         try {
             await validate(modalTransaction, validateSchema);
-            closeModalItem();
+            // closeModalItem();
         } catch (error) {
             toast.error(error[0].message);
             return;
         }
-
+        console.log('modal dispatch');
         dispatch(
             getFinanceOpertaion.addOperation({
                 datetime: date,

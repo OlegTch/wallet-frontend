@@ -138,6 +138,13 @@
         background: var(--secondary-text-color);
         border: 1px solid var(--accent-color-blue);
         border-radius: 20px;
+
+        transition: all 150ms ease-in-out;
+    }
+
+    &__btn:not(:last-child):hover,
+    &__btn:last-child:hover {
+        box-shadow: 0 0 10px 4px var(--accent-color-grean);
     }
 
     &__btn:not(:last-child) {

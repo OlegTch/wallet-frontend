@@ -77,10 +77,14 @@
         color: var(--accent-color-blue);
         width: 100%;
         height: 50px;
+        transition: all 150ms ease-in-out;
 
         &:not(:last-child) {
             margin-bottom: 20px;
         }
+    }
+    &__button:hover {
+        box-shadow: 0 0 10px 4px var(--accent-color-grean);
     }
 
     &__button--active {

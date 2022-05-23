@@ -16,8 +16,8 @@ const HomeTabList = ({ operations }) => {
             {matches => {
                 return matches.small ? (
                     <>
-                        {isLoading && <SpinnerLoader />}
-                        {!isLoading && operations.length > 0 ? (
+                        {isLoad && <SpinnerLoader />}
+                        {!isLoad && operations.length > 0 ? (
                             <ul className="homeTabList">
                                 {operations.map(el => {
                                     return (
@@ -35,7 +35,7 @@ const HomeTabList = ({ operations }) => {
                                 })}
                             </ul>
                         ) : (
-                            <Cat />
+                            <>{!isLoad && <Cat />}</>
                         )}
                     </>
                 ) : (
@@ -58,8 +58,8 @@ const HomeTabList = ({ operations }) => {
                                         </tr>
                                     </thead>
                                 </table>
-                                {isLoading && <SpinnerLoader />}
-                                {!isLoading && operations.length > 0 ? (
+                                {isLoad && <SpinnerLoader />}
+                                {!isLoad && operations.length > 0 ? (
                                     <div className="block_table">
                                         <table idth="100%">
                                             {operations.length > 0 && (
@@ -75,7 +75,7 @@ const HomeTabList = ({ operations }) => {
                                         </table>
                                     </div>
                                 ) : (
-                                    <Cat nameClass="big" />
+                                    <>{!isLoad && <Cat nameClass="big" />}</>
                                 )}
                             </>
                         }

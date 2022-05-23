@@ -24,6 +24,7 @@ import {
     isSaveModalDateStatic,
     isDeleteTransaction,
     isTransactionDeleting,
+    isLoading,
 } from '@redux/finance/finance-selector';
 import { isModalLogout } from '@redux/user/user-selector';
 import { isCategoriesFull } from '@redux/categories/categories-selector';
@@ -39,7 +40,8 @@ const Dashboard = () => {
     const isSaveTransaction = useSelector(isSaveModalDateStatic);
     const isDeletingTrans = useSelector(isTransactionDeleting);
     const isModalDelTransaction = useSelector(isDeleteTransaction);
-
+    const isLoadingTransaction = useSelector(isLoading);
+    console.log('isLoading Transaction', isLoadingTransaction);
     const onOpenModalTransaction = () => {
         dispatch(openModalTransaction());
     };
@@ -51,7 +53,10 @@ const Dashboard = () => {
     }, []);
 
     useEffect(() => {
+        console.log('---------------------dashboard effect------------------');
+        console.log(isSaveTransaction, isOpenModalTransaction);
         if (isSaveTransaction && !isOpenModalTransaction) {
+            console.log('-------------------dispatch----------------');
             dispatch(getFinanceOpertaion.getOperations());
             dispatch(clearSaveModalDateStatic());
         }

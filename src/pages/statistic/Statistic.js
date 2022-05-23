@@ -8,7 +8,6 @@ import {
     getStatistic,
 } from '@redux/statistic/statistic-selector';
 
-
 //Поточна дата
 
 const Statistic = () => {
@@ -26,9 +25,9 @@ const Statistic = () => {
         <>
             <div className="statistic-section">
                 <h1 className="statistic-header__main">Статистика</h1>
-                <DiagramTab/>
+                <DiagramTab />
             </div>
-            
-        </>)
+        </>
+    );
 };
 export default Statistic;

@@ -28,6 +28,7 @@
 }
 
 .diagramTab-section {
+    justify-content: space-between;
     @media screen and (min-width: $TabletWidth) {
         display: flex;
     }

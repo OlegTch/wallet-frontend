@@ -10,6 +10,10 @@ export const ModalLogout = () => {
     function closeLogoutModal() {
         dispatch(closeModalLogout());
     }
+    function closeModalAndClearLocal() {
+        dispatch(userOperation.logout());
+        localStorage.clear();
+    }
 
     useEffect(() => {
         const backdrop = document.querySelector('#backdrop');
@@ -42,7 +46,7 @@ export const ModalLogout = () => {
                 <button
                     className="btnLogout"
                     type="button"
-                    onClick={() => dispatch(userOperation.logout())}
+                    onClick={closeModalAndClearLocal}
                 >
                     <span>Вийти</span>
                 </button>

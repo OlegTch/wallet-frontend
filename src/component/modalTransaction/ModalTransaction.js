@@ -27,24 +27,86 @@ export const ModalTransaction = () => {
     const [comment, setComment] = useState('');
 
     const dispatch = useDispatch();
-
+    console.log('modalTypeTransaction-1', modalTypeTransaction);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function closeModalItem() {
         console.log('close modal dispatch');
         dispatch(closeModalTransaction());
     }
+    function closeModalClearLocal() {
+        dispatch(closeModalTransaction());
+        locStorageClear();
+    }
+    function saveLocStorage() {
+        const typeLocStor = localStorage.setItem('Тип', modalTypeTransaction);
+
+        const dateLocStor = localStorage.setItem('дата', date);
+
+        const categLocStor = localStorage.setItem('категорії', category);
+
+        const sumLocStor = localStorage.setItem('сума', summ);
+
+        const commenLocStor = localStorage.setItem('коментар', comment);
+
+        const listLocStor = localStorage.setItem('список', listActive);
+
+        const idCategoryLocStorage = localStorage.setItem(
+            'ідКатегорія',
+            idCategory,
+        );
+    }
+    function locStorageClear() {
+        localStorage.removeItem('Тип');
+        localStorage.removeItem('категорії');
+        localStorage.removeItem('коментар');
+        localStorage.removeItem('сума');
+        localStorage.removeItem('ідКатегорія');
+    }
+    function locStorageUseDate() {
+        const typeLocStor = localStorage.getItem('Тип');
+        if (typeLocStor) {
+            setModalTypeTransaction(typeLocStor);
+        } else {
+            setModalTypeTransaction('income');
+        }
+        console.log('modalTypeTransaction-2', modalTypeTransaction);
+        const categLocStor = localStorage.getItem('категорії', category);
+        if (categLocStor) {
+            setCategory(categLocStor);
+        }
+        const commenLocStor = localStorage.getItem('коментар', comment);
+        if (commenLocStor) {
+            setComment(commenLocStor);
+        }
+        const sumLocStor = localStorage.getItem('сума', summ);
+        if (sumLocStor) {
+            setSumm(sumLocStor);
+        }
+        const idCategoryLocStorage = localStorage.getItem(
+            'ідКатегорія',
+            idCategory,
+        );
+        if (idCategoryLocStorage) {
+            setIdCategory(idCategoryLocStorage);
+        }
+    }
+    useEffect(() => {
+        locStorageUseDate();
+    }, []);
 
     useEffect(() => {
         const backdrop = document.querySelector('#backdrop');
 
         function clickBackdrop(e) {
             if (e.target === backdrop) {
+                saveLocStorage();
                 closeModalItem();
             }
         }
 
         function pressEsc(e) {
             if (e.code === 'Escape') {
+                saveLocStorage();
                 closeModalItem();
             }
         }
@@ -59,14 +121,15 @@ export const ModalTransaction = () => {
     }, [closeModalItem]);
     useEffect(() => {
         if (pushDate) {
-            console.log('pushDate');
             closeModalItem();
+            locStorageClear();
         }
     }, [pushDate]);
 
     function dateChange(e) {
         setDate(e._d);
     }
+
     function listOpen() {
         setListActive(!listActive);
     }
@@ -111,7 +174,10 @@ export const ModalTransaction = () => {
     }
 
     function switchClickHandler(e) {
-        if (!e.target.checked) {
+        console.log('switchClick', e.target.checked);
+        console.dir(e.target);
+
+        if (e.target.checked) {
             setModalTypeTransaction('spending');
             setCategory('Виберіть категорію');
             setIdCategory(null);
@@ -149,7 +215,7 @@ export const ModalTransaction = () => {
             toast.error(error[0].message);
             return;
         }
-        console.log('modal dispatch');
+
         dispatch(
             getFinanceOpertaion.addOperation({
                 datetime: date,
@@ -159,6 +225,7 @@ export const ModalTransaction = () => {
                 sum: summ,
             }),
         );
+        locStorageClear();
     };
 
     function DropMenuActive() {
@@ -219,7 +286,7 @@ export const ModalTransaction = () => {
 
     return (
         <div className="modalContainer">
-            <div className="containerClose" onClick={closeModalItem}>
+            <div className="containerClose" onClick={closeModalClearLocal}>
                 <span className="itemCloseModal">
                     <svg className="iconCloseBtn">
                         <use href={`${sprite}#closeModal`}></use>
@@ -272,6 +339,7 @@ export const ModalTransaction = () => {
                         step="0.01"
                         type="number"
                         placeholder="0.00"
+                        lang="ua"
                     />
                 </div>
                 <div className="calendarContainer">
@@ -301,7 +369,10 @@ export const ModalTransaction = () => {
                     <button className="submitButton" type="submit">
                         Додати
                     </button>
-                    <button className="cancelButton" onClick={closeModalItem}>
+                    <button
+                        className="cancelButton"
+                        onClick={closeModalClearLocal}
+                    >
                         Скасувати
                     </button>
                 </div>

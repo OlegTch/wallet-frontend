@@ -32,6 +32,10 @@ export const ModalTransaction = () => {
     function closeModalItem() {
         dispatch(closeModalTransaction());
     }
+    function closeModalClearLocal() {
+        dispatch(closeModalTransaction());
+        localStorage.clear();
+    }
     function saveLocStorage() {
         const typeLocStor = localStorage.setItem('Тип', modalTypeTransaction);
 
@@ -110,6 +114,7 @@ export const ModalTransaction = () => {
     useEffect(() => {
         if (pushDate) {
             closeModalItem();
+            locStorageClear();
         }
     }, [pushDate]);
 
@@ -160,7 +165,7 @@ export const ModalTransaction = () => {
     }
 
     function switchClickHandler(e) {
-        if (!e.target.checked) {
+        if (e.target.checked) {
             setModalTypeTransaction('spending');
             setCategory('Виберіть категорію');
             setIdCategory(null);
@@ -269,7 +274,7 @@ export const ModalTransaction = () => {
 
     return (
         <div className="modalContainer">
-            <div className="containerClose" onClick={closeModalItem}>
+            <div className="containerClose" onClick={closeModalClearLocal}>
                 <span className="itemCloseModal">
                     <svg className="iconCloseBtn">
                         <use href={`${sprite}#closeModal`}></use>
@@ -323,8 +328,6 @@ export const ModalTransaction = () => {
                         type="number"
                         placeholder="0.00"
                         lang="ua"
-                        // data-regexp="^\d+(?:[,.]\d{0,2})?$"
-                        // onKeyPress=
                     />
                 </div>
                 <div className="calendarContainer">
@@ -354,7 +357,10 @@ export const ModalTransaction = () => {
                     <button className="submitButton" type="submit">
                         Додати
                     </button>
-                    <button className="cancelButton" onClick={closeModalItem}>
+                    <button
+                        className="cancelButton"
+                        onClick={closeModalClearLocal}
+                    >
                         Скасувати
                     </button>
                 </div>

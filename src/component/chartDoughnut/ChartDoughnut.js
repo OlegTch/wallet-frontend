@@ -22,7 +22,7 @@ const options = {
     },
 };
 
-export function ChartDoughnut({ category, balance, color, isEmpty }) {
+export function ChartDoughnut({ category, balance, color, isEmpty, total }) {
     const statistic = useSelector(getStatistic);
     const isLoading = useSelector(isLoadingStatistic);
 
@@ -44,15 +44,17 @@ export function ChartDoughnut({ category, balance, color, isEmpty }) {
     return (
         <div>
             <h2 className="diagramTab-header">Статистика</h2>
-            {isEmpty && !isLoading && <Cat />}
-            {!isEmpty && (
-                <div className="wrapper-chart">
-                    <div className="balance-chart">
-                        &#8372; {' ' + balance}{' '}
+            <div className="diagramTab-thumb">
+                {isEmpty && !isLoading && <Cat />}
+                {!isEmpty && (
+                    <div className="wrapper-chart">
+                        <div className="balance-chart">
+                            &#8372; {' ' + total.expense}{' '}
+                        </div>
+                        <Doughnut data={data()} options={options} />
                     </div>
-                    <Doughnut data={data()} options={options} />
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 }

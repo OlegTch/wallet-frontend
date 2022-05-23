@@ -8,14 +8,14 @@
     margin: 0 auto;
 
     @media screen and (min-width: $TabletWidth) {
-            width: 336px;
-            height: 336px;
-        }
-    
-        @media screen and (min-width: $DesktopWidth) {
-            width: 288px;
-            height: 288px;
-        }
+        width: 336px;
+        height: 336px;
+    }
+
+    @media screen and (min-width: $DesktopWidth) {
+        width: 288px;
+        height: 288px;
+    }
 }
 
 .balance-chart {
@@ -31,4 +31,17 @@
     justify-content: center;
 }
 
+.diagramTab-thumb {
+    width: 280px;
+    height: 280px;
 
+    @media screen and (min-width: $TabletWidth) {
+        width: 336px;
+        height: 336px;
+    }
+
+    @media screen and (min-width: $DesktopWidth) {
+        width: 288px;
+        height: 288px;
+    }
+}

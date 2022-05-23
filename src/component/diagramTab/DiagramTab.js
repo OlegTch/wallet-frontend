@@ -64,6 +64,10 @@ export function DiagramTab() {
                           true
                         : false
                 }
+                total={{
+                    expense: statistic.totalExpense,
+                    // income: statistic.totalIncome,
+                }}
             />
             <div className="diagramTab-container">
                 <DatePicker />

@@ -29,7 +29,6 @@ export const ModalTransaction = () => {
 
     const dispatch = useDispatch();
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     function closeModalItem() {
         dispatch(closeModalTransaction());
     }
@@ -169,12 +168,13 @@ export const ModalTransaction = () => {
     }
 
     function switchClickHandler(e) {
-        if (modalTypeTransaction === 'income') {
+        if (e.target.attributes.checked) {
             setModalTypeTransaction('spending');
             setCategory('Виберіть категорію');
             setIdCategory(null);
             return;
         }
+
         setModalTypeTransaction('income');
         setCategory(getDebet[0].name);
         setIdCategory(getDebet[0]._id);
@@ -276,9 +276,7 @@ export const ModalTransaction = () => {
     );
 
     const makeMoney = n => {
-        return parseFloat(n)
-            .toFixed(2)
-            .replace(/(\d)(?=(\d{3})+\.)/g, '$1 ');
+        return parseFloat(n).toFixed(2);
     };
 
     return (
@@ -321,7 +319,9 @@ export const ModalTransaction = () => {
                         name="modalTypeTransaction"
                         type="checkbox"
                         id="switchType"
-                        defaultChecked
+                        defaultChecked={
+                            modalTypeTransaction === 'income' ? true : false
+                        }
                     />
                     <span className={switchActive()}>Витрати</span>
                 </div>

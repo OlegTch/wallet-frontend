@@ -6,18 +6,24 @@ import { globalMedia } from '@data';
 import SpinnerLoader from '@component/spinnerLoader';
 import Cat from '@component/cat';
 import './HomeTabList.scss';
-import { isLoading } from '@redux/finance/finance-selector';
+import {
+    isLoading,
+    isSaveModalDateStatic,
+} from '@redux/finance/finance-selector';
 import { useSelector } from 'react-redux';
 
 const HomeTabList = ({ operations }) => {
     const isLoad = useSelector(isLoading);
+    const isSave = useSelector(isSaveModalDateStatic);
+    console.log('Is loading transaction', isLoad, isSave);
+    console.log(operations);
     return (
         <Media queries={globalMedia}>
             {matches => {
                 return matches.small ? (
                     <>
-                        {isLoad && <SpinnerLoader />}
-                        {!isLoad && operations.length > 0 ? (
+                        {(isLoad || isSave) && <SpinnerLoader />}
+                        {!isLoad && !isSave && operations.length > 0 ? (
                             <ul className="homeTabList">
                                 {operations.map(el => {
                                     return (
@@ -58,25 +64,27 @@ const HomeTabList = ({ operations }) => {
                                         </tr>
                                     </thead>
                                 </table>
-                                {isLoad && <SpinnerLoader />}
-                                {!isLoad && operations.length > 0 ? (
-                                    <div className="block_table">
-                                        <table idth="100%">
-                                            {operations.length > 0 && (
-                                                <tbody>
-                                                    {operations.map(el => (
-                                                        <HomeTabItemTabletAndDesktop
-                                                            operation={el}
-                                                            key={el._id}
-                                                        />
-                                                    ))}
-                                                </tbody>
-                                            )}
-                                        </table>
-                                    </div>
-                                ) : (
-                                    <>{!isLoad && <Cat nameClass="big" />}</>
-                                )}
+                                {(isLoad || isSave) && <SpinnerLoader />}
+                                {!isLoad &&
+                                    !isSave &&
+                                    (operations.length > 0 ? (
+                                        <div className="block_table">
+                                            <table idth="100%">
+                                                {operations.length > 0 && (
+                                                    <tbody>
+                                                        {operations.map(el => (
+                                                            <HomeTabItemTabletAndDesktop
+                                                                operation={el}
+                                                                key={el._id}
+                                                            />
+                                                        ))}
+                                                    </tbody>
+                                                )}
+                                            </table>
+                                        </div>
+                                    ) : (
+                                        <Cat nameClass="big" />
+                                    ))}
                             </>
                         }
                     </>

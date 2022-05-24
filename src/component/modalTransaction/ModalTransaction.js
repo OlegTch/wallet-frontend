@@ -27,14 +27,15 @@ export const ModalTransaction = () => {
     const [comment, setComment] = useState('');
 
     const dispatch = useDispatch();
-
+    console.log('modalTypeTransaction-1', modalTypeTransaction);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function closeModalItem() {
+        console.log('close modal dispatch');
         dispatch(closeModalTransaction());
     }
     function closeModalClearLocal() {
         dispatch(closeModalTransaction());
-        localStorage.clear();
+        locStorageClear();
     }
     function saveLocStorage() {
         const typeLocStor = localStorage.setItem('Тип', modalTypeTransaction);
@@ -55,13 +56,20 @@ export const ModalTransaction = () => {
         );
     }
     function locStorageClear() {
-        localStorage.clear();
+        localStorage.removeItem('Тип');
+        localStorage.removeItem('категорії');
+        localStorage.removeItem('коментар');
+        localStorage.removeItem('сума');
+        localStorage.removeItem('ідКатегорія');
     }
     function locStorageUseDate() {
-        const typeLocStor = localStorage.getItem('Тип', modalTypeTransaction);
+        const typeLocStor = localStorage.getItem('Тип');
         if (typeLocStor) {
             setModalTypeTransaction(typeLocStor);
+        } else {
+            setModalTypeTransaction('income');
         }
+        console.log('modalTypeTransaction-2', modalTypeTransaction);
         const categLocStor = localStorage.getItem('категорії', category);
         if (categLocStor) {
             setCategory(categLocStor);
@@ -121,6 +129,7 @@ export const ModalTransaction = () => {
     function dateChange(e) {
         setDate(e._d);
     }
+
     function listOpen() {
         setListActive(!listActive);
     }
@@ -163,7 +172,17 @@ export const ModalTransaction = () => {
     function commentInput(e) {
         setComment(e.target.value);
     }
-    function switchDebetCategory() {
+
+    function switchClickHandler(e) {
+        console.log('switchClick', e.target.checked);
+        console.dir(e.target);
+
+        if (e.target.checked) {
+            setModalTypeTransaction('spending');
+            setCategory('Виберіть категорію');
+            setIdCategory(null);
+            return;
+        }
         setModalTypeTransaction('income');
         setCategory(getDebet[0].name);
         setIdCategory(getDebet[0]._id);
@@ -204,7 +223,7 @@ export const ModalTransaction = () => {
 
         try {
             await validate(modalTransaction, validateSchema);
-            closeModalItem();
+            // closeModalItem();
         } catch (error) {
             toast.error(error[0].message);
             return;

@@ -12,7 +12,6 @@ import Logo from '../logo';
 
 import './loginForm.scss';
 import '../registrationForm/registrationsForm.scss';
-// import '../buttonForm/buttonStyleForm.scss';
 
 export const LoginForm = () => {
     const dispatch = useDispatch();
@@ -114,7 +113,6 @@ export const LoginForm = () => {
                                 </label>
 
                                 <button
-                                    // className="button"
                                     className="login_form__btn login_form__btn--current"
                                     type="submit"
                                 >

@@ -60,13 +60,12 @@ export function DiagramTab() {
                 color={color}
                 isEmpty={
                     statistic.totalExpense === 0
-                        ? // && statistic.totalIncome === 0
+                        ? 
                           true
                         : false
                 }
                 total={{
                     expense: statistic.totalExpense,
-                    // income: statistic.totalIncome,
                 }}
             />
             <div className="diagramTab-container">

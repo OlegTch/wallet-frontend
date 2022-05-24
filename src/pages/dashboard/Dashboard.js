@@ -7,6 +7,7 @@ import Header from '@component/header';
 import Balans from '@component/balans';
 import Navigation from '@component/navigation';
 import ModalDelete from '@component/modalDelete';
+import ModalChangeName from '@component/modalChangeName';
 
 import { ModalTransaction, Backdrop, ModalLogout } from '@component';
 import Currency from '@component/currency';
@@ -26,6 +27,7 @@ import {
     isTransactionDeleting,
     isLoading,
 } from '@redux/finance/finance-selector';
+import { isModalChangeName } from '@redux/user/user-selector';
 import { isModalLogout } from '@redux/user/user-selector';
 import { isCategoriesFull } from '@redux/categories/categories-selector';
 import { globalMedia } from '@data';
@@ -41,7 +43,8 @@ const Dashboard = () => {
     const isDeletingTrans = useSelector(isTransactionDeleting);
     const isModalDelTransaction = useSelector(isDeleteTransaction);
     const isLoadingTransaction = useSelector(isLoading);
-    console.log('isLoading Transaction', isLoadingTransaction);
+    const isOpenModalName = useSelector(isModalChangeName);
+
     const onOpenModalTransaction = () => {
         dispatch(openModalTransaction());
     };
@@ -53,10 +56,7 @@ const Dashboard = () => {
     }, []);
 
     useEffect(() => {
-        console.log('---------------------dashboard effect------------------');
-        console.log(isSaveTransaction, isOpenModalTransaction);
         if (isSaveTransaction && !isOpenModalTransaction) {
-            console.log('-------------------dispatch----------------');
             dispatch(getFinanceOpertaion.getOperations());
             dispatch(clearSaveModalDateStatic());
         }
@@ -145,6 +145,13 @@ const Dashboard = () => {
                 <>
                     <Backdrop>
                         <ModalDelete />
+                    </Backdrop>
+                </>
+            )}
+            {isOpenModalName && (
+                <>
+                    <Backdrop>
+                        <ModalChangeName />
                     </Backdrop>
                 </>
             )}

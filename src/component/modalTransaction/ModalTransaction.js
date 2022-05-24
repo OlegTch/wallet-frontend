@@ -29,7 +29,6 @@ export const ModalTransaction = () => {
 
     const dispatch = useDispatch();
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     function closeModalItem() {
         dispatch(closeModalTransaction());
     }
@@ -278,7 +277,6 @@ export const ModalTransaction = () => {
 
     const makeMoney = n => {
         return parseFloat(n).toFixed(2);
-        // .replace(/(\d)(?=(\d{3})+\.)/g, '$1 ');
     };
 
     return (

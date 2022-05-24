@@ -174,32 +174,34 @@ export const ModalTransaction = () => {
     }
 
     function switchClickHandler(e) {
-        console.log('switchClick', e.target.checked);
+        console.log('switchClick', e.target.attributes.checked);
         console.dir(e.target);
 
-        if (e.target.checked) {
+        // if (modalTypeTransaction === 'income') {
+        if (e.target.attributes.checked) {
             setModalTypeTransaction('spending');
             setCategory('Виберіть категорію');
             setIdCategory(null);
             return;
         }
+
         setModalTypeTransaction('income');
         setCategory(getDebet[0].name);
         setIdCategory(getDebet[0]._id);
     }
-    function switchCreditCategory() {
-        setModalTypeTransaction('spending');
-        setCategory('Виберіть категорію');
-        setIdCategory(null);
-    }
+    // function switchCreditCategory() {
+    //     setModalTypeTransaction('spending');
+    //     setCategory('Виберіть категорію');
+    //     setIdCategory(null);
+    // }
 
-    function switchClickHandler(e) {
-        if (!e.target.checked) {
-            switchCreditCategory();
-            return;
-        }
-        switchDebetCategory();
-    }
+    // function switchClickHandler(e) {
+    //     if (!e.target.checked) {
+    //         switchCreditCategory();
+    //         return;
+    //     }
+    //     switchDebetCategory();
+    // }
     const validateSchema = {
         type: 'required|boolean',
         category: 'required|string',
@@ -337,7 +339,9 @@ export const ModalTransaction = () => {
                         name="modalTypeTransaction"
                         type="checkbox"
                         id="switchType"
-                        defaultChecked
+                        defaultChecked={
+                            modalTypeTransaction === 'income' ? true : false
+                        }
                     />
                     <span className={switchActive()}>Витрати</span>
                 </div>

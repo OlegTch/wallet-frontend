@@ -15,8 +15,6 @@ import { useSelector } from 'react-redux';
 const HomeTabList = ({ operations }) => {
     const isLoad = useSelector(isLoading);
     const isSave = useSelector(isSaveModalDateStatic);
-    console.log('Is loading transaction', isLoad, isSave);
-    console.log(operations);
     return (
         <Media queries={globalMedia}>
             {matches => {

@@ -10,6 +10,8 @@ export const isErrorUser = state => state.user.error;
 
 export const isModalLogout = state => state.user.isModalLogout;
 
+export const isModalChangeName = state => state.user.isChangeName;
+
 export const getName = state => state.user.user.name;
 
 export const getUser = state => state.user.user;

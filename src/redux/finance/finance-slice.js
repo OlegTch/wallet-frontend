@@ -87,8 +87,6 @@ const financeSlice = createSlice({
             state.isSaveModalDateStatic = false;
         },
         [getFinanceOpertaion.addOperation.fulfilled]: (state, { payload }) => {
-            console.log('------------slice add operation--------------------');
-            console.log(payload);
             state.data = [payload, ...state.data];
             state.isLoading = false;
             state.isSaveModalDateStatic = true;

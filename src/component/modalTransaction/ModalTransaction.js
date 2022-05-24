@@ -27,10 +27,9 @@ export const ModalTransaction = () => {
     const [comment, setComment] = useState('');
 
     const dispatch = useDispatch();
-    console.log('modalTypeTransaction-1', modalTypeTransaction);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function closeModalItem() {
-        console.log('close modal dispatch');
         dispatch(closeModalTransaction());
     }
     function closeModalClearLocal() {
@@ -66,26 +65,20 @@ export const ModalTransaction = () => {
         const typeLocStor = localStorage.getItem('Тип');
         if (typeLocStor) {
             setModalTypeTransaction(typeLocStor);
-        } else {
-            setModalTypeTransaction('income');
         }
-        console.log('modalTypeTransaction-2', modalTypeTransaction);
-        const categLocStor = localStorage.getItem('категорії', category);
+        const categLocStor = localStorage.getItem('категорії');
         if (categLocStor) {
             setCategory(categLocStor);
         }
-        const commenLocStor = localStorage.getItem('коментар', comment);
+        const commenLocStor = localStorage.getItem('коментар');
         if (commenLocStor) {
             setComment(commenLocStor);
         }
-        const sumLocStor = localStorage.getItem('сума', summ);
+        const sumLocStor = localStorage.getItem('сума');
         if (sumLocStor) {
             setSumm(sumLocStor);
         }
-        const idCategoryLocStorage = localStorage.getItem(
-            'ідКатегорія',
-            idCategory,
-        );
+        const idCategoryLocStorage = localStorage.getItem('ідКатегорія');
         if (idCategoryLocStorage) {
             setIdCategory(idCategoryLocStorage);
         }
@@ -119,6 +112,7 @@ export const ModalTransaction = () => {
             document.removeEventListener('keydown', pressEsc);
         };
     }, [closeModalItem]);
+
     useEffect(() => {
         if (pushDate) {
             closeModalItem();
@@ -174,10 +168,7 @@ export const ModalTransaction = () => {
     }
 
     function switchClickHandler(e) {
-        console.log('switchClick', e.target.checked);
-        console.dir(e.target);
-
-        if (e.target.checked) {
+        if (modalTypeTransaction === 'income') {
             setModalTypeTransaction('spending');
             setCategory('Виберіть категорію');
             setIdCategory(null);
@@ -284,6 +275,12 @@ export const ModalTransaction = () => {
         </div>
     );
 
+    const makeMoney = n => {
+        return parseFloat(n)
+            .toFixed(2)
+            .replace(/(\d)(?=(\d{3})+\.)/g, '$1 ');
+    };
+
     return (
         <div className="modalContainer">
             <div className="containerClose" onClick={closeModalClearLocal}>
@@ -324,6 +321,9 @@ export const ModalTransaction = () => {
                         name="modalTypeTransaction"
                         type="checkbox"
                         id="switchType"
+                        // checked={
+                        //     modalTypeTransaction === 'income' ? true : false
+                        // }
                         defaultChecked
                     />
                     <span className={switchActive()}>Витрати</span>
@@ -338,8 +338,12 @@ export const ModalTransaction = () => {
                         min="0.00"
                         step="0.01"
                         type="number"
+                        inputMode="decimal"
                         placeholder="0.00"
                         lang="ua"
+                        onBlur={e => {
+                            e.target.value = makeMoney(e.target.value);
+                        }}
                     />
                 </div>
                 <div className="calendarContainer">

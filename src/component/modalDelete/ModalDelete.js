@@ -2,13 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { getFinanceOpertaion } from '@redux/finance/finance-operation';
 import { closeModalDeleteTransaction } from '@redux/finance/finance-slice';
-import { getDeleteId } from '@redux/finance/finance-selector';
+import { getDeleteId, isLoading } from '@redux/finance/finance-selector';
 import './ModalDelete.scss';
 
 const ModalDelete = () => {
     const dispatch = useDispatch();
     const id = useSelector(getDeleteId);
     const [isDelete, setIsDelete] = useState(false);
+    const isLoadingTrans = useSelector(isLoading);
 
     const closeDeleteModal = () => {
         dispatch(closeModalDeleteTransaction());
@@ -18,6 +19,7 @@ const ModalDelete = () => {
         e.target.style.disabled = true;
         dispatch(getFinanceOpertaion.deleteOperation(id));
         setIsDelete(true);
+        console.log('Click delete');
     };
 
     useEffect(() => {
@@ -43,6 +45,13 @@ const ModalDelete = () => {
             document.removeEventListener('keydown', pressEsc);
         };
     }, [closeDeleteModal]);
+
+    useEffect(() => {
+        if (!isLoadingTrans && isDelete) {
+            console.log('===========================');
+            closeDeleteModal();
+        }
+    }, [isLoadingTrans, isDelete]);
 
     return (
         <div className="containerDelete">

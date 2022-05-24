@@ -27,9 +27,10 @@ const userReducer = persistReducer(persistConfig, userSlice.reducer);
 
 const middleware = getDefaultMiddleware => [
     ...getDefaultMiddleware({
-        serializableCheck: {
-            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        },
+        serializableCheck: false,
+        // serializableCheck: {
+        //     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        // },
     }),
     logger,
 ];

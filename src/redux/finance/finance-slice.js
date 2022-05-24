@@ -107,10 +107,12 @@ const financeSlice = createSlice({
             state.isModalDeleteTransaction = false;
         },
         [getFinanceOpertaion.deleteOperation.rejected]: (state, { error }) => {
+            console.log('111111111111111111111111');
             state.isLoading = false;
             state.error = error.message;
             state.isDeleteTransaction = false;
             state.isModalDeleteTransaction = false;
+            console.log('222222222222222222222');
         },
         [clear]: state => {
             state.data = [];

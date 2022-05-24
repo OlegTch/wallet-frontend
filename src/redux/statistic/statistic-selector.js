@@ -1,18 +1,3 @@
-// export const getStatistic = state => {
-//     const result = state.statistic.data.length === 0
-//             ? []
-//         : state.statistic.data.map(el => {
-//             return {
-//                 balance: el.balance,
-//                 sum: el.sum,
-//                 income: el.income,
-//                 id: el._id,
-//                 category: el.category.name,
-//                 }
-//             })
-//     return result
-// };
-
 export const getStatistic = state => {
     const result = {};
 

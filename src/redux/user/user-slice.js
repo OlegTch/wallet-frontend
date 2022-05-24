@@ -9,6 +9,7 @@ const initialState = {
     isAuth: false,
     isModalLogout: false,
     isLoading: false,
+    isChangeName: false,
     error: null,
 };
 
@@ -24,6 +25,12 @@ const userSlice = createSlice({
         },
         clearError: state => {
             state.error = null;
+        },
+        openModalChangeName: state => {
+            state.isChangeName = true;
+        },
+        closeModalChangeName: state => {
+            state.isChangeName = false;
         },
     },
     extraReducers: {
@@ -123,6 +130,11 @@ const userSlice = createSlice({
     },
 });
 
-export const { openModalLogout, closeModalLogout, clearError } =
-    userSlice.actions;
+export const {
+    openModalLogout,
+    closeModalLogout,
+    clearError,
+    openModalChangeName,
+    closeModalChangeName,
+} = userSlice.actions;
 export default userSlice;

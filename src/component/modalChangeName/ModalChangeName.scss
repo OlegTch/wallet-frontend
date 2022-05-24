@@ -44,11 +44,9 @@
     padding-bottom: 13px;
     transition: all 150ms ease-in-out;
 
-    &:first-child {
-        margin-top: 40px;
-        color: var(--secondary-text-color);
-        background-color: var(--accent-color-grean);
-    }
+    margin-top: 40px;
+    color: var(--secondary-text-color);
+    background-color: var(--accent-color-grean);
 
     &:last-child {
         margin-top: 20px;
@@ -59,4 +57,14 @@
 }
 .btnDelete:hover {
     box-shadow: 0 0 10px 4px var(--accent-color-grean);
+}
+
+.form_update_name {
+    &__input {
+        margin-right: 10px;
+        color: var(--primary-text-color);
+        border: none;
+        border-bottom: 1px solid var(--primary-text-color);
+        outline: none;
+    }
 }

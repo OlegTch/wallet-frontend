@@ -32,7 +32,6 @@ export const customStyles = {
   
   menu: (provided) => ({  // стилі для контейнеру меню, що відкривається
     ...provided,
-    // background: 'rgba(255, 255, 255, 0.8)',
     background: 'rgba(231, 234, 242, 0.9)',
     boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
     backdropFilter: 'blur(5px)',

@@ -168,6 +168,9 @@ export const ModalTransaction = () => {
     }
 
     function switchClickHandler(e) {
+        if (summ) {
+            setSumm(makeMoney(summ));
+        }
         if (e.target.attributes.checked) {
             setModalTypeTransaction('spending');
             setCategory('Виберіть категорію');
@@ -340,6 +343,11 @@ export const ModalTransaction = () => {
                         lang="ua"
                         onBlur={e => {
                             e.target.value = makeMoney(e.target.value);
+                        }}
+                        onKeyDown={e => {
+                            if (e.key === '.') {
+                                e.key = ',';
+                            }
                         }}
                     />
                 </div>

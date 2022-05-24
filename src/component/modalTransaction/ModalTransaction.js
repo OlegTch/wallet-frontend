@@ -201,7 +201,6 @@ export const ModalTransaction = () => {
 
         try {
             await validate(modalTransaction, validateSchema);
-            // closeModalItem();
         } catch (error) {
             toast.error(error[0].message);
             return;
@@ -321,9 +320,6 @@ export const ModalTransaction = () => {
                         name="modalTypeTransaction"
                         type="checkbox"
                         id="switchType"
-                        // checked={
-                        //     modalTypeTransaction === 'income' ? true : false
-                        // }
                         defaultChecked
                     />
                     <span className={switchActive()}>Витрати</span>

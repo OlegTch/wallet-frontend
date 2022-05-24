@@ -31,10 +31,6 @@ body {
 #root {
     display: flex;
     flex-direction: column;
-
-    // background-color: var(--third-background-color);
-    // backdrop-filter: blur(50px);
-
     height: 100vh;
     overflow-y: scroll;
 }
@@ -48,15 +44,10 @@ main {
 
 .dashboardMain {
     flex-grow: 1;
-    // padding-top: 12px;
 
-    @media screen and (min-width: 768px) {
-        // padding-top: 32px;
-    }
     @media screen and (min-width: 1280px) {
         display: flex;
         position: relative;
-        // padding-top: 46px;
 
         &::before {
             position: absolute;

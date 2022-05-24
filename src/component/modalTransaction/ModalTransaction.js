@@ -25,6 +25,7 @@ export const ModalTransaction = () => {
     const [listActive, setListActive] = useState(false);
     const [summ, setSumm] = useState('');
     const [comment, setComment] = useState('');
+    const [blocked, setBlocked] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -205,7 +206,7 @@ export const ModalTransaction = () => {
             toast.error(error[0].message);
             return;
         }
-
+        setBlocked(true);
         dispatch(
             getFinanceOpertaion.addOperation({
                 datetime: date,
@@ -366,12 +367,17 @@ export const ModalTransaction = () => {
                     />
                 </div>
                 <div className="buttonContainer">
-                    <button className="submitButton" type="submit">
+                    <button
+                        className="submitButton"
+                        type="submit"
+                        disabled={blocked}
+                    >
                         Додати
                     </button>
                     <button
                         className="cancelButton"
                         onClick={closeModalClearLocal}
+                        disabled={blocked}
                     >
                         Скасувати
                     </button>

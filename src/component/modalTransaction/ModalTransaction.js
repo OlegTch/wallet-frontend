@@ -76,7 +76,7 @@ export const ModalTransaction = () => {
         }
         const sumLocStor = localStorage.getItem('сума');
         if (sumLocStor) {
-            setSumm(sumLocStor);
+            setSumm(makeMoney(sumLocStor));
         }
         const idCategoryLocStorage = localStorage.getItem('ідКатегорія');
         if (idCategoryLocStorage) {

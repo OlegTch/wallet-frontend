@@ -163,17 +163,23 @@ export const ModalTransaction = () => {
     function commentInput(e) {
         setComment(e.target.value);
     }
-
-    function switchClickHandler(e) {
-        if (e.target.checked) {
-            setModalTypeTransaction('spending');
-            setCategory('Виберіть категорію');
-            setIdCategory(null);
-            return;
-        }
+    function switchDebetCategory() {
         setModalTypeTransaction('income');
         setCategory(getDebet[0].name);
         setIdCategory(getDebet[0]._id);
+    }
+    function switchCreditCategory() {
+        setModalTypeTransaction('spending');
+        setCategory('Виберіть категорію');
+        setIdCategory(null);
+    }
+
+    function switchClickHandler(e) {
+        if (!e.target.checked) {
+            switchCreditCategory();
+            return;
+        }
+        switchDebetCategory();
     }
     const validateSchema = {
         type: 'required|boolean',
